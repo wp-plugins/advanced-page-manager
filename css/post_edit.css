@@ -1,0 +1,17 @@
+
+/* Hide the 'Add' Button : */
+a.add-new-h2{ display:none }
+
+/* "Page attributes" Meta box : */
+#poststuff .inside p#apm_page_attributes_template{ margin:12px 0 3px }
+div#apm_page_attributes_family_nav{ margin: 20px 10px }
+div.apm_page_attributes_nav_button_wrapper{ padding:10px 0; text-align:center } 
+div#apm_page_attributes_family_nav a.button{ margin: 10px 0 }
+.apm_page_attributes_subpages_wrapper{ margin:10px 0px; padding:10px 10px 20px; border:1px solid #DFDFDF; text-align:center }
+.apm_page_attributes_subpages{ margin:20px 0px; }
+select#apm_page_attributes_subpage_select{ max-width:100% }
+div#apm_flag_links_wrapper{ float:right; width:20px; height:20px}
+div#apm_flag_links_wrapper img{ width:16px; height:16px}
+div#apm_page_attributes_reach{ margin:30px 0 26px; text-align:center; }
+div#apm_page_attributes_reach .button{ font-size:16px; font-size: 16px!important; }
+div#apm_page_not_in_apm_tree{ text-align:center; padding:10px }
