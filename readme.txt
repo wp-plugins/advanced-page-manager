@@ -111,7 +111,7 @@ By default, APM is in English and French. Since 0.6.5, we also support Dutch. If
 
 == Changelog ==
 
-= 0.6.5 ==
+= 0.6.5 =
 * Mantis 0000002: No position selected in the Add New side panel when clicking (again) the Add New button
 * Mantis 0000004: Ajax layer not covering the whole width of the tree
 * Mantis 0000005: Add New layer doesn't cover the whole width of the page slot
