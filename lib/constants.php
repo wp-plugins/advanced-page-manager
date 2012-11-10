@@ -2,11 +2,10 @@
 
 class ApmConstants{
 	
-	const apm_version = 'beta 1';
-	
-	const resources_version = 'beta1.1';
+	const resources_version = '0.6.5';
 										   
-	public static $wp_status_map = array(0=>'draft',
+	public static $wp_status_map = array(-1=>'auto-draft',
+										 0=>'draft',
 										 1=>'pending',
 										 2=>'publish',
 										 3=>'trash');

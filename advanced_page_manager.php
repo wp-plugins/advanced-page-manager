@@ -2,7 +2,7 @@
 /*
  * Plugin Name: Advanced Page Manager
  * Description: A plugin that redefines the way you create, move, edit and publish your pages.  
- * Version: beta 1 (0.6)
+ * Version: beta 1 (0.6.5)
  * Author: Uncategorized Creations
  * Plugin URI: http://www.uncategorized-creations.com/
  * Author URI: http://www.uncategorized-creations.com/
@@ -44,7 +44,7 @@ class advanced_page_manager{
 	 */
 	public static function hooks(){
 		
-		register_activation_hook(__FILE__, array(__CLASS__,'install'));
+		register_activation_hook(__FILE__, array(__CLASS__,'activate'));
 		register_deactivation_hook( __FILE__, array(__CLASS__, 'deactivate' ) );
 		register_uninstall_hook( __FILE__, array(__CLASS__, 'uninstall' ) );
 		
@@ -82,10 +82,16 @@ class advanced_page_manager{
 	}
 	
 	/**
-	 * What to do on plugin install
+	 * What to do on plugin activation
 	 */
-	public static function install(){	
-		//Nothing for now.	
+	public static function activate(){	
+		//ApmAddons::plugins_loaded() hook is not fired at plugin activation,
+		//so we include addons file that may be needed in the following 
+		//"ApmTreeData::update_tree_data_on_install()" :
+		ApmAddons::include_activated_addons_files();   
+		
+		//Some pages may have been deleted/created/modified since last plugin install :
+		ApmTreeData::update_tree_data_on_install();
 	}
 	
 	/**
@@ -121,7 +127,7 @@ class advanced_page_manager{
 	 */
 	public static function admin_menu_settings(){
 		//Settings submenu : admins only :
-		if( current_user_can('activate_plugins') ){
+		if( current_user_can('manage_options') ){
 			add_submenu_page('edit.php?post_type=page', __('Settings',ApmConfig::i18n_domain), __('Settings',ApmConfig::i18n_domain), 'activate_plugins', 'apm_options_pages_menu', array(__CLASS__,'bo_options_panel_template'));
 		}
 	}
@@ -198,10 +204,10 @@ class advanced_page_manager{
 	 * Handles AJAX requests by redirecting them to the plugin AJAX processor
 	 */
 	public static function ajax_redirect() {
-		$pagepath = WP_PLUGIN_DIR . '/'. ApmConfig::plugin_directory_name .'/ajax/';
-		switch(get_query_var('apm_sb_ajax_page')) {
+		$ajax_path = plugin_dir_path(__FILE__) .'ajax/';
+		switch( get_query_var('apm_sb_ajax_page') ) {
 			case 'ajax-processor':
-				include($pagepath . 'ajax-processor.php');
+				include($ajax_path . 'ajax-processor.php');
 				exit;
 			default:
 				break;
@@ -212,16 +218,25 @@ class advanced_page_manager{
 	 * Plugin specific redirections
 	 */
 	public static function admin_redirect(){
+		global $pagenow, $typenow, $plugin_page;
 		
-		//Redirect "New page" to our "All pages" panel :
-		if( strpos($_SERVER['REQUEST_URI'],'/wp-admin/post-new.php') !== false
-			&& strpos($_SERVER['REQUEST_URI'],'post_type=page') !== false ){
+		if( $pagenow == 'post-new.php' && $typenow == 'page' ){
+			//Redirect "New page" to our "All pages" panel :
 			wp_redirect(ApmBoContext::get_browse_url());
 			exit();
-			
-		}elseif( strpos($_SERVER['REQUEST_URI'],'admin.php?page=apm_browse_pages_menu') !== false ){
+		}elseif( $plugin_page == 'apm_browse_pages_menu' && $pagenow == 'admin.php' ){
+			//Redirect main "Pages" link to "All pages" panel :
 			wp_redirect(ApmBoContext::get_browse_url());
 			exit();
+		}elseif( $pagenow == 'edit.php' && $typenow == 'page' 
+				 && empty($plugin_page) ){
+			//Redirect standard WP pages list to our customized "All pages" panel :
+			//However, if needed, we can display the native pages list using the 
+			//"apm_force_native_display" $_GET parameter :
+			if( !isset($_GET['apm_force_native_display']) ){
+				wp_redirect(ApmBoContext::get_browse_url());
+				exit();
+			}
 		}
 		
 	}

@@ -206,6 +206,8 @@ jQuery().ready(function(){
 
 				_update_current_page($.apm_list.pagination.current_page);
 				$.apm_common.init_reload();
+				
+				return false;
 			});
 
 			$('.pagination-last-page a').unbind().bind('click', function() {
@@ -217,6 +219,8 @@ jQuery().ready(function(){
 
 				_update_current_page($.apm_list.pagination.current_page);
 				$.apm_common.init_reload();
+				
+				return false;
 			});
 
 			$('.pagination-next a').unbind().bind('click', function() {
@@ -230,6 +234,8 @@ jQuery().ready(function(){
 
 				_update_current_page($.apm_list.pagination.current_page);
 				$.apm_common.init_reload();
+				
+				return false;
 			});
 
 			$('.pagination-preview a').unbind().bind('click', function(){
@@ -243,6 +249,8 @@ jQuery().ready(function(){
 
 				_update_current_page($.apm_list.pagination.current_page);
 				$.apm_common.init_reload();
+				
+				return false;
 			});
 
 			$('.pagination-current-page').unbind().bind('keyup', function()  {

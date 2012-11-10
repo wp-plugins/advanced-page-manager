@@ -179,7 +179,7 @@ require_once( 'functions.php' );
 
 			    <div class="apm-grouped-action" style="display: none; ">
 				    <ul>
-					    
+
 					    <?php do_action('apm_panel_page_grouped_actions_menu') ?>
 
 					    <li><a id="apm-action-all-publish" href="#"><?php _e('Publish', ApmConfig::i18n_domain); ?></a></li>
@@ -231,7 +231,7 @@ require_once( 'functions.php' );
 				    <input type="button" name="drop-after" class="drop-after button" value="<?php _e('After', ApmConfig::i18n_domain); ?>" />
 				    <input type="button" name="drop-before" class="drop-before button" value="<?php _e('Before', ApmConfig::i18n_domain); ?>" />
 				    <input type="button" name="drop-sub" class="drop-sub button" value="<?php _e('As a subpage', ApmConfig::i18n_domain); ?>" />
-				    <a href="#" class="cancel-drag button-secondary"><?php _e('Cancel', ApmConfig::i18n_domain); ?></a>
+				    <a href="#" class="cancel-drag"><?php _e('Cancel', ApmConfig::i18n_domain); ?></a>
 			    </p>
 		    </div>
 

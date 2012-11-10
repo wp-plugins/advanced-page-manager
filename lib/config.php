@@ -2,7 +2,6 @@
 
 class ApmConfig{
 	
-	const plugin_directory_name = 'advanced-page-manager';
 	const option_db_id = 'advanced_page_manager_options_db';
 	const addons_db_id = 'advanced_page_manager_addons_db';
 	const tree_option_db_id = 'advanced_page_manager_tree_db';

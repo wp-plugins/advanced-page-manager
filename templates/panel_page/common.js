@@ -1,7 +1,9 @@
 jQuery().ready(function(){
+	
 	var $ = jQuery;
 	var _type = 'tree';
 	var _filter = 'online'; // online by default
+	
 	$.apm_common = {
 		selected_rows: [],
 
@@ -56,7 +58,9 @@ jQuery().ready(function(){
 						$.apm_tree.get_tree_nodes(0,function(ajax_answer){
 							if( ajax_answer.ok == '1'  ){
 								$.each(ajax_answer.tree_nodes,function(index,value){
-									$.apm_common.check_row(value,true);
+									if( value != 0 ){ //Don't select root!
+										$.apm_common.check_row(value,true);
+									}
 								});
 								// @todo hide a little ajax wheel
 							}
@@ -110,6 +114,8 @@ jQuery().ready(function(){
 
 			$('#apm-action-all-unselect').unbind().bind('click', function(){$.apm_common.unselect_all_rows(); return false});
 
+			//Set events on window resize :
+			$(window).unbind('resize',_on_window_resize).bind('resize',_on_window_resize);
 		},
 
 		init_reload: function(go_to_node) {
@@ -750,6 +756,22 @@ jQuery().ready(function(){
 		}else{
 			$('#apm-'+row_id).css('backgroundColor', '#fff');
 		}
+	}
+	
+	function _on_window_resize(){
+		
+		//Resize "Add page" overlay :
+		$('.drag-container-add-overlaying').each(function(index,element){
+			var tr = $(element).closest('tr');
+			$(element).css({'width' : tr.css('width') });
+		});
+		
+		//Resize "Move page" overlay :
+		$('.drag-container-selected-overlaying').each(function(index,element){
+			var tr = $(element).closest('tr');
+			$(element).css({'width' : tr.css('width') });
+		});
+		
 	}
 
 	var _default_top = 0;

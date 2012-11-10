@@ -94,4 +94,9 @@ if( !function_exists('cached_page_template_drowpdown') ){
 	}
 }
 
-$status = array(__('Offline',ApmConfig::i18n_domain),__('Offline',ApmConfig::i18n_domain),__('Online',ApmConfig::i18n_domain));
+$status = array(-1=>__('Offline',ApmConfig::i18n_domain),
+				0=>__('Offline',ApmConfig::i18n_domain),
+				1=>__('Offline',ApmConfig::i18n_domain),
+				2=>__('Online',ApmConfig::i18n_domain)
+				);
+				

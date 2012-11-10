@@ -17,7 +17,7 @@ class ApmTreeAjax extends ApmActionsAjax{
 	 * in the back office "Pages" panel template.  
 	 */
 	public static function tree_load(){
-		parent::$json_data += array('tree'=>'','nb_displayed_nodes'=>0,'go_to_node'=>0);
+		parent::$json_data += array('tree'=>'','total_displayed_nodes'=>0,'go_to_node'=>0);
 		
 		$tree = new ApmTreeData();
 		$tree->load_last_tree();

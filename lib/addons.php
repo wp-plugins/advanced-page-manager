@@ -135,7 +135,7 @@ class ApmAddons{
 	
 	public static function handle_actions(){
 	
-		//TODO : check nonce!
+		//Note : security nonce on APM options actions is checked in ApmOptions::handle_actions()
 		
 		if( !empty($_POST['apm_options_action']) ){
 			
@@ -174,7 +174,7 @@ class ApmAddons{
 				}
 
 				//Reload page in case the addon changes the BO menu :
-				wp_redirect(add_query_arg(array('apm_options_msg'=>urlencode(__('Addons activation parameters saved successfuly',ApmConfig::i18n_domain))),ApmOptions::get_base_url()));
+				wp_redirect(add_query_arg(array('apm_options_msg'=>urlencode(__('Addons activation parameters saved successfuly',ApmConfig::i18n_domain))),ApmOptions::get_base_url(true)));
 				exit();
 			}
 			
@@ -202,7 +202,7 @@ class ApmAddons{
 		return $addons_files;
 	}	
 	
-	private static function include_activated_addons_files(){
+	public static function include_activated_addons_files(){
 		self::check_activated_addons_loaded();
 		foreach( self::$activated_addons as $addon ){
 			require_once(self::get_addons_directory() .'/'. $addon['file']);

@@ -2,6 +2,10 @@
 
 class ApmOptions{
 	
+	/**
+	 * Feedback message displayed when editing options
+	 * @var array
+	 */
 	public static $feedback = array('msg'=>'','type'=>'info');
 	
 	/**
@@ -15,6 +19,12 @@ class ApmOptions{
 	 * @var array
 	 */
 	private static $admin_options = array();
+	
+	/**
+	 * Nonce used when saving plugin options
+	 * @var string
+	 */
+	const save_options_nonce = 'apm_save_plugin_options';
 	
 	/**
 	 * Retrieves on choosen option from plugin options
@@ -114,49 +124,59 @@ class ApmOptions{
 		$lost_pages_raw = $wpdb->get_results($sql);
 		
 		foreach($lost_pages_raw as $page){
+			$page->post_title = _draft_or_post_title($page->ID);
 			$lost_pages[$page->ID] = $page;
 		}
 		
 		return $lost_pages;
 	}
 	
-	public static function get_base_url(){
-		//TODO : add nonce!
+	public static function get_base_url($no_nonce=false){
 		
 		$options_url = get_option('siteurl') .'/wp-admin/edit.php?post_type=page&page=apm_options_pages_menu';
+		
+		if( !$no_nonce ){
+			$options_url = wp_nonce_url($options_url,self::save_options_nonce);
+		}
 		
 		return $options_url; 
 	}
 	
-	public static function get_restore_page_url($page_id){
-		return add_query_arg(array('apm_options_action'=>'restore_page','wp_id'=>$page_id,'redirect_to_page_in_tree'=>true),self::get_base_url());
+	public static function get_restore_page_url($page_id,$redirect_to_page_in_tree=true){
+		return add_query_arg(array('apm_options_action'=>'restore_page','wp_id'=>$page_id,'redirect_to_page_in_tree'=>$redirect_to_page_in_tree),self::get_base_url());
 	}
 	
 	public static function handle_actions(){
 	
+		//Check nonce:
+		if( !empty($_REQUEST['apm_options_action']) && !wp_verify_nonce($_REQUEST['_wpnonce'],self::save_options_nonce) ){
+			wp_die(__("Could not save plugin settings : security check failed.",ApmConfig::i18n_domain));
+			exit();
+		}
+
 		self::check_tree_loaded();
 		
-		//TODO : check nonce!
-		
 		if( !empty($_GET['apm_options_action']) ){
+			
+			$redirect_url = self::get_base_url(true);
 			
 			switch( $_GET['apm_options_action'] ){
 				
 				case 'delete_all_data':
 					ApmTreeData::delete_database_data(false);
-					wp_redirect(add_query_arg(array('apm_options_msg'=>urlencode(__("Plugin data (except options) have been deleted",ApmConfig::i18n_domain))),self::get_base_url()));
+					wp_redirect(add_query_arg(array('apm_options_msg'=>urlencode(__("Plugin data (except options) have been deleted",ApmConfig::i18n_domain))),$redirect_url));
 					exit();
 					break;
 					
 				case 'delete_options':
 					ApmOptions::delete_database_data();
-					wp_redirect(add_query_arg(array('apm_options_msg'=>urlencode(__("Plugin options have been deleted ",ApmConfig::i18n_domain))),self::get_base_url()));
+					wp_redirect(add_query_arg(array('apm_options_msg'=>urlencode(__("Plugin options have been deleted ",ApmConfig::i18n_domain))),$redirect_url));
 					exit();
 					break;
 					
 				case 'delete_folding_infos':
 					ApmTreeState::delete_all();
-					wp_redirect(add_query_arg(array('apm_options_msg'=>urlencode(__("Fold / Unfold data have been deleted",ApmConfig::i18n_domain))),self::get_base_url()));
+					wp_redirect(add_query_arg(array('apm_options_msg'=>urlencode(__("Fold / Unfold data have been deleted",ApmConfig::i18n_domain))),$redirect_url));
 					exit();
 					break;
 					
@@ -188,7 +208,7 @@ class ApmOptions{
 					//Restore apm tree from WP pages tree
 					$tree = new ApmTreeData();
 					$tree->reset_tree_and_data();
-					wp_redirect(add_query_arg(array('apm_options_msg'=>urlencode(__('APM tree successfully restored from Wordpress pages',ApmConfig::i18n_domain))),self::get_base_url()));
+					wp_redirect(add_query_arg(array('apm_options_msg'=>urlencode(__('APM tree successfully restored from Wordpress pages',ApmConfig::i18n_domain))),$redirect_url));
 					exit();
 					break;
 					
@@ -196,12 +216,12 @@ class ApmOptions{
 					$tree = new ApmTreeData();
 					$tree->load_last_tree();
 					$tree->synchronize_tree_with_wp_entities();
-					wp_redirect(add_query_arg(array('apm_options_msg'=>urlencode(__('Wordpress pages tree successfully restore from APM tree',ApmConfig::i18n_domain))),self::get_base_url()));
+					wp_redirect(add_query_arg(array('apm_options_msg'=>urlencode(__('Wordpress pages tree successfully restore from APM tree',ApmConfig::i18n_domain))),$redirect_url));
 					exit();
 					break;
 			}
 			
-			do_action('apm_options_handle_action',$_GET['apm_options_action'],self::get_base_url());
+			do_action('apm_options_handle_action',$_GET['apm_options_action'],$redirect_url);
 			
 		}elseif( !empty($_POST['apm_options_action']) ){
 			

@@ -71,11 +71,16 @@ class ApmTreeData{
 			$this->nodes_data->load_multiple($apm_ids_to_display);
 		}
 		
-		//TODO : base this loop on $this->nodes_data instead of $tree_to_display 
-		//(but be careful to keep the nodes order!). 
 		foreach($tree_to_display as $apm_id=>$node_tree_infos){
 			
 			$node_data = $this->nodes_data->get($apm_id);
+			
+			//If a node exists in APM tree but not in WP :
+			if( empty($node_data) ){
+				$node_data = new ApmNodeDataDisplay();
+				$node_data->set_intern_data(new ApmNodeDataIntern(array('apm_id'=>$apm_id,'type'=>'page','wp_id'=>$apm_id)));
+				$node_data->set_node_is_not_in_wp();
+			}
 			
 			$node_data->set_node_position(array('depth'=>$node_tree_infos['depth'],
 												'parent'=>$node_tree_infos['parent'],
@@ -86,7 +91,7 @@ class ApmTreeData{
 
 			$is_folded = $node_tree_infos['nb_children'] > 0 && !in_array($apm_id,$unfolded_nodes);
 			$node_data->set_is_folded($is_folded);
-
+			
 			$ready_to_display_tree[$apm_id] = $json ? $node_data->get_flattened() : $node_data;
 			
 		}
@@ -268,6 +273,7 @@ class ApmTreeData{
 		//To reindex correctly WP pages orders :
 		$this->synchronize_tree_with_wp_entities();
 	}
+	
 	/**
 	 * Carreful!! We delete WP elements here!
 	 * This is unreversible deletion, not trash!
@@ -279,28 +285,46 @@ class ApmTreeData{
 		
 		$this->nodes_data->load_multiple($root_node);
 		
-		if( $this->nodes_data->get($root_node)->type == 'page' ){
-			
-			$nodes_to_delete = $this->apm_tree->get_nodes_flat($root_node);
-			$this->nodes_data->load_multiple($nodes_to_delete,true,true);
-			
-			if( !empty($nodes_to_delete) ){
-				foreach($nodes_to_delete as $node){
-					$page_id = $this->nodes_data->get($node)->wp_id;
-					if( $this->nodes_data->get($node)->type == 'page' ){
-						wp_delete_post($page_id,true);
+		$root_node_data = $this->nodes_data->get($root_node);
+		
+		if( $root_node_data !== null ){
+			if( $root_node_data->type == 'page' ){
+				
+				$nodes_to_delete = $this->apm_tree->get_nodes_flat($root_node);
+				$this->nodes_data->load_multiple($nodes_to_delete,true,true);
+				
+				if( !empty($nodes_to_delete) ){
+					foreach($nodes_to_delete as $node){
+						$page_id = $this->nodes_data->get($node)->wp_id;
+						if( $this->nodes_data->get($node)->type == 'page' ){
+							wp_delete_post($page_id,true);
+						}
 					}
+					
+					$this->apm_tree->delete_sub_tree($root_node);
+					$this->nodes_data->delete($nodes_to_delete);
+					$this->tree_state->delete_nodes($nodes_to_delete); //TODO: We should delete it from every users metas ???
+					
+					$nb_deleted_nodes = count($nodes_to_delete);
+					
+					$this->save();
 				}
 				
+			}
+		}else{
+			//$root_node exists in APM tree but was not found in WP entities...
+			//It must have been deleted from WP by some other way... but we still want
+			//to delete it from our APM tree :
+			$nodes_to_delete = $this->apm_tree->get_nodes_flat($root_node);
+			if( !empty($nodes_to_delete) ){
 				$this->apm_tree->delete_sub_tree($root_node);
-				$this->nodes_data->delete($nodes_to_delete);
-				$this->tree_state->delete_nodes($nodes_to_delete); //TODO: Should we delete it from every users metas ???
-				
+				$this->tree_state->delete_nodes($nodes_to_delete);
+				if( ApmAddons::addon_is_on('flagged_pages') ){
+					ApmMarkedNodes::delete_multiple($nodes_to_delete);
+				}
 				$nb_deleted_nodes = count($nodes_to_delete);
-				
 				$this->save();
 			}
-			
 		}
 		
 		return $nb_deleted_nodes;
@@ -426,6 +450,20 @@ class ApmTreeData{
 		if( ApmAddons::addon_is_on('flagged_pages') ){
 			ApmMarkedNodes::delete_all_users_marked_nodes();
 		}
+	}
+	
+	/**
+	 * Launch this to reload and update tree data when re-installing the plugin
+	 */
+	public static function update_tree_data_on_install(){
+		
+		//If tree data is found, update it :
+		$existing_tree = ApmTreeDb::get_last_tree();
+		if( !empty($existing_tree) ){
+			$tree = new ApmTreeData();
+			$tree->reset_tree_and_data();
+		}
+		
 	}
 	
 	/**

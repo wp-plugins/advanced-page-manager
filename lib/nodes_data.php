@@ -1,7 +1,24 @@
 <?php
+/**
+ * Here are defined the 3 classes (ApmNodeDataIntern, ApmNodeDataDisplay 
+ * and ApmNodeDataDisplayCollection) that handle the data for pages
+ * displayed in the "All pages" Back Office panel.  
+ */
 
 require_once(dirname(__FILE__) .'/config.php');
 
+/**
+ * Defines the link between APM tree nodes and WP entities (pages).
+ * Many actions on the tree don't require to load WP pages data,
+ * but just post type and wp_id (called "intern data" here) : that's what 
+ * this class is made for : to load only the data needed to manipulate 
+ * the tree.
+ * Note : in earlier versions, $apm_id had distinct values from $wp_id
+ * (to handle a more general tree with nodes of different natures), but
+ * it has been abandonned, and now $apm_id = $wp_id. 
+ * > TODO Since $apm_id = $wp_id, we can simplify and factorize some 
+ * treatments in this class
+ */
 class ApmNodeDataIntern{
 	private $apm_id = 0;
 	private $type = '';
@@ -127,6 +144,10 @@ class ApmNodeDataIntern{
 
 }
 
+/**
+ * Encapsulates all data (and ways to populate them) needed to display a 
+ * tree node (page) in BO "All pages" panel. 
+ */
 class ApmNodeDataDisplay{
 	
 	/**
@@ -135,9 +156,13 @@ class ApmNodeDataDisplay{
 	 */
 	private $intern_data;
 	
-	private $display_id;
+	/**
+	 * Node status (-1:auto-draft, 0:draft, 1:waiting for approval, 
+	 *  2:published, 3:trash, -2:in APM tree but not in WP anymore ) 
+	 * @var string
+	 */
 	private $status;
-	private $visibility;
+		
 	private $publication_date;
 	private $template;
 	private $author;
@@ -206,6 +231,11 @@ class ApmNodeDataDisplay{
 		$this->is_folded = $folded;
 	}
 	
+	public function set_node_is_not_in_wp(){
+		$this->status = -2;
+		$this->title = __('This page has been deleted from outside Advanced Page Manager. It should be deleted from this tree, after having put valid subpages in a safe place.',ApmConfig::i18n_domain);
+	}
+	
 	/**
 	 * TODO: We would like it private but must be public because is called from ApmNodeDataDisplayCollection::load_multiple()...
 	 * @param ApmNodeDataIntern $intern_data
@@ -237,18 +267,23 @@ class ApmNodeDataDisplay{
 				}
 				$this->set_wp_data_from_post($wp_entity);
 				break;
-				
-			/*case 'collection':
-				if( empty($wp_entity) ){
-					$wp_entity = get_category($this->wp_id);
-				}
-				$this->set_wp_data_from_category($wp_entity);
-				break;*/
 		}
 	}
 
 	private function set_wp_data_from_post($post){
-		$this->title = $post->post_title; //get_the_title($post->ID);
+		
+		//Handling "Auto draft" and pages without titles :
+		// * _draft_or_post_title() function is defined in /wp-admin/includes/template.php,
+		//   which is not included at this point.
+		// * get_the_title($post->ID) calls a get_post() for each post, which we don't want here
+		// * so we handle empty titles by hand :
+		$title = $post->post_title;
+		$title = apply_filters( 'the_title', $title, $post->ID );
+		if( empty($title) ){
+			$title = __('(no title)'); //Which is the message defined in _draft_or_post_title()
+		}
+		$this->title = $title;
+		
 		$this->url_front = get_permalink($post->ID);
 		$this->url_edit = get_edit_post_link($post->ID);
 		$this->publication_date = $post->post_date;
@@ -261,6 +296,9 @@ class ApmNodeDataDisplay{
 		
 		//TODO: Put this status logic elsewhere...
 		switch( $post->post_status ){
+			case 'auto-draft':
+				$this->status = -1; //'Auto draft';
+				break;
 			case 'publish':
 				$this->status = 2; //'Online';
 				break;
@@ -275,8 +313,8 @@ class ApmNodeDataDisplay{
 				break;
 		}
 		
-		//Template: TODO: we make a meta query for each post... there should be a way to
-		//make only one query for all the posts '_wp_page_template' meta...
+		//Posts meta are already loaded by the update_postmeta_cache() function,
+		//so, no new query is made to retrieve the following post meta :
 		$template_meta = get_post_meta($post->ID, '_wp_page_template', true);
 		$this->template = !empty($template_meta) ? $template_meta : false;
 		
@@ -334,6 +372,12 @@ class ApmNodeDataDisplay{
 				return;
 			}
 			
+			if( !$no_wp_data ){
+				//Preload wp cached meta data, so they are not retrieved one by one in 
+				//the following loop of "load_data_from_wp_entity()" :
+				update_postmeta_cache($ids_wp);
+			}
+			
 			$marked_infos = !$no_marked_infos && ApmAddons::addon_is_on('flagged_pages') ? new ApmMarkedNodes() : null;
 			
 			foreach($loaded_nodes_data as $apm_id => $intern_data){
@@ -345,7 +389,7 @@ class ApmNodeDataDisplay{
 					$display_data->load_data_from_wp_entity($indexed_wp_pages[$intern_data->wp_id]);
 				}
 				
-				if( !$no_marked_infos ){
+				if( !$no_marked_infos && ApmAddons::addon_is_on('flagged_pages') ){
 					$display_data->set_marked($marked_infos->get_node_mark($apm_id));
 				}
 				
@@ -506,6 +550,10 @@ class ApmNodeDataDisplay{
 	
 }
 
+/**
+ * Collection of ApmNodeDataDisplay objects, this is where all pages data 
+ * are collected and stored in preparation for display in the "All pages" BO panel.   
+ */
 class ApmNodeDataDisplayCollection{
 	
 	/**
@@ -592,7 +640,7 @@ class ApmNodeDataDisplayCollection{
 	}
 
 	/**
-	 * Loads Intern data, Worpdress Posts data and Maked nodes data for each node given in $apm_ids.
+	 * Loads Intern data, Worpdress Posts data and marked nodes data for each node given in $apm_ids.
 	 */
 	public function load_multiple($apm_ids,$no_wp_data=false,$no_marked_infos=false,$order_matters=false){
 		
@@ -641,24 +689,33 @@ class ApmNodeDataDisplayCollection{
 			
 			if( empty($posts_already_loaded) ){
 			
-				//TODO: coma separated or 'any' doesn't seem to work here for post_status (also it should according 
-				//to http://codex.wordpress.org/Template_Tags/get_posts...)
+				/*
+				//Old way to retrieve pages data, by separated requests (when coma separated post_status didn't seem
+				//to work in get_pages() : 
 				$posts = get_pages(array('include'=>array_values($ids_wp),'post_type'=>'page','post_status'=>'publish'));
 				$posts_draft = get_pages(array('include'=>array_values($ids_wp),'post_type'=>'page','post_status'=>'draft'));
 				$posts_pending = get_pages(array('include'=>array_values($ids_wp),'post_type'=>'page','post_status'=>'pending'));
 				$posts_trash = get_pages(array('include'=>array_values($ids_wp),'post_type'=>'page','post_status'=>'trash'));
-				$posts = array_merge($posts,$posts_draft,$posts_pending,$posts_trash);
+				$posts_autodraft = get_pages(array('include'=>array_values($ids_wp),'post_type'=>'page','post_status'=>'auto-draft'));
+				$posts = array_merge($posts,$posts_draft,$posts_pending,$posts_trash,$posts_autodraft);
+				*/
 				
-				// Tried to replace by only one query instead of 4 get_pages() : 
-				// BUT IT TAKES MORE TIME TO COMPUTE (average 800ms more than separated get_pages() for 500 pages...)
+				$posts = get_pages(array('include'=>array_values($ids_wp),'post_type'=>'page','post_status'=>'draft,publish,pending,trash,auto-draft'));
+
+				//TODO : test performances issues when there is a lot of pages (>500) : 
+				//commpare this get_pages() call to a query built by hand :
 				//global $wpdb;
 				//$posts = $wpdb->get_results($wpdb->prepare("SELECT * from $wpdb->posts WHERE post_type = 'page' AND ID IN ('". implode("','",$ids_wp) ."')"));
-			
+				
 			}
 			
 			foreach($posts as $k=>$post){
 				$pages_found[$post->ID] = $post;
 			}
+			
+			//Preload wp cached meta data, so they are not retrieved one by one in 
+			//the following loop of "load_data_from_wp_entity()" :
+			update_postmeta_cache(array_keys($pages_found));
 				
 			foreach($this->nodes_data as $apm_id => $node){
 				switch( $node->type ){

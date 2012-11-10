@@ -1,27 +1,7 @@
 <?php
 /**
- * Template for displaying the tree.
- * The "$tree_nodes" is an array containing all the tree nodes.
- *
- * For each node, the following properties can be retrieved:
- * 		- apm_id : unique, internal node id
- * 		- wp_id : if the node is linked to a WP entity (page, collection...)
- * 		- type : page, collection...
- * 		- depth : depth in the tree
- * 		- parent : parent node
- * 		- nb_children : number of children
- * 		- children : array of childen ids
- * 		- is_folded : true if the node has children and is folded, false otherwise
- * 		- status : Can be 'Online', 'Online (waiting for approval)', 'Trash', or 'Offline'
- * 		- title
- * 		- template
- * 		- publication_date
- * 		- visibility (not implemented yet)
- * 		- author (not implemented yet)
- * 		- description (not implemented yet)
- * 		- url_front : url of the entity in front office
- * 		- url_edit : url of the entity in back office
- *
+ * Template for displaying a list.
+ * $nodes is an array containing the list nodes.
  */
 
 require_once( ABSPATH .'/wp-admin/includes/theme.php' );
@@ -72,24 +52,28 @@ $cpt = 1;
 						<a href="#" class="cross-delete"><?php _e('Cancel', ApmConfig::i18n_domain); ?></a>
 					</div>
 					<div class="row-actions">
-						<span class="rename"><a href="#" class="action_rename" title="Renommer"><?php _e('Rename', ApmConfig::i18n_domain); ?></a>&nbsp;|&nbsp;</span>
+						<?php if( $node->status >= 0 ) : ?>
+							<span class="rename"><a href="#" class="action_rename" title="Renommer"><?php _e('Rename', ApmConfig::i18n_domain); ?></a>&nbsp;|&nbsp;</span>
+						<?php endif ?>
 
 						<?php if( $node->status > 1 ) : ?>
 							<span class="display"><a href="<?php echo $link_display ?>" class="action_display" title="Afficher"><?php _e('View', ApmConfig::i18n_domain); ?></a>&nbsp;|&nbsp;</span>
-						<?php else : ?>
+						<?php elseif( $node->status >= 0 ) : ?>
 							<span class="display"><a href="<?php echo $link_preview ?>" class="action_display" title="Apercu"><?php _e('Preview', ApmConfig::i18n_domain); ?></a>&nbsp;|&nbsp;</span>
 						<?php endif; ?>
 
 						<?php if( $node->status > 1 ) : ?>
 							<span class=""><a href="#" class="action_unpublish" title="Dépublier"><?php _e('Unpublish', ApmConfig::i18n_domain); ?></a>&nbsp;|&nbsp;</span>
-						<?php else : ?>
+						<?php elseif( $node->status >= 0 ) : ?>
 							<span class=""><a href="#" class="action_publish" title="Publier"><?php _e('Publish', ApmConfig::i18n_domain); ?></a>&nbsp;|&nbsp;</span>
 						<?php endif; ?>
 
 						<span class="edit"><a href="<?php echo get_bloginfo('wpurl').'/wp-admin/post.php?post='.$node->wp_id.'&action=edit' ?>" title="Modifier" class="action_edit"><?php _e('Edit', ApmConfig::i18n_domain); ?></a>&nbsp;|&nbsp;</span>
-
-						<span class="action_change_template"><a href="#"><?php _e('Template'); ?></a>&nbsp;|&nbsp;</span>
-
+						
+						<?php if( $node->status >= 0 ) : ?>
+							<span class="action_change_template"><a href="#"><?php _e('Template'); ?></a>&nbsp;|&nbsp;</span>
+						<?php endif ?>
+						
 						<?php if(have_right()) : ?>
 							<span class="delete"><a href="#" title="Supprimer" class="action-delete-page"><?php _e('Delete', ApmConfig::i18n_domain); ?></a></span>
 						<?php endif; ?>
