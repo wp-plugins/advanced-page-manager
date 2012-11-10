@@ -132,6 +132,9 @@ By default, APM is in English and French. Since 0.6.5, we also support Dutch. If
 * Optimization : only one query to retrieve pages data, whatever their status is + one global query to load pages meta data, using WP cache on meta data
 * Handles the case where a page doesn't exist in WP (deleted from outside the plugin) but is still in APM tree
 
+= 0.6 =
+Beta 1 released
+
 == Beta ==
 After 6 weeks of testing, we chose to release a beta version of Advanced Page Manager. We think it's a good way to get feedback as early as possible.
 
