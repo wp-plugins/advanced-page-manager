@@ -127,6 +127,8 @@
 		</div>
 	</div>
 	
+	<?php do_action('apm_bo_option_panel_add_option_panel',ApmOptions::save_options_nonce,$base_url,$base_url_nonced) ?>
+	
 	<div class="metabox-holder">
 		<div class="postbox">
 			<h3 class="hndle"><span><?php _e('Plugin data management', ApmConfig::i18n_domain) ?></span></h3>
@@ -153,12 +155,13 @@
 							<td><a href="<?php echo add_query_arg(array('apm_options_action'=>'delete_folding_infos'),$base_url_nonced) ?>"><?php _e('Delete fold / unfold data', ApmConfig::i18n_domain) ?></a> : <?php _e('fold all pages.', ApmConfig::i18n_domain) ?></td>
 							<td></td>
 						</tr>
-						<?php do_action('apm_bo_option_panel_add_tr',$base_url_nonced) ?>
+						<?php do_action('apm_bo_option_panel_add_data_action_tr',$base_url_nonced) ?>
 					</table>
 				</div>
 			</div>
 		</div>
 	</div>
+	
 	
 <?php /* For debug :
 

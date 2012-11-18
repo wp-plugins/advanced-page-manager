@@ -57,9 +57,9 @@ require_once( 'functions.php' );
 				<div>
 					<p class="label-add-page-panel"><label><?php _e('Position', ApmConfig::i18n_domain); ?></label></p>
 					<div id="position-radio-button">
-						<input type="radio" name="add-page-position" class="add-page-position" value="1" checked="1" />&nbsp;<label><?php _e('After', ApmConfig::i18n_domain); ?></label><br/>
-						<input type="radio" name="add-page-position" class="add-page-position" value="0" />&nbsp;<label><?php _e('Before', ApmConfig::i18n_domain); ?></label><br/>
-						<input type="radio" name="add-page-position" class="add-page-position" value="2" />&nbsp;<label><?php _e('Subpage', ApmConfig::i18n_domain); ?></label><br/>
+						<input type="radio" name="add-page-position" class="add-page-position" id="add-page-position-after" value="1" checked="1" />&nbsp;<label for="add-page-position-after"><?php _e('After', ApmConfig::i18n_domain); ?></label><br/>
+						<input type="radio" name="add-page-position" class="add-page-position" id="add-page-position-before" value="0" />&nbsp;<label for="add-page-position-before"><?php _e('Before', ApmConfig::i18n_domain); ?></label><br/>
+						<input type="radio" name="add-page-position" class="add-page-position" id="add-page-position-subpage" value="2" />&nbsp;<label for="add-page-position-subpage"><?php _e('Subpage', ApmConfig::i18n_domain); ?></label><br/>
 					</div>
 				</div>
 

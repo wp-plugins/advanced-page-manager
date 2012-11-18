@@ -3,7 +3,7 @@ Contributors: Uncategorized Creations
 Tags: pages, page, manage, management, page management, tree, rearrange, order, reorder, hierarchical, admin, cms, content management
 Requires at least: 3.4.2
 Tested up to: 3.4.2
-Stable tag: 0.6.5
+Stable tag: 0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -110,6 +110,15 @@ By default, APM is in English and French. Since 0.6.5, we also support Dutch. If
 10. When editing a page, the *Page Attributes* metabox allows to change template. You have a *Where is it?* button to switch back to the tree and you can edit next, previous, parent and subpages without returning to the tree.
 
 == Changelog ==
+
+= 0.7 =
+* Mantis 0000011: Move link available when tree has only one page
+* Mantis 0000012: Subpages icon is positioned under the arrow
+* Mantis 0000014: When renaming, title field allows empty value
+* Mantis 0000015: Rows in tree doesn't scale vertically properly when content is big
+* Mantis 0000016: Add New layer doesn't scale vertically
+* Mantis 0000017: Move layer doesn't scale vertically
+* Mantis 0000020: Clicks on After, Before, Subpage labels should check their corresponding checkboxes
 
 = 0.6.5 =
 * Mantis 0000002: No position selected in the Add New side panel when clicking (again) the Add New button

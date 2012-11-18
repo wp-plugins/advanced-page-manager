@@ -1,9 +1,9 @@
 jQuery().ready(function(){
-	
+
 	var $ = jQuery;
 	var _type = 'tree';
 	var _filter = 'online'; // online by default
-	
+
 	$.apm_common = {
 		selected_rows: [],
 
@@ -128,7 +128,7 @@ jQuery().ready(function(){
 			 * The same event has to be attached several times.
 			 * For the moment, we detach then attach the event.
 			 */
-			
+
 			$('.tags_events').unbind().bind('click', $.apm_common.change_tags_action );
 			$('tr.type-post').unbind('mouseenter', $.apm_browse.change_check_action).bind('mouseenter', $.apm_browse.change_check_action );
 
@@ -183,41 +183,50 @@ jQuery().ready(function(){
 			var link = input.prev().children();
 			var html_content = link.text();
 			link.hide();
-			input_content.val(html_content)
-			.bind('keyup', function(event){
-				if( 13 === event.which ) {
-					$(this).parent().hide();
+
+			// detach all rename events
+			input_content.unbind('keyup');
+			input_content.next().unbind('click');
+
+			// Rename function
+			function rename(input_content) {
+				if(input_content.val().length > 0) {
+					input_content.parent().hide();
 
 					// Up to date of title page
 					$.apm_tree.set_node_property(
-						$.apm_common.get_node( $(this) ),
+						$.apm_common.get_node( input_content ),
 						'node_title',
-						$(this).val(),
+						input_content.val(),
 						0,
 						function(){}
 					);
 
-					link.text( $(this).val() );
+					link.text( input_content.val() );
 					link.show();
+				}
+				else {
+					alert(apm_messages.required_title);
+					input_content.blur();
+				}
+
+				return false;
+			}
+
+			// Factoring rename event
+			input_content.val(html_content)
+			.bind('keyup', function(event){
+				if( 13 === event.which ) {
+					rename($(this));
+					return false;
 				}
 
 				return false;
 			});
 
-			$('input[type="button"]').bind('click', function() {
-				$(this).parent().hide();
-
-				// Up to date of title page
-				$.apm_tree.set_node_property(
-					$.apm_common.get_node( input_content ),
-					'node_title',
-					input_content.val(),
-					0,
-					function(){}
-				);
-
-				link.text( input_content.val() );
-				link.show();
+			// Factoring rename event (see up event)
+			input_content.next().bind('click', function() {
+				rename(input_content);
 				return false;
 			});
 
@@ -757,21 +766,21 @@ jQuery().ready(function(){
 			$('#apm-'+row_id).css('backgroundColor', '#fff');
 		}
 	}
-	
+
 	function _on_window_resize(){
-		
+
 		//Resize "Add page" overlay :
 		$('.drag-container-add-overlaying').each(function(index,element){
 			var tr = $(element).closest('tr');
 			$(element).css({'width' : tr.css('width') });
 		});
-		
+
 		//Resize "Move page" overlay :
 		$('.drag-container-selected-overlaying').each(function(index,element){
 			var tr = $(element).closest('tr');
 			$(element).css({'width' : tr.css('width') });
 		});
-		
+
 	}
 
 	var _default_top = 0;

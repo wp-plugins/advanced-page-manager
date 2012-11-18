@@ -85,6 +85,8 @@ class ApmOptions{
 								 'display_lost_pages'=>false,
 							    );
 							    
+		$default_options = apply_filters('apm_default_plugin_options',$default_options);
+							    
 		foreach($options as $k=>$v){
 			if( !array_key_exists($k,$default_options) ){
 				unset($options[$k]);
@@ -156,9 +158,9 @@ class ApmOptions{
 
 		self::check_tree_loaded();
 		
+		$redirect_url = self::get_base_url(true);
+		
 		if( !empty($_GET['apm_options_action']) ){
-			
-			$redirect_url = self::get_base_url(true);
 			
 			switch( $_GET['apm_options_action'] ){
 				
@@ -221,19 +223,20 @@ class ApmOptions{
 					break;
 			}
 			
-			do_action('apm_options_handle_action',$_GET['apm_options_action'],$redirect_url);
+			do_action('apm_options_handle_get_action',$_GET['apm_options_action'],$redirect_url);
 			
 		}elseif( !empty($_POST['apm_options_action']) ){
 			
 			switch( $_POST['apm_options_action'] ){
 				
 				case 'save_admin_options':
-					$options = self::format_options($_POST);
-					self::save_options($options);
+					self::save_options($_POST);
 					self::$feedback['msg'] = __('Admin options saved successfuly',ApmConfig::i18n_domain);
 					break;
 					
 			}
+			
+			do_action('apm_options_handle_post_action',$_POST['apm_options_action'],$redirect_url);
 			
 		}
 		

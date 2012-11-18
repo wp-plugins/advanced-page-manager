@@ -97,6 +97,7 @@ if( !function_exists('cached_page_template_drowpdown') ){
 $status = array(-1=>__('Offline',ApmConfig::i18n_domain),
 				0=>__('Offline',ApmConfig::i18n_domain),
 				1=>__('Offline',ApmConfig::i18n_domain),
-				2=>__('Online',ApmConfig::i18n_domain)
+				2=>__('Online',ApmConfig::i18n_domain),
+				3=>__('Offline',ApmConfig::i18n_domain),
 				);
 				

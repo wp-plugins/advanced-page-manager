@@ -29,7 +29,10 @@ span.cross-delete{cursor: pointer; display: inline-block; background-image: url(
 .action-add-page{margin-top:10px}
 
 .overlay_host{ width:0; height:0; position: relative; font-family: sans-serif; font-size: 12px; line-height: 1.4em;}
+
+/* * */
 th.check-column{ overflow: visible; width: 3em }
+
 .overlay_host .button{ border-color: #BBB; color: #464646; padding: 3px 12px; vertical-align:middle; margin:0 5px 0 0 }
 .overlay_host .button-secondary{ vertical-align:middle }
 
@@ -61,19 +64,37 @@ th.big_loader{margin: 0; padding: 0; width: 64px; height: 74px}
 div.big_loader{text-align:center; width: auto}
 /*div.big_loader span{display: inline-block; width: 64px; height: 64px; background-image: url(../../img/bg-big-loading.gif)}*/
 
-.depth-right{float: left; margin:0 10px 0 0; background-image: url(img/depth-right.jpg); width: 6px; height: 53px}
+/* Casts shadow on the page slot left border */
+.apm-depth-right{float: left; margin:0 10px 0 0; background-image: url(img/depth-right.jpg); width: 6px; height: 53px}
+
 .check-column-tree{background-color: #dfdfdf}
 
-.depth_1, .depth_2, .depth_3, .depth_4, .depth_5{background-color: #dfdfdf; float:left; height: 53px}
+/* Managing left margin following the page depth in the tree */
+/*.apm-page-slot {min-height:53px;background:#fff;}*/ /* Title cell white background */
+.apm-page-slot {min-height:53px;}
 
-.depth_1{width: 10px}
-.depth_2{width: 30px}
-.depth_3{width: 50px}
-.depth_4{width: 70px}
-.depth_5{width: 90px}
 
-.has_subpage{display: inline-block; height:48px; width:30px; float: left; margin:5px 10px 0 0}
-.unfold_node, .fold_node{display: inline-block; width: 13px; height: 12px}
+.apm-page-slot-margin_1{margin-left:16px;}
+.apm-page-slot-margin_2{margin-left:36px;}
+.apm-page-slot-margin_3{margin-left:56px;}
+.apm-page-slot-margin_4{margin-left:76px;}
+.apm-page-slot-margin_5{margin-left:96px;}
+
+.apm-has-subpages{min-height:47px;width:31px;padding:6px 0 0 10px;float:left;}
+
+.apm-page-slot-td {background:url(img/bg-page-slot-shadow-2.jpg) repeat-y;}
+
+.apm-title-wrapper {padding-left:10px;padding-right:10px;display:table-cell;}
+
+.apm-page-shadow-depth_1{background-position:-84px 0px}
+.apm-page-shadow-depth_2{background-position:-64px 0px}
+.apm-page-shadow-depth_3{background-position:-44px 0px}
+.apm-page-shadow-depth_4{background-position:-24px 0px}
+.apm-page-shadow-depth_5{background-position:-4px 0px}
+
+.apm-row-actions {margin-bottom:20px;}
+
+.unfold_node, .fold_node{display: inline-block; width: 13px; height: 12px;color:#fff;}
 .unfold_node{background-image: url(img/unfold.png)}
 .fold_node{background-image: url(img/fold.png)}
 .picto-subpage{display: inline-block; background-image: url(img/has-subpage.png); width:14px; height: 12px}

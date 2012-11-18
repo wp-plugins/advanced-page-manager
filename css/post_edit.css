@@ -2,6 +2,9 @@
 /* Hide the 'Add' Button : */
 a.add-new-h2{ display:none }
 
+/* Hide the 'Move to trash' link */
+div#delete-action a{ display:none }
+
 /* "Page attributes" Meta box : */
 #poststuff .inside p#apm_page_attributes_template{ margin:12px 0 3px }
 div#apm_page_attributes_family_nav{ margin: 20px 10px }

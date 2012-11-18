@@ -343,7 +343,7 @@ jQuery().ready(function(){
 	}
 
 	function _set_add_page_overlay(item_to_overlay){
-		var height_box = 54;
+		var height_box = $('#' + item_to_overlay.attr('id')).height();
 		var overlay_host = item_to_overlay.find('.overlay_host').eq(0);
 
 		$.apm_browse.page_overlayed_for_add = '';
@@ -378,9 +378,8 @@ jQuery().ready(function(){
 	}
 
 	function _set_moving_page_overlay(item_to_overlay){
-		var height_box = 54;
+		var height_box = $('#' + item_to_overlay.attr('id')).height();
 		var overlay_host = item_to_overlay.find('.overlay_host').eq(0);
-
 		$.apm_browse.page_overlayed_for_moving = '';
 		$('.drag-container-selected-overlaying').remove();
 
@@ -394,7 +393,7 @@ jQuery().ready(function(){
 	}
 
 	function _set_drop_page_overlay(item_to_overlay){
-		var height_box = 54;
+		var height_box = $('#' + item_to_overlay.attr('id')).height();
 		var overlay_host = item_to_overlay.find('.overlay_host').eq(0);
 
 		$.apm_browse.page_overlayed_for_droping = '';
