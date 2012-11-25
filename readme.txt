@@ -11,7 +11,7 @@ A new way to create, move, edit and publish your pages for your favorite CMS.
 
 == Description ==
 
-> This plugin is in beta stage. Please check the *Other Notes* tab for more details. 中文用户？我们的插件也有中文翻译！请实行它，给我们提意见！
+> This plugin is in beta stage. Please check the *Other Notes* tab for more details. 中文用户？我们的插件也有中文翻译！请试一试，给我们提意见！
 
 **It is hard to manage Wordpress pages when it comes to have more than 10 static pages, right ?** Current UI makes it difficult to manage a whole tree of pages. Advanced Page Manager aims to create a totally new Page Manager Panel designed to help you get the job done.
 
@@ -39,7 +39,7 @@ Don't forget to keep up with APM at [http://www.uncategorized-creations.com/](ht
 
 == Installation ==
 
-> This plugin is in beta stage. Please check the *Other Notes* tab for more details. 中文用户？我们的插件也有中文翻译！请实行它，给我们提意见！
+> This plugin is in beta stage. Please check the *Other Notes* tab for more details. 中文用户？我们的插件也有中文翻译！请试一试，给我们提意见！
 
 Advanced Page Manager doesn't require specific action to be installed. Just follow the regular process :
 
@@ -51,7 +51,7 @@ Advanced Page Manager doesn't require specific action to be installed. Just foll
 
 == Frequently Asked Questions ==
 
-> This plugin is in beta stage. Please check the *Other Notes* tab for more details. 中文用户？我们的插件也有中文翻译！请实行它，给我们提意见！
+> This plugin is in beta stage. Please check the *Other Notes* tab for more details. 中文用户？我们的插件也有中文翻译！请试一试，给我们提意见！
 
 = This plugin is beta. What does that mean ? =
 Advanced Page Manager is fresh out of the box. We have tested it but it is young and for sure have bugs. We are going to work hard to have it clean by the end of the year. For more details and how you can get involved, please check the *Other Notes* tab.
@@ -109,7 +109,7 @@ By default, APM is in English and French. Since 0.6.5, we also support Dutch. If
 
 == Screenshots ==
 
-> This plugin is in beta stage. Please check the *Other Notes* tab for more details. All screenshots are from the english beta 1. 中文用户？我们的插件也有中文翻译！请实行它，给我们提意见！
+> This plugin is in beta stage. Please check the *Other Notes* tab for more details. All screenshots are from the english beta 1. 中文用户？我们的插件也有中文翻译！请试一试，给我们提意见！
 
 1. Pages are presented as a nice tree. Clicking on the *arrow* will fold (or unfold) subpages.
 2. Rollover a page will reveal the *Action Menu* for this page : *Rename*, *Preview*/*View*, *Publish*, *Edit*, *Template*, *Move* and *Delete* (if you're connected with the admin role).
@@ -124,7 +124,7 @@ By default, APM is in English and French. Since 0.6.5, we also support Dutch. If
 
 == Changelog ==
 
-> This plugin is in beta stage. Please check the *Other Notes* tab for more details. 中文用户？我们的插件也有中文翻译！请实行它，给我们提意见！
+> This plugin is in beta stage. Please check the *Other Notes* tab for more details. 中文用户？我们的插件也有中文翻译！请试一试，给我们提意见！
 
 = 0.7.5 =
 * 0000022: Impossible to fold/unfold pages after adding subpages
