@@ -131,7 +131,7 @@ class ApmTreeData{
 	/**
 	 * All data must be loaded (tree, intern and wp) before calling this.
 	 */
-	public function get_ready_to_display_nodes(){
+	public function get_ready_to_display_nodes($json=false){
 		
 		if( $this->nodes_data->is_empty() ){
 			return array();
@@ -393,7 +393,7 @@ class ApmTreeData{
 	
 	public function fold_all_nodes(){
 		$this->tree_state->fold_all(); 
-		$this->save_tree_state();
+		ApmTreeState::delete_for_current_user();
 	}
 	
 	public function unfold_node($node){
@@ -487,7 +487,7 @@ class ApmTreeData{
 			
 			if( !$no_tree_state_data ){
 				//Load tree state from user meta data:
-				$this->tree_state->load();
+				$this->tree_state->load($this->apm_tree->get_nodes_flat());
 				
 				if( $this->tree_state->is_empty() && empty($only_from_root) ){
 					$this->tree_state->load_nodes($this->apm_tree->get_nodes_flat());

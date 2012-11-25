@@ -10,14 +10,30 @@ class ApmTreeState{
 		}
 	}
 	
-	public function load(){
+	public function load($tree_nodes=array()){
 		global $current_user;
 		$user_tree_state = get_user_meta($current_user->ID,
 										 ApmConfig::tree_state_user_meta,
 										 true);
 										 
 		if( !empty($user_tree_state) ){
-			$this->tree_state = $user_tree_state;
+			if( !empty($tree_nodes) ){
+				//Check if new pages have been created by other users.
+				//TODO : see performance impact of this array_diff at every tree state load.
+				$new_nodes = array_diff($tree_nodes,array_keys($user_tree_state)); 
+				if( !empty($new_nodes) ){
+					//Add new nodes (that have been created since tree state has been saved for the last time) :
+					$this->tree_state = $user_tree_state;
+					foreach($new_nodes as $new_node){
+						$this->tree_state[$new_node] = 0; //New nodes folded by default
+					}
+					$this->save();
+				}else{
+					$this->tree_state = $user_tree_state;
+				}
+			}else{
+				$this->tree_state = $user_tree_state;
+			}
 		}
 	}
 	
@@ -32,6 +48,11 @@ class ApmTreeState{
 		delete_metadata('user',0,ApmConfig::tree_state_user_meta,'',true);
 	}
 	
+	public static function delete_for_current_user(){
+		global $current_user;
+		delete_metadata('user',$current_user->ID,ApmConfig::tree_state_user_meta,'',false);
+	}
+	
 	public function is_empty(){
 		return empty($this->tree_state);
 	}
@@ -40,9 +61,11 @@ class ApmTreeState{
 		return $this->tree_state;
 	}
 	
-	public function load_nodes($nodes,$node_states=array()){
+	public function load_nodes($nodes,$node_states=array(),$append=false){
 		if( !empty($nodes) ){
-			$this->tree_state = array();
+			if( !$append ){
+				$this->tree_state = array();
+			}
 			foreach($nodes as $node){
 				if( is_array($node_states) && array_key_exists($node,$node_states) ){
 					$this->tree_state[$node] = $node_states[$node];

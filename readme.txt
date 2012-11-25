@@ -3,7 +3,7 @@ Contributors: Uncategorized Creations
 Tags: pages, page, manage, management, page management, tree, rearrange, order, reorder, hierarchical, admin, cms, content management
 Requires at least: 3.4.2
 Tested up to: 3.4.2
-Stable tag: 0.7
+Stable tag: 0.7.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -11,7 +11,7 @@ A new way to create, move, edit and publish your pages for your favorite CMS.
 
 == Description ==
 
-> This plugin is in beta stage. Please check the *Other Notes* tab for more details.
+> This plugin is in beta stage. Please check the *Other Notes* tab for more details. 中文用户？我们的插件也有中文翻译！请实行它，给我们提意见！
 
 **It is hard to manage Wordpress pages when it comes to have more than 10 static pages, right ?** Current UI makes it difficult to manage a whole tree of pages. Advanced Page Manager aims to create a totally new Page Manager Panel designed to help you get the job done.
 
@@ -39,7 +39,7 @@ Don't forget to keep up with APM at [http://www.uncategorized-creations.com/](ht
 
 == Installation ==
 
-> This plugin is in beta stage. Please check the *Other Notes* tab for more details.
+> This plugin is in beta stage. Please check the *Other Notes* tab for more details. 中文用户？我们的插件也有中文翻译！请实行它，给我们提意见！
 
 Advanced Page Manager doesn't require specific action to be installed. Just follow the regular process :
 
@@ -51,7 +51,7 @@ Advanced Page Manager doesn't require specific action to be installed. Just foll
 
 == Frequently Asked Questions ==
 
-> This plugin is in beta stage. Please check the *Other Notes* tab for more details.
+> This plugin is in beta stage. Please check the *Other Notes* tab for more details. 中文用户？我们的插件也有中文翻译！请实行它，给我们提意见！
 
 = This plugin is beta. What does that mean ? =
 Advanced Page Manager is fresh out of the box. We have tested it but it is young and for sure have bugs. We are going to work hard to have it clean by the end of the year. For more details and how you can get involved, please check the *Other Notes* tab.
@@ -67,6 +67,20 @@ Yes. The plugin manages regular pages and the menu builder has still access to t
 
 = Do I have to modify my theme ? =
 No. Regular page template tags and functions still work. Regular page template and permalinks are also supported. Also, we do have new template tags, however it is not mandatory to use them.
+
+= Does the plugin support extra columns in the page list ? =
+We study how to support extra columns in the APM pages panel. We've looked at the WP core itself and to several plugins making use of those extra columns (as Simply Exclude or Yoast SEO for example). We found 2 things :
+* First, using the WP hook is very difficult as it expects to be on the original panel
+* Second, plugins insert themselves in many ways into the Pages panel (eg. bringing new scripts testing the current URL)
+
+So unfortunatly, we came to the conclusion that we won't support extra columns as it will introduce to much specific and unstable code in our plugin.
+
+However, we perfectly understand the importance of this feature for the users and the developpers.
+Here what we've decided at the moment :
+* We're going to give you the possibility to access to the WP original Pages panel in order to let you enjoy again the extra columns you need
+* In addition to that, we're going to add official hooks to let plugin authors adding extra columns in the APM panels
+
+We'll keep you posted when these features will be implemented.
 
 = How do I report a bug ? =
 Please, use the *Support* tab. However, remember this is not a commercial support of any kind. We check regularly the coming requests and questions and try to keep up with answering them. But we also have regular jobs and... lifes. One more detail : at the moment, we're all located in France. So if you are in another timezone, remember that even french sleep (yes I know, weird).
@@ -95,8 +109,7 @@ By default, APM is in English and French. Since 0.6.5, we also support Dutch. If
 
 == Screenshots ==
 
-> This plugin is in beta stage. Please check the *Other Notes* tab for more details. All screenshots are from the english beta 1.
-
+> This plugin is in beta stage. Please check the *Other Notes* tab for more details. All screenshots are from the english beta 1. 中文用户？我们的插件也有中文翻译！请实行它，给我们提意见！
 
 1. Pages are presented as a nice tree. Clicking on the *arrow* will fold (or unfold) subpages.
 2. Rollover a page will reveal the *Action Menu* for this page : *Rename*, *Preview*/*View*, *Publish*, *Edit*, *Template*, *Move* and *Delete* (if you're connected with the admin role).
@@ -111,14 +124,22 @@ By default, APM is in English and French. Since 0.6.5, we also support Dutch. If
 
 == Changelog ==
 
+> This plugin is in beta stage. Please check the *Other Notes* tab for more details. 中文用户？我们的插件也有中文翻译！请实行它，给我们提意见！
+
+= 0.7.5 =
+* 0000022: Impossible to fold/unfold pages after adding subpages
+* 0000021: Error message doesn't disappear in Add New site panel
+* 0000019: After creating first page, After radio button is unchecked (thanks to Thibaut Cotti)
+* Adds Chinese (zh_CN) translation
+
 = 0.7 =
-* Mantis 0000011: Move link available when tree has only one page
-* Mantis 0000012: Subpages icon is positioned under the arrow
-* Mantis 0000014: When renaming, title field allows empty value
-* Mantis 0000015: Rows in tree doesn't scale vertically properly when content is big
-* Mantis 0000016: Add New layer doesn't scale vertically
-* Mantis 0000017: Move layer doesn't scale vertically
 * Mantis 0000020: Clicks on After, Before, Subpage labels should check their corresponding checkboxes
+* Mantis 0000017: Move layer doesn't scale vertically
+* Mantis 0000016: Add New layer doesn't scale vertically
+* Mantis 0000015: Rows in tree doesn't scale vertically properly when content is big
+* Mantis 0000014: When renaming, title field allows empty value
+* Mantis 0000012: Subpages icon is positioned under the arrow
+* Mantis 0000011: Move link available when tree has only one page
 
 = 0.6.5 =
 * Mantis 0000002: No position selected in the Add New side panel when clicking (again) the Add New button

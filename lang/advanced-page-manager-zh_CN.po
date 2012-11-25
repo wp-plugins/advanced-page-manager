@@ -1,0 +1,621 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Advanced Page Manager\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-11-15 22:33+0100\n"
+"PO-Revision-Date: 2012-11-24 21:55+0100\n"
+"Last-Translator: Dev Wp <devwp@devwp.com>\n"
+"Language-Team: \n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e;_c;_n:1,2\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"Plural-Forms: nplurals=2;plural=n>2;\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../advanced_page_manager.php:117
+msgid "All Pages"
+msgstr "所有页面"
+
+#: ../advanced_page_manager.php:131
+msgid "Settings"
+msgstr "设置"
+
+#: ../advanced_page_manager.php:155
+#: ../advanced_page_manager.php:163
+#: ../advanced_page_manager.php:171
+#: ../advanced_page_manager.php:199
+#: ../advanced_page_manager.php:286
+msgid "Resource not found"
+msgstr "资源文件找不到"
+
+#: ../advanced_page_manager.php:262
+msgid ""
+"Your session has expired.\n"
+"You will be redirected to login page."
+msgstr "连接超时，系统将转回登录页面"
+
+#: ../advanced_page_manager.php:283
+msgid "An $apm_messages array should be defined in"
+msgstr "错误信息列表应定义于"
+
+#: ../advanced_page_manager.php:301
+#: ../ajax/actions_ajax.php:53
+msgid "Template not found"
+msgstr "未找到模版"
+
+#: ../advanced_page_manager.php:327
+msgid "Page Attributes"
+msgstr "页面属性"
+
+#: ../lib/addons.php:177
+msgid "Addons activation parameters saved successfuly"
+msgstr "成功保存插件已激活设置"
+
+#: ../lib/nodes_data.php:236
+msgid "This page has been deleted from outside Advanced Page Manager. It should be deleted from this tree, after having put valid subpages in a safe place."
+msgstr "此页面已在高级页面管理器外删除。安全保存子页面后可以把它从此目录删除。"
+
+#: ../lib/nodes_data.php:283
+msgid "(no title)"
+msgstr "(无标题)"
+
+#: ../lib/options.php:153
+msgid "Could not save plugin settings : security check failed."
+msgstr "无法保存插件设置：安全测试失败"
+
+#: ../lib/options.php:167
+msgid "Plugin data (except options) have been deleted"
+msgstr "插件数据（除选项外）已删除"
+
+#: ../lib/options.php:173
+msgid "Plugin options have been deleted "
+msgstr "插件选项已删除"
+
+#: ../lib/options.php:179
+msgid "Fold / Unfold data have been deleted"
+msgstr "已删除隐藏／显示的数据"
+
+#: ../lib/options.php:193
+#, php-format
+msgid "The page \"%s\" has been successful restored to the end of the tree"
+msgstr "已在根目录成功恢复\"%s\" 页面"
+
+#: ../lib/options.php:202
+#, php-format
+msgid "The page to restore (wp_id = %s) is not in lost pages."
+msgstr "要归还的页面(wp_id = %s)不属于遗失页面"
+
+#: ../lib/options.php:211
+msgid "APM tree successfully restored from Wordpress pages"
+msgstr "已从WordPress页面恢复APM目录"
+
+#: ../lib/options.php:219
+msgid "Wordpress pages tree successfully restore from APM tree"
+msgstr "已从APM目录恢复WordPress页面"
+
+#: ../lib/options.php:233
+msgid "Admin options saved successfuly"
+msgstr "选项已保存"
+
+#: ../lib/addons/flagged_pages.php:28
+msgid "Flagged pages"
+msgstr "已标记页面"
+
+#: ../lib/addons/flagged_pages.php:50
+msgid "Mark"
+msgstr "标记"
+
+#: ../lib/addons/flagged_pages.php:51
+#: ../lib/addons/flagged_pages.php:55
+msgid "Unmark"
+msgstr "取消标记"
+
+#: ../lib/addons/flagged_pages.php:73
+#: ../templates/panel_page_sample/browse.php:42
+msgid "Flagged"
+msgstr "已标记"
+
+#: ../lib/addons/flagged_pages.php:85
+#: ../templates/panel_page/functions.php:8
+#: ../templates/panel_page_sample/browse.php:39
+msgid "All"
+msgstr "所有页面"
+
+#: ../lib/addons/flagged_pages.php:90
+#: ../templates/panel_page/functions.php:13
+#: ../templates/panel_page/functions.php:100
+#: ../templates/panel_page_sample/browse.php:40
+msgid "Online"
+msgstr "在线"
+
+#: ../lib/addons/flagged_pages.php:94
+#: ../templates/panel_page/functions.php:17
+#: ../templates/panel_page/functions.php:97
+#: ../templates/panel_page/functions.php:98
+#: ../templates/panel_page/functions.php:99
+#: ../templates/panel_page/functions.php:101
+#: ../templates/panel_page_sample/browse.php:41
+msgid "Offline"
+msgstr "离线"
+
+#: ../lib/addons/flagged_pages.php:132
+msgid "Delete flags data"
+msgstr "删除标记信息"
+
+#: ../lib/addons/flagged_pages.php:132
+msgid "delete flags for all pages"
+msgstr "删除所有页面标记"
+
+#: ../lib/addons/flagged_pages.php:141
+msgid "Flags data has been successfully deleted"
+msgstr "标记信息已删除"
+
+#: ../lib/addons/pages_taxonomies.php:14
+msgid "Pages Tags"
+msgstr "页面标签"
+
+#: ../lib/addons/pages_taxonomies.php:23
+msgid "Pages Categories"
+msgstr "页面分类"
+
+#: ../templates/core/bo_options_panel.php:18
+msgid "Advanced Page Manager settings"
+msgstr "高级页面管理：设置"
+
+#: ../templates/core/bo_options_panel.php:22
+msgid "Addons"
+msgstr "扩展"
+
+#: ../templates/core/bo_options_panel.php:35
+#: ../templates/core/bo_options_panel.php:79
+#: ../templates/core/bo_options_panel.php:89
+msgid "Deactivated"
+msgstr "关闭"
+
+#: ../templates/core/bo_options_panel.php:36
+#: ../templates/core/bo_options_panel.php:80
+#: ../templates/core/bo_options_panel.php:90
+msgid "Activated"
+msgstr "启动"
+
+#: ../templates/core/bo_options_panel.php:44
+#: ../templates/core/bo_options_panel.php:97
+msgid "Save changes"
+msgstr "保存修改"
+
+#: ../templates/core/bo_options_panel.php:53
+msgid "Plugin options"
+msgstr "插件选项"
+
+#: ../templates/core/bo_options_panel.php:75
+msgid "Display Mysql queries in AJAX answers"
+msgstr "用AJAX显示Mysql查询结果"
+
+#: ../templates/core/bo_options_panel.php:85
+msgid "Display lost pages in the \"All pages\" panel"
+msgstr "在“所有页面”面板中显示目录外页面"
+
+#: ../templates/core/bo_options_panel.php:106
+msgid "Lost pages"
+msgstr "目录外页面"
+
+#: ../templates/core/bo_options_panel.php:113
+msgid "No lost pages found"
+msgstr "无目录外页面"
+
+#: ../templates/core/bo_options_panel.php:120
+msgid "Restore at the end of the page tree"
+msgstr "在根目录中恢复"
+
+#: ../templates/core/bo_options_panel.php:132
+msgid "Plugin data management"
+msgstr "插件数据管理"
+
+#: ../templates/core/bo_options_panel.php:137
+msgid "Reinitialize the tree from Wordpress pages"
+msgstr "从wordPress页面重新初始化目录"
+
+#: ../templates/core/bo_options_panel.php:141
+msgid "Synchronize Wordpress pages tree with the plugin tree"
+msgstr "同步插件页面与WordPress页面"
+
+#: ../templates/core/bo_options_panel.php:145
+msgid "Delete plugin data except options"
+msgstr "删除插件数据（除选项外）"
+
+#: ../templates/core/bo_options_panel.php:145
+msgid "delete plugin tree and fold / unfold data. Doesnt delete plugin options."
+msgstr "删除插件目录和所有隐藏／未隐藏数据。不删除插件选项"
+
+#: ../templates/core/bo_options_panel.php:149
+msgid "Delete plugin options"
+msgstr "删除插件选项"
+
+#: ../templates/core/bo_options_panel.php:149
+msgid "reinitialize plugin options."
+msgstr "恢复插件选项"
+
+#: ../templates/core/bo_options_panel.php:153
+msgid "Delete fold / unfold data"
+msgstr "删除"
+
+#: ../templates/core/bo_options_panel.php:153
+msgid "fold all pages."
+msgstr "折叠所有页面"
+
+#: ../templates/core/page_attributes_meta_box.php:30
+msgid "Page flagged : click here to unflag"
+msgstr "页面已标记：点击此处取消标记"
+
+#: ../templates/core/page_attributes_meta_box.php:31
+msgid "Page not flagged : click here to flag"
+msgstr "页面无标记，点击此处添加标记"
+
+#: ../templates/core/page_attributes_meta_box.php:35
+#: ../templates/panel_page/browse.php:50
+#: ../templates/panel_page/browse.php:269
+#: ../templates/panel_page/browse.php:313
+#: ../templates/panel_page/list_display.php:92
+#: ../templates/panel_page/tree_display.php:112
+msgid "Template"
+msgstr "模版"
+
+#: ../templates/core/page_attributes_meta_box.php:36
+msgid "Page Template"
+msgstr "页面模版"
+
+#: ../templates/core/page_attributes_meta_box.php:38
+#: ../templates/panel_page/browse.php:52
+#: ../templates/panel_page/browse.php:100
+#: ../templates/panel_page/functions.php:82
+#: ../templates/panel_page_sample/browse.php:93
+#: ../templates/panel_page_sample/browse.php:167
+#: ../templates/panel_page_sample/list_display.php:113
+#: ../templates/panel_page_sample/tree_display.php:135
+msgid "Default Template"
+msgstr "默认模版"
+
+#: ../templates/core/page_attributes_meta_box.php:44
+#: ../templates/panel_page/list_display.php:130
+msgid "Where is it ?"
+msgstr "它在哪儿？"
+
+#: ../templates/core/page_attributes_meta_box.php:51
+msgid "Edit Parent"
+msgstr "编辑原始页"
+
+#: ../templates/core/page_attributes_meta_box.php:55
+msgid "Edit Previous"
+msgstr "编辑上一页"
+
+#: ../templates/core/page_attributes_meta_box.php:57
+msgid "Edit Next"
+msgstr "编辑下一页"
+
+#: ../templates/core/page_attributes_meta_box.php:60
+msgid "Subpage(s)"
+msgstr "子页面"
+
+#: ../templates/core/page_attributes_meta_box.php:81
+msgid "No Subpage"
+msgstr "无子页面"
+
+#: ../templates/core/page_attributes_meta_box.php:84
+msgid "Edit Subpage"
+msgstr "编辑子页面"
+
+#: ../templates/core/page_attributes_meta_box.php:92
+msgid "This page is not in the Advanced Page Manager tree."
+msgstr "此页不在高级页面管理器目录中"
+
+#: ../templates/core/page_attributes_meta_box.php:93
+msgid "Insert this page as last page of the tree"
+msgstr "在根目录中插入此页面"
+
+#: ../templates/core/page_attributes_meta_box.php:100
+msgid "No Page Template found in current theme directory!"
+msgstr "当前主题目录中没有找到模版！"
+
+#: ../templates/panel_page/browse.php:12
+#: ../templates/panel_page/browse.php:245
+#: ../templates/panel_page/browse.php:289
+msgid "Pages"
+msgstr "页面"
+
+#: ../templates/panel_page/browse.php:14
+msgid "Marked Pages"
+msgstr "标记页面"
+
+#: ../templates/panel_page/browse.php:38
+#: ../templates/panel_page/tree_display.php:155
+msgid "Add New"
+msgstr "添加"
+
+#: ../templates/panel_page/browse.php:40
+msgid "Click After, Before or Subpage position button"
+msgstr "请选择位置：后一页，前一页或子页面"
+
+#: ../templates/panel_page/browse.php:41
+msgid "Your page needs a title"
+msgstr "页面必须命名"
+
+#: ../templates/panel_page/browse.php:43
+#: ../templates/panel_page/js_messages.php:28
+msgid "Selected page"
+msgstr "选择页面"
+
+#: ../templates/panel_page/browse.php:45
+msgid "Title"
+msgstr "标题"
+
+#: ../templates/panel_page/browse.php:58
+msgid "Position"
+msgstr "位置"
+
+#: ../templates/panel_page/browse.php:60
+#: ../templates/panel_page/browse.php:231
+msgid "After"
+msgstr "上一页"
+
+#: ../templates/panel_page/browse.php:61
+#: ../templates/panel_page/browse.php:232
+msgid "Before"
+msgstr "下一页"
+
+#: ../templates/panel_page/browse.php:62
+msgid "Subpage"
+msgstr "子页面"
+
+#: ../templates/panel_page/browse.php:67
+msgid "Number"
+msgstr "页码"
+
+#: ../templates/panel_page/browse.php:75
+msgid "Add"
+msgstr "添加"
+
+#: ../templates/panel_page/browse.php:76
+#: ../templates/panel_page/browse.php:114
+msgid "Done"
+msgstr "完成"
+
+#: ../templates/panel_page/browse.php:77
+#: ../templates/panel_page/browse.php:115
+#: ../templates/panel_page/browse.php:217
+#: ../templates/panel_page/browse.php:224
+#: ../templates/panel_page/browse.php:234
+#: ../templates/panel_page/list_display.php:61
+#: ../templates/panel_page/tree_display.php:81
+msgid "Cancel"
+msgstr "取消"
+
+#: ../templates/panel_page/browse.php:84
+#: ../templates/panel_page/browse.php:187
+msgid "Change Template"
+msgstr "更换模版"
+
+#: ../templates/panel_page/browse.php:86
+#: ../templates/panel_page/js_messages.php:30
+msgid "No page selected"
+msgstr "没有选择页面"
+
+#: ../templates/panel_page/browse.php:89
+msgid "Current Template"
+msgstr "当前模版"
+
+#: ../templates/panel_page/browse.php:91
+#: ../templates/panel_page/js_messages.php:32
+msgid "Selected pages have different templates"
+msgstr "所选页面使用不同模版"
+
+#: ../templates/panel_page/browse.php:95
+msgid "New Template"
+msgstr "新模板"
+
+#: ../templates/panel_page/browse.php:113
+msgid "Change"
+msgstr "更改"
+
+#: ../templates/panel_page/browse.php:123
+msgid "Search results for"
+msgstr "搜索结果"
+
+#: ../templates/panel_page/browse.php:162
+#: ../templates/panel_page/browse.php:164
+msgid "Search Pages"
+msgstr "搜索页面"
+
+#: ../templates/panel_page/browse.php:170
+msgid "Bulk Actions"
+msgstr "批量操作"
+
+#: ../templates/panel_page/browse.php:172
+msgid "Unselect All"
+msgstr "取消所有选项"
+
+#: ../templates/panel_page/browse.php:175
+msgid "Fold All"
+msgstr "全部隐藏"
+
+#: ../templates/panel_page/browse.php:177
+msgid "Unmark All"
+msgstr "取消所有标记"
+
+#: ../templates/panel_page/browse.php:185
+#: ../templates/panel_page/list_display.php:84
+#: ../templates/panel_page/tree_display.php:104
+msgid "Publish"
+msgstr "发表"
+
+#: ../templates/panel_page/browse.php:186
+#: ../templates/panel_page/list_display.php:81
+#: ../templates/panel_page/tree_display.php:101
+msgid "Unpublish"
+msgstr "解除发布"
+
+#: ../templates/panel_page/browse.php:190
+#: ../templates/panel_page/list_display.php:96
+#: ../templates/panel_page/tree_display.php:125
+msgid "Delete"
+msgstr "删除"
+
+#: ../templates/panel_page/browse.php:202
+#: ../templates/panel_page/browse.php:327
+msgid "Selected Item(s)"
+msgstr "选择"
+
+#: ../templates/panel_page/browse.php:216
+msgid "You have chosen to move this page (and its subpages) elsewhere"
+msgstr "选择移动此页面及其子页面"
+
+#: ../templates/panel_page/browse.php:223
+msgid "You are adding pages relative to this one"
+msgstr "正在添加与此页相关的新页面"
+
+#: ../templates/panel_page/browse.php:230
+msgid "Move my page"
+msgstr "移动我的页面"
+
+#: ../templates/panel_page/browse.php:233
+msgid "As a subpage"
+msgstr "作为子页面"
+
+#: ../templates/panel_page/browse.php:257
+#: ../templates/panel_page/browse.php:301
+msgid "Status"
+msgstr "状态"
+
+#: ../templates/panel_page/browse.php:263
+#: ../templates/panel_page/browse.php:307
+msgid "Date"
+msgstr "日期"
+
+#: ../templates/panel_page/functions.php:49
+msgid "on"
+msgstr "/"
+
+#: ../templates/panel_page/js_messages.php:5
+#: ../templates/panel_page_sample/js_messages.php:3
+msgid "Error"
+msgstr "错误"
+
+#: ../templates/panel_page/js_messages.php:6
+#: ../templates/panel_page_sample/js_messages.php:4
+msgid "Couldn't load tree"
+msgstr "无法载入目录"
+
+#: ../templates/panel_page/js_messages.php:7
+msgid "No page ?"
+msgstr "无页面"
+
+#: ../templates/panel_page/js_messages.php:10
+msgid "Title required"
+msgstr "必须标题"
+
+#: ../templates/panel_page/js_messages.php:14
+msgid "Create my first page !"
+msgstr "创建首页！"
+
+#: ../templates/panel_page/js_messages.php:15
+msgid "No page online"
+msgstr "无在线页面"
+
+#: ../templates/panel_page/js_messages.php:16
+msgid "No page offline"
+msgstr "无离线页面"
+
+#: ../templates/panel_page/js_messages.php:17
+msgid "No marked page"
+msgstr "无标记页面"
+
+#: ../templates/panel_page/js_messages.php:18
+msgid "No page found"
+msgstr "页面未找到"
+
+#: ../templates/panel_page/js_messages.php:20
+msgid "Do you really want to delete this page?"
+msgstr "确定要删除此页面吗？"
+
+#: ../templates/panel_page/js_messages.php:21
+msgid "Do you really want to delete those pages?"
+msgstr "确定要删除这些页面吗？"
+
+#: ../templates/panel_page/js_messages.php:22
+msgid "Deleting this page will also delete all its subpages. Do you really want to delete this page?"
+msgstr "注意，删除此页的同时会删除子页面。确定要删除此页面吗？"
+
+#: ../templates/panel_page/js_messages.php:25
+msgid "Please, select at least one page"
+msgstr "请至少选择一个页面"
+
+#: ../templates/panel_page/js_messages.php:29
+msgid "Selected pages"
+msgstr "所选页面"
+
+#: ../templates/panel_page/js_messages.php:31
+msgid "No template"
+msgstr "无模版"
+
+#: ../templates/panel_page/list_display.php:50
+#: ../templates/panel_page/tree_display.php:69
+msgid "Trash"
+msgstr "回收站"
+
+#: ../templates/panel_page/list_display.php:66
+#: ../templates/panel_page/tree_display.php:86
+msgid "Rename"
+msgstr "重命名"
+
+#: ../templates/panel_page/list_display.php:71
+#: ../templates/panel_page/tree_display.php:91
+msgid "View"
+msgstr "显示"
+
+#: ../templates/panel_page/list_display.php:73
+#: ../templates/panel_page/tree_display.php:93
+msgid "Preview"
+msgstr "预览"
+
+#: ../templates/panel_page/list_display.php:79
+#: ../templates/panel_page/tree_display.php:99
+msgid "Restore"
+msgstr "归还"
+
+#: ../templates/panel_page/list_display.php:88
+#: ../templates/panel_page/tree_display.php:108
+msgid "Edit"
+msgstr "修改"
+
+#: ../templates/panel_page/tree_display.php:38
+msgid "Select Subpages"
+msgstr "选择所有子页面"
+
+#: ../templates/panel_page/tree_display.php:39
+msgid "Unselect Subpages"
+msgstr "取消子页面选择"
+
+#: ../templates/panel_page/tree_display.php:120
+msgid "Move"
+msgstr "移动"
+
+#: ../templates/panel_page_sample/browse.php:43
+msgid "Recent"
+msgstr "最近使用"
+
+#: ../templates/panel_page_sample/list_display.php:93
+#, php-format
+msgid "%s subpage"
+msgid_plural "%s subpages"
+msgstr[0] "%s 子页面"
+msgstr[1] "%s 子页面"
+
+#~ msgid "Where is this page ?"
+#~ msgstr "Où est cette page ?"
+
+#~ msgid "Plugin data, including options, have been deleted "
+#~ msgstr "Les données du plugin, y compris les options, ont été effacées"

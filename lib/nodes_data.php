@@ -263,7 +263,10 @@ class ApmNodeDataDisplay{
 		switch($this->type){
 			case 'page':
 				if( empty($wp_entity) ){
-					$wp_entity = get_page($this->wp_id);
+					//Don't directly use get_page($this->wp_id) because it sends a PHP Notice: 
+					//"Indirect modification of overloaded property"
+					$wp_id = $this->wp_id; 
+					$wp_entity = get_page($wp_id);
 				}
 				$this->set_wp_data_from_post($wp_entity);
 				break;
@@ -649,11 +652,10 @@ class ApmNodeDataDisplayCollection{
 		$intern_data_loaded = ApmNodeDataIntern::load_multiple($apm_ids,$order_matters);
 
 		$nodes_data = $intern_data_loaded['nodes_data'];
-		$ids_wp = $intern_data_loaded['ids_wp']['page'];
-
 		if( empty($nodes_data) ){
 			return;
 		}
+		$ids_wp = $intern_data_loaded['ids_wp']['page'];
 		
 		foreach($nodes_data as $apm_id => $intern_data){
 			$display_data = new ApmNodeDataDisplay();

@@ -95,6 +95,8 @@ jQuery().ready(function(){
 				var nodes_number = Math.max(parseInt($('#add-number-page option:selected').val()),1);
 				var page_template = $('#add-page-model').val();
 				var nodes_data = {'node_template' : page_template};
+				$('.error-add-first-page').hide();
+
 
 				var error = false;
 
@@ -102,7 +104,7 @@ jQuery().ready(function(){
 				var success_callback = _update_add_page;
 
 				if(page_title.length == 0 || typeof( page_position ) == 'undefined') {
-					$('.error-add-page').show();
+					$('.error-add-first-page').show();
 					$('.container-list-big-loader').hide();
 				}
 				else {
@@ -339,7 +341,7 @@ jQuery().ready(function(){
 		$('#add-page-title').val('');
 		$('#add-page-model').val('default');
 		$('#add-number-page').val('1');
-		$('.add-page-position').removeAttr('checked');
+		$('.add-page-position:first').attr('checked', 'checked');
 	}
 
 	function _set_add_page_overlay(item_to_overlay){

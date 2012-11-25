@@ -2,7 +2,7 @@
 /*
  * Plugin Name: Advanced Page Manager
  * Description: A plugin that redefines the way you create, move, edit and publish your pages.  
- * Version: beta 2 (0.7)
+ * Version: beta 2 (0.7.5)
  * Author: Uncategorized Creations
  * Plugin URI: http://www.uncategorized-creations.com/
  * Author URI: http://www.uncategorized-creations.com/
@@ -123,9 +123,29 @@ class advanced_page_manager{
 	}
 	
 	/**
-	 * Adds the settings entry as last item of the "Pages" admin submenu
+	 * Adds the settings entry as last item of the "Pages" admin submenu 
+	 * AND put our "All pages" submenu back to first position (in case we added
+	 * pages custom taxonomies for example)
 	 */
 	public static function admin_menu_settings(){
+		
+		//Put our "All pages" submenu back to first position (in case we added
+	 	//pages custom taxonomies for example):
+	 	//TODO : This is a hack on the global $submenu. See if there is a best way to 
+	 	//reorder admin submenus. 
+		global $submenu;
+		if( array_key_exists('edit.php?post_type=page',$submenu) ){
+			$pages_submenu = $submenu['edit.php?post_type=page']; //"Pages" menu
+			foreach($pages_submenu as $priority => $data){
+				if( in_array('apm_browse_pages_menu',$data) ){ //Our "All pages" submenu
+					unset($submenu['edit.php?post_type=page'][$priority]);
+					$submenu['edit.php?post_type=page'][1] = $data;
+					ksort($submenu['edit.php?post_type=page']);
+					break;
+				}
+			}
+		}
+		
 		//Settings submenu : admins only :
 		if( current_user_can('manage_options') ){
 			add_submenu_page('edit.php?post_type=page', __('Settings',ApmConfig::i18n_domain), __('Settings',ApmConfig::i18n_domain), 'activate_plugins', 'apm_options_pages_menu', array(__CLASS__,'bo_options_panel_template'));
