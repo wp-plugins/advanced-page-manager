@@ -4,7 +4,7 @@
  * $nodes is an array containing the tree nodes.
  *
  * Node status can be : -1:auto-draft, 0:draft, 1:waiting for approval,
- *  2:published, 3:trash, -2:in APM tree but not in WP anymore
+ *  2:published, 3:private, 4:trash, -2:in APM tree but not in WP anymore
  */
 
 require_once( ABSPATH .'/wp-admin/includes/theme.php' );
@@ -65,7 +65,7 @@ $total_nodes = count( $nodes );
 
 							<strong>
 								<?php if( $node->status > -2 ) : ?>
-									<?php if( $node->status == 3 ) : ?>
+									<?php if( $node->status == 4 ) : ?>
 										<span class="node-trashed"><?php echo '['. __('Trash', ApmConfig::i18n_domain) .'] '. $node->title ?></span>
 									<?php else: ?>
 										<a class="row-title" href="<?php echo get_bloginfo('wpurl').'/wp-admin/post.php?post='.$node->wp_id.'&action=edit' ?>" title="<?php echo $node->title ?>"><?php echo $node->title ?></a>
@@ -82,11 +82,11 @@ $total_nodes = count( $nodes );
 							</div>
 							<div class="row-actions">
 
-								<?php if( $node->status >= 0 && $node->status < 3 ) : ?>
+								<?php if( $node->status >= 0 && $node->status < 4 ) : ?>
 									<span class="rename"><a href="#" class="action_rename" title="<?php _e('Rename', ApmConfig::i18n_domain); ?>"><?php _e('Rename', ApmConfig::i18n_domain); ?></a>&nbsp;|&nbsp;</span>
 								<?php endif ?>
 
-								<?php if( $node->status < 3 ): ?>
+								<?php if( $node->status < 4 ): ?>
 									<?php if( $node->status > 1 ) : ?>
 										<span class="display"><a href="<?php echo $link_display ?>" class="action_display" title="<?php _e('View', ApmConfig::i18n_domain); ?>"><?php _e('View', ApmConfig::i18n_domain); ?></a>&nbsp;|&nbsp;</span>
 									<?php elseif( $node->status >= 0 ) : ?>
@@ -95,20 +95,22 @@ $total_nodes = count( $nodes );
 								<?php endif ?>
 
 								<?php if( $node->status > 1 ) : ?>
-									<?php if( $node->status == 3 ) : ?>
-										<span class=""><a href="#" class="action_unpublish" title="<?php _e('Restore', ApmConfig::i18n_domain); ?>"><?php _e('Restore', ApmConfig::i18n_domain); ?></a>&nbsp;|&nbsp;</span>
-									<?php else: ?>
-										<span class=""><a href="#" class="action_unpublish" title="<?php _e('Unpublish', ApmConfig::i18n_domain); ?>"><?php _e('Unpublish', ApmConfig::i18n_domain); ?></a>&nbsp;|&nbsp;</span>
+									<?php if( $node->status != 3 ) : //private ?>
+										<?php if( $node->status == 4 ) : ?>
+											<span class=""><a href="#" class="action_unpublish" title="<?php _e('Restore', ApmConfig::i18n_domain); ?>"><?php _e('Restore', ApmConfig::i18n_domain); ?></a>&nbsp;|&nbsp;</span>
+										<?php else: ?>
+											<span class=""><a href="#" class="action_unpublish" title="<?php _e('Unpublish', ApmConfig::i18n_domain); ?>"><?php _e('Unpublish', ApmConfig::i18n_domain); ?></a>&nbsp;|&nbsp;</span>
+										<?php endif ?>
 									<?php endif ?>
 								<?php elseif( $node->status >= 0 ) : ?>
 									<span class=""><a href="#" class="action_publish" title="<?php _e('Publish', ApmConfig::i18n_domain); ?>"><?php _e('Publish', ApmConfig::i18n_domain); ?></a>&nbsp;|&nbsp;</span>
 								<?php endif; ?>
 
-								<?php if( $node->status > -2 && $node->status < 3 ) : ?>
+								<?php if( $node->status > -2 && $node->status < 4 ) : ?>
 									<span class="edit"><a href="<?php echo get_bloginfo('wpurl').'/wp-admin/post.php?post='.$node->wp_id.'&action=edit' ?>" title="<?php _e('Edit', ApmConfig::i18n_domain); ?>" class="action_edit"><?php _e('Edit', ApmConfig::i18n_domain); ?></a>&nbsp;|&nbsp;</span>
 								<?php endif; ?>
 
-								<?php if( $node->status >= 0 && $node->status < 3 ) : ?>
+								<?php if( $node->status >= 0 && $node->status < 4 ) : ?>
 									<span class="action_change_template"><a href="#"><?php _e('Template'); ?></a>&nbsp;|&nbsp;</span>
 								<?php endif ?>
 
@@ -116,7 +118,7 @@ $total_nodes = count( $nodes );
 								<?php
 								// Drag / undrag actions available when tree has more a page.
 								if($total_nodes > 2) : ?>
-									<?php if( $node->status > -2 && $node->status < 3 ) : ?>
+									<?php if( $node->status > -2 && $node->status < 4 ) : ?>
 										<span class="drag"><a href="#" title="<?php _e('Move', ApmConfig::i18n_domain); ?>" class="action-drag"><?php _e('Move', ApmConfig::i18n_domain); ?></a>&nbsp;|&nbsp;</span>
 									<?php endif ?>
 								<?php endif; ?>
@@ -138,7 +140,7 @@ $total_nodes = count( $nodes );
 
 			    <?php if( $node->status > -2 ) : ?>
 					<td class="etat column-etat">
-						<?php if( $node->status > 1  && $node->status < 3) : ?>
+						<?php if( $node->status > 1  && $node->status < 4 && $node->status != 3 ) : ?>
 							<div class="picto-publish"></div>
 							<strong><?php echo $status[$node->status] ?></strong>
 						<?php else : ?>

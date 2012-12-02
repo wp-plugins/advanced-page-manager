@@ -110,7 +110,7 @@ class ApmOptions{
 		return $options;
 	}
 	
-	public static function get_lost_pages(){
+	public static function get_lost_pages($allow_autodrafts=false){
 		global $wpdb;
 		
 		$lost_pages = array();
@@ -122,12 +122,21 @@ class ApmOptions{
 		$tree_wp_ids = ApmNodeDataIntern::get_wp_ids($tree_apm_ids);
 		$tree_wp_ids = array_diff($tree_wp_ids,array(ApmTreeData::root_id)); //Remove the zeroes (for root).
 		
-		$sql = "SELECT * FROM $wpdb->posts AS p WHERE p.post_type = 'page' AND p.ID NOT IN ('". implode("','",$tree_wp_ids) ."')";
+		$sql_autodrafts = " AND post_status != 'auto-draft' ";
+		if( $allow_autodrafts ){
+			$sql_autodrafts = '';
+		}
+		
+		$sql = "SELECT * FROM $wpdb->posts AS p 
+						 WHERE p.post_type = 'page' $sql_autodrafts AND p.ID NOT IN ('". implode("','",$tree_wp_ids) ."')";
+		
 		$lost_pages_raw = $wpdb->get_results($sql);
 		
-		foreach($lost_pages_raw as $page){
-			$page->post_title = _draft_or_post_title($page->ID);
-			$lost_pages[$page->ID] = $page;
+		if( !empty($lost_pages_raw) ){
+			foreach($lost_pages_raw as $page){
+				$page->post_title = _draft_or_post_title($page->ID);
+				$lost_pages[$page->ID] = $page;
+			}
 		}
 		
 		return $lost_pages;

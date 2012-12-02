@@ -87,12 +87,14 @@ class ApmNodeDataIntern{
 
 		$results = $wpdb->get_results($sql);
 
-		foreach($results as $row){
-			$loaded_data[$row->ID] = new ApmNodeDataIntern(array('apm_id'=>$row->ID,
-																 'type'=>$row->post_type,
-																 'wp_id'=>$row->ID));
-			if( !empty($row->ID) ){
-				$ids_wp[$row->post_type][$row->ID] = $row->ID; //TODO : not usefull since apm_id = wp_id...
+		if( !empty($results) ){
+			foreach($results as $row){
+				$loaded_data[$row->ID] = new ApmNodeDataIntern(array('apm_id'=>$row->ID,
+																	 'type'=>$row->post_type,
+																	 'wp_id'=>$row->ID));
+				if( !empty($row->ID) ){
+					$ids_wp[$row->post_type][$row->ID] = $row->ID; //TODO : not usefull since apm_id = wp_id...
+				}
 			}
 		}
 		
@@ -157,8 +159,8 @@ class ApmNodeDataDisplay{
 	private $intern_data;
 	
 	/**
-	 * Node status (-1:auto-draft, 0:draft, 1:waiting for approval, 
-	 *  2:published, 3:trash, -2:in APM tree but not in WP anymore ) 
+	 * Node status (-2:in APM tree but not in WP anymore, -1:auto-draft, 
+	 * 0:draft, 1:waiting for approval, 2:published, 3:private, 4:trash ) 
 	 * @var string
 	 */
 	private $status;
@@ -308,8 +310,11 @@ class ApmNodeDataDisplay{
 			case 'pending':
 				$this->status = 1; //'Offline (waiting for approval)';
 				break;
+			case 'private':
+				$this->status = 3; //'Private';
+				break;
 			case 'trash':
-				$this->status = 3; //'Trash';
+				$this->status = 4; //'Trash';
 				break;
 			default:
 				$this->status = 0; //'Offline';
@@ -644,13 +649,17 @@ class ApmNodeDataDisplayCollection{
 
 	/**
 	 * Loads Intern data, Worpdress Posts data and marked nodes data for each node given in $apm_ids.
+	 * Any $apm_id from $apm_ids that doesn't exist in WP database are filtered here.
+	 * BUT any page with status 'auto-draft', or 'trash' is still here (as they exist in WP database).
 	 */
 	public function load_multiple($apm_ids,$no_wp_data=false,$no_marked_infos=false,$order_matters=false){
 		
 		$this->nodes_data = array();
 		
+		//This filters any $apm_id that doesn't exist in WP tree : 
 		$intern_data_loaded = ApmNodeDataIntern::load_multiple($apm_ids,$order_matters);
 
+		//Now we have 
 		$nodes_data = $intern_data_loaded['nodes_data'];
 		if( empty($nodes_data) ){
 			return;
@@ -698,11 +707,15 @@ class ApmNodeDataDisplayCollection{
 				$posts_draft = get_pages(array('include'=>array_values($ids_wp),'post_type'=>'page','post_status'=>'draft'));
 				$posts_pending = get_pages(array('include'=>array_values($ids_wp),'post_type'=>'page','post_status'=>'pending'));
 				$posts_trash = get_pages(array('include'=>array_values($ids_wp),'post_type'=>'page','post_status'=>'trash'));
+				$posts_private = get_pages(array('include'=>array_values($ids_wp),'post_type'=>'page','post_status'=>'private'));
 				$posts_autodraft = get_pages(array('include'=>array_values($ids_wp),'post_type'=>'page','post_status'=>'auto-draft'));
-				$posts = array_merge($posts,$posts_draft,$posts_pending,$posts_trash,$posts_autodraft);
+				$posts = array_merge($posts,$posts_draft,$posts_pending,$posts_trash,$posts_private);
 				*/
 				
-				$posts = get_pages(array('include'=>array_values($ids_wp),'post_type'=>'page','post_status'=>'draft,publish,pending,trash,auto-draft'));
+				//Note : we keep 'auto-draft' here to handle them in case there are some in $ids_wp,
+				//which should not happen because 'auto-draft' are not retrieved at APM tree creation,
+				//but can still happen if 'auto-draft' status is set outside the plugin.  
+				$posts = get_pages(array('include'=>array_values($ids_wp),'post_type'=>'page','post_status'=>'draft,publish,pending,trash,private,auto-draft'));
 
 				//TODO : test performances issues when there is a lot of pages (>500) : 
 				//commpare this get_pages() call to a query built by hand :

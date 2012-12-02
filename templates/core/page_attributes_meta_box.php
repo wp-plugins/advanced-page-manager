@@ -61,6 +61,10 @@ if( $post->post_type == 'page' ){
 					<div class="apm_page_attributes_subpages">
 					<?php if( !empty($page_tree_positions->children) ): ?>
 						<?php 
+							//Retrieve current page children ordered list :
+							//TODO : Move this to a function... or "apm_get_subpages()" template tag should do it,
+							//but don't forget to take the 100 limitation into account.
+							
 							global $wpdb;
 							$children_sql = "'". implode("','",$page_tree_positions->children) ."'";
 							

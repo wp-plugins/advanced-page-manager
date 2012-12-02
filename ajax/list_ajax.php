@@ -36,9 +36,11 @@ class ApmListAjax extends ApmActionsAjax{
 			
 			$orders = !empty($_POST['orders']) ? $_POST['orders'] : array();
 
+			//Load list elements (including nodes WP data) :
 			$result_infos = $list->load_with_filters($_POST['filters'],$orders,$pagination);
 			
 			$list_nodes = $list->get_ready_to_display_list(true);
+			//"true" because wp data are loaded in the previous call to $list->load_with_filters(...)
 			
 			parent::$json_data['list'] = self::get_html_tree($list_nodes);
 			parent::$json_data['total_displayed_nodes'] = count($list_nodes);

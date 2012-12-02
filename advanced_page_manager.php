@@ -2,7 +2,7 @@
 /*
  * Plugin Name: Advanced Page Manager
  * Description: A plugin that redefines the way you create, move, edit and publish your pages.  
- * Version: beta 2 (0.7.5)
+ * Version: beta 3 (0.8)
  * Author: Uncategorized Creations
  * Plugin URI: http://www.uncategorized-creations.com/
  * Author URI: http://www.uncategorized-creations.com/
@@ -200,7 +200,7 @@ class advanced_page_manager{
 				
 				wp_enqueue_script('apm_post_edit_js',plugins_url('js/post_edit.js', __FILE__),array(),ApmConstants::resources_version);
 				
-				wp_register_style('apm_post_edit_css', plugins_url('css/post_edit.css', __FILE__));
+				wp_register_style('apm_post_edit_css', plugins_url('css/post_edit.css', __FILE__), array(),ApmConstants::resources_version);
 	        	wp_enqueue_style('apm_post_edit_css', false, array(),ApmConstants::resources_version);
 			}
 		}

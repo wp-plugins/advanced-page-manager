@@ -140,6 +140,7 @@ jQuery().ready(function(){
 			$('.check-column input[type=checkbox].row_select')
 				.unbind('change', _on_select_row).bind('change', _on_select_row)
 				.unbind('click', $.apm_common.update_panel_template).bind('click', $.apm_common.update_panel_template)
+                .unbind('change', $.apm_common.update_panel_template).bind('change', $.apm_common.update_panel_template);
 
 			$('.action_rename').unbind().bind('click', $.apm_common.rename_action);
 			$('.action_publish').unbind().bind('click', $.apm_common.publish_action);
@@ -546,7 +547,6 @@ jQuery().ready(function(){
 			var nb_page_selected = $.apm_common.selected_rows.length;
 			var elem_page_count_panel = $('.panel-count-page-checked');
 			var different_template = $.apm_common.has_different_template();
-
 			if( nb_page_selected === 1 ) {
 				var title = $('tr#apm-'+ $.apm_common.selected_rows[0]).find($('.row-title')).html();
 				elem_page_count_panel.html(apm_messages.template_panel_selected_single + ' : ' + title);
@@ -568,7 +568,7 @@ jQuery().ready(function(){
 		},
 
 		has_different_template: function() {
-			var template = '';
+			var template = null;
 			var template_name = '';
 			var message = '';
 			var different_template = false;
@@ -581,8 +581,11 @@ jQuery().ready(function(){
 
 					var tmp = template_p.attr('class').replace('template-name-', '');
 
-					if( template.length !== 0 && template != tmp ){
-						different_template = true;
+					if( template !== null && template != tmp ){
+                        different_template = true;
+
+						// Bonus: Return false to break the 'each' here (we already know the templates are differents, no need to go further)
+						return false;
 					}
 
 					template = tmp;
@@ -590,7 +593,7 @@ jQuery().ready(function(){
 				}
 			});
 
-			if( template.length === 0 ) template = apm_messages.template_panel_no_template;
+			if( template === null ) template = apm_messages.template_panel_no_template;
 
 			if( different_template === true )
 				message = apm_messages.template_panel_different_templates;

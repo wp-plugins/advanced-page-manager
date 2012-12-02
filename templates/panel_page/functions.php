@@ -17,12 +17,9 @@ $filters_list = array(
 		'label' => __('Offline', ApmConfig::i18n_domain),
 		'count' => 0
 	),
-	/*
-	 * Bad idea -> will be converted into List mode
 	'recent'   => array(
-		'label' => __('Récentes', ApmConfig::i18n_domain),
+		'label' => __('Recent Pages', ApmConfig::i18n_domain),
 	)
-	*/
 );
 
 //Hook that can be used by addons to add a navigation filter :
@@ -98,6 +95,7 @@ $status = array(-1=>__('Offline',ApmConfig::i18n_domain),
 				0=>__('Offline',ApmConfig::i18n_domain),
 				1=>__('Offline',ApmConfig::i18n_domain),
 				2=>__('Online',ApmConfig::i18n_domain),
-				3=>__('Offline',ApmConfig::i18n_domain),
+				3=>__('Private'),
+				4=>__('Offline',ApmConfig::i18n_domain),
 				);
 				

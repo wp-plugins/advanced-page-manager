@@ -46,7 +46,7 @@ $cpt = 1;
 						<div class="apm-title-wrapper">
 							<strong>
 								<?php if( $node->status > -2 ) : ?>
-									<?php if( $node->status == 3 ) : ?>
+									<?php if( $node->status == 4 ) : ?>
 										<span class="node-trashed"><?php echo '['. __('Trash', ApmConfig::i18n_domain) .'] '. $node->title ?></span>
 									<?php else: ?>
 										<a class="row-title" href="<?php echo get_bloginfo('wpurl').'/wp-admin/post.php?post='.$node->wp_id.'&action=edit' ?>" title="<?php echo $node->title ?>"><?php echo $node->title ?></a>
@@ -62,11 +62,11 @@ $cpt = 1;
 							</div>
 
 							<div class="row-actions apm-row-actions">
-								<?php if( $node->status >= 0 && $node->status < 3 ) : ?>
+								<?php if( $node->status >= 0 && $node->status < 4 ) : ?>
 									<span class="rename"><a href="#" class="action_rename" title="<?php _e('Rename', ApmConfig::i18n_domain); ?>"><?php _e('Rename', ApmConfig::i18n_domain); ?></a>&nbsp;|&nbsp;</span>
 								<?php endif ?>
 
-								<?php if( $node->status < 3 ): ?>
+								<?php if( $node->status < 4 ): ?>
 									<?php if( $node->status > 1 ) : ?>
 										<span class="display"><a href="<?php echo $link_display ?>" class="action_display" title="<?php _e('View', ApmConfig::i18n_domain); ?>"><?php _e('View', ApmConfig::i18n_domain); ?></a>&nbsp;|&nbsp;</span>
 									<?php elseif( $node->status >= 0 ) : ?>
@@ -75,20 +75,22 @@ $cpt = 1;
 								<?php endif; ?>
 
 								<?php if( $node->status > 1 ) : ?>
-									<?php if( $node->status == 3 ) : ?>
-										<span class=""><a href="#" class="action_unpublish" title="<?php _e('Restore', ApmConfig::i18n_domain); ?>"><?php _e('Restore', ApmConfig::i18n_domain); ?></a>&nbsp;|&nbsp;</span>
-									<?php else: ?>
-										<span class=""><a href="#" class="action_unpublish" title="<?php _e('Unpublish', ApmConfig::i18n_domain); ?>"><?php _e('Unpublish', ApmConfig::i18n_domain); ?></a>&nbsp;|&nbsp;</span>
+									<?php if( $node->status != 3 ) : //private ?>
+										<?php if( $node->status == 4 ) : ?>
+											<span class=""><a href="#" class="action_unpublish" title="<?php _e('Restore', ApmConfig::i18n_domain); ?>"><?php _e('Restore', ApmConfig::i18n_domain); ?></a>&nbsp;|&nbsp;</span>
+										<?php else: ?>
+											<span class=""><a href="#" class="action_unpublish" title="<?php _e('Unpublish', ApmConfig::i18n_domain); ?>"><?php _e('Unpublish', ApmConfig::i18n_domain); ?></a>&nbsp;|&nbsp;</span>
+										<?php endif?>
 									<?php endif?>
 								<?php elseif( $node->status >= 0 ) : ?>
 									<span class=""><a href="#" class="action_publish" title="<?php _e('Publish', ApmConfig::i18n_domain); ?>"><?php _e('Publish', ApmConfig::i18n_domain); ?></a>&nbsp;|&nbsp;</span>
 								<?php endif; ?>
 
-								<?php if( $node->status > -2 && $node->status < 3 ) : ?>
+								<?php if( $node->status > -2 && $node->status < 4 ) : ?>
 									<span class="edit"><a href="<?php echo get_bloginfo('wpurl').'/wp-admin/post.php?post='.$node->wp_id.'&action=edit' ?>" title="<?php _e('Edit', ApmConfig::i18n_domain); ?>" class="action_edit"><?php _e('Edit', ApmConfig::i18n_domain); ?></a>&nbsp;|&nbsp;</span>
 								<?php endif; ?>
 
-								<?php if( $node->status >= 0 && $node->status < 3 ) : ?>
+								<?php if( $node->status >= 0 && $node->status < 4 ) : ?>
 									<span class="action_change_template"><a href="#"><?php _e('Template'); ?></a>&nbsp;|&nbsp;</span>
 								<?php endif ?>
 
@@ -108,7 +110,7 @@ $cpt = 1;
 			    ?>
 
 				<td class="etat column-etat">
-					<?php if( $node->status > 1 && $node->status < 3 ) : ?>
+					<?php if( $node->status > 1 && $node->status < 4 && $node->status != 3 ) : ?>
 						<div class="picto-publish"></div>
 						<strong><?php echo $status[$node->status] ?></strong>
 					<?php else : ?>

@@ -62,6 +62,8 @@ class ApmTreeData{
 		
 		$root_depth = $this->apm_tree->get_node_depth($root);
 		
+		//Retrieve visible nodes from APM tree (this may retrieve nodes that don't exist in WP database,
+		//if deleted from outside the plugin)
 		$tree_to_display = $this->apm_tree->get_ready_to_display_tree($root,$root_depth,false,$unfolded_nodes);
 		
 		$apm_ids_to_display = array_keys($tree_to_display);
@@ -69,13 +71,17 @@ class ApmTreeData{
 		if( $load_data ){
 			//Load Wordpress data just before display, to be sure to load only necessary data:
 			$this->nodes_data->load_multiple($apm_ids_to_display);
+			//Now, $this->nodes_data contains only nodes that really exist as WP pages.
+			//However, they may have the 'auto-draft' or 'trash' status.
 		}
 		
+		//We loop on the nodes existing in our APM tree so that we can warn about pages that
+		//exist in APM tree and not in WP tree (deleted from outside the plugin) :
 		foreach($tree_to_display as $apm_id=>$node_tree_infos){
 			
 			$node_data = $this->nodes_data->get($apm_id);
 			
-			//If a node exists in APM tree but not in WP :
+			//A node exists in APM tree but not in WP : set special data to warn about it :
 			if( empty($node_data) ){
 				$node_data = new ApmNodeDataDisplay();
 				$node_data->set_intern_data(new ApmNodeDataIntern(array('apm_id'=>$apm_id,'type'=>'page','wp_id'=>$apm_id)));
@@ -547,7 +553,7 @@ class ApmTreeData{
 	}
 	
 	/**
-	 * Synchronizes our separate arbo with wp "real" pages
+	 * Synchronizes our separate arbo with WP "real" pages
 	 * !!Careful!! $this->nodes_data must be loaded before calling this!
 	 */
 	public function synchronize_tree_with_wp_entities($synchronisation_data=array(),$synchronize_only_my_children=array()){
@@ -646,7 +652,11 @@ class ApmTreeData{
 		}
 	}
 	
-	public function set_tree_and_nodes_data_from_wp_entities(){
+	/**
+	 * THE function that builds the APM tree from Wordpress existing pages  
+	 * on plugin initialization, or when tree data reset is asked.
+	 */
+	public function set_tree_and_nodes_data_from_wp_entities($allow_autodrafts=false){
 		global $wpdb;
 		
 		$root_apm_id = self::root_id;
@@ -654,7 +664,15 @@ class ApmTreeData{
 		$tree = array($root_apm_id=>array());
 		$this->nodes_data->add($root_apm_id,'root',0,true);
 		
-		$sql = "SELECT ID,post_parent FROM $wpdb->posts WHERE post_type='page' ORDER BY post_parent ASC, menu_order ASC";
+		$sql_autodrafts = " AND post_status != 'auto-draft' ";
+		if( $allow_autodrafts ){
+			$sql_autodrafts = '';
+		}
+		
+		$sql = "SELECT ID,post_parent 
+					FROM $wpdb->posts 
+					WHERE post_type='page' $sql_autodrafts 
+					ORDER BY post_parent ASC, menu_order ASC";
 		
 		$pages = $wpdb->get_results($sql);
 		
@@ -987,6 +1005,7 @@ class ApmListData{
 		if( array_key_exists('search',$filters) ){
 			$pages = self::search_pages($filters['search'],$orders);
 			if( !empty($pages) ){
+				//Note : this loads WP data :
 				$this->load_list_from_wp_pages($pages);
 				$apm_ids = $this->nodes_data->get_apm_ids();
 			}else{
@@ -1018,6 +1037,7 @@ class ApmListData{
 				
 				if( !empty($pages) ){
 					
+						//Note : this loads WP data :
 						$this->load_list_from_wp_pages($pages);
 	
 						$result_infos['total_items'] = $pagination['total_items'];
@@ -1120,6 +1140,7 @@ class ApmListData{
 		}
 		
 		if( !$only_get_nodes ){
+			//Note : this loads WP data :
 			$this->load_list($apm_ids);
 			return $result_infos;
 		}else{
@@ -1132,7 +1153,7 @@ class ApmListData{
 		return $this->load_with_filters($filters,array(),array(),true);
 	}
 	
-	private static function get_nodes_with_status($status,$orders=array(),$in_apm_ids = array()){
+	private static function get_nodes_with_status($status,$orders=array(),$in_apm_ids = array(),$allow_autodrafts=false){
 		global $wpdb;
 			
 		$apm_ids = array();
@@ -1150,9 +1171,15 @@ class ApmListData{
 		$order_join = $orderby_data['join'];
 		$order_by = $orderby_data['order_by'];
 		
+	
+		$sql_autodrafts = " AND post_status != 'auto-draft' ";
+		if( $allow_autodrafts ){
+			$sql_autodrafts = '';
+		}
+		
 		$sql = "SELECT ID FROM $wpdb->posts AS p
 								  $order_join
-								  WHERE post_type='page' $sql_post_status
+								  WHERE post_type='page' $sql_autodrafts $sql_post_status
 				";
 		
 		if( !empty($in_apm_ids) ){
@@ -1168,7 +1195,7 @@ class ApmListData{
 		return $apm_ids;
 	}
 	
-	private static function count_nodes_with_status($status,$in_apm_ids = array()){
+	private static function count_nodes_with_status($status,$in_apm_ids = array(),$allow_autodrafts=false){
 		global $wpdb;
 			
 		$apm_ids = array();
@@ -1182,8 +1209,13 @@ class ApmListData{
 			return $apm_ids;
 		}
 		
+		$sql_autodrafts = " AND post_status != 'auto-draft' ";
+		if( $allow_autodrafts ){
+			$sql_autodrafts = '';
+		}
+		
 		$sql = "SELECT count(*) AS total FROM $wpdb->posts AS p
-								  WHERE post_type='page' $sql_post_status";
+								  WHERE post_type='page' $sql_autodrafts $sql_post_status";
 		
 		if( !empty($in_apm_ids) ){
 			$sql .= " AND p.ID IN('". implode("','",$in_apm_ids) ."') ";
@@ -1194,10 +1226,15 @@ class ApmListData{
 		return $total;
 	}
 	
-	private static function count_nodes(){
+	private static function count_nodes($allow_autodrafts=false){
 		global $wpdb;
 			
-		$sql = "SELECT count(*) AS total FROM $wpdb->posts WHERE post_type='page'";
+		$sql_autodrafts = " AND post_status != 'auto-draft' ";
+		if( $allow_autodrafts ){
+			$sql_autodrafts = '';
+		}
+		
+		$sql = "SELECT count(*) AS total FROM $wpdb->posts WHERE post_type='page' $sql_autodrafts";
 		
 		$total = $wpdb->get_var($sql);
 		
@@ -1227,7 +1264,7 @@ class ApmListData{
 		$this->nodes_data->update_nodes_status($status);
 	}
 	
-	public static function search_pages($search,$orders=array()){
+	public static function search_pages($search,$orders=array(),$allow_autodrafts=false){
 		global $wpdb;
 		
 		$pages_found = array();
@@ -1237,11 +1274,17 @@ class ApmListData{
 			$join = $orderby_data['join'];
 			$order_by = $orderby_data['order_by'];
 			
+			$sql_autodrafts = " AND post_status != 'auto-draft' ";
+			if( $allow_autodrafts ){
+				$sql_autodrafts = '';
+			}
+		
 			$sql = "SELECT p.* FROM $wpdb->posts AS p 
 							   $join 
   						   	   WHERE ((p.post_title LIKE '%". addslashes($search) ."%') 
   						   		   	   OR (p.post_content LIKE '%". addslashes($search) ."%'))  
   								      AND p.post_type = 'page'
+  								      $sql_autodrafts
   							   $order_by
   					";
 
@@ -1251,14 +1294,19 @@ class ApmListData{
 		return $pages_found;
 	}
 	
-	public static function get_recent_pages($orders,$pagination){
+	public static function get_recent_pages($orders,$pagination,$allow_autodrafts=false){
 		global $wpdb;
 		
 		if( !array_key_exists('date',$orders) ){
 			$orders['date'] = 'DESC';
 		}
 		
-		$total_items = $wpdb->get_var("SELECT count(*) FROM $wpdb->posts WHERE post_type = 'page'");
+		$sql_autodrafts = " AND post_status != 'auto-draft' ";
+		if( $allow_autodrafts ){
+			$sql_autodrafts = '';
+		}
+		
+		$total_items = $wpdb->get_var("SELECT count(*) FROM $wpdb->posts WHERE post_type = 'page' $sql_autodrafts");
 		
 		$current_page = !empty($pagination['current_page']) ? $pagination['current_page'] : 1;
 		$nb_per_page = !empty($pagination['nb_per_page']) ? $pagination['nb_per_page'] : 10;
@@ -1274,23 +1322,44 @@ class ApmListData{
 		$orderby_data = self::get_sql_orderby_data($orders);
 		$join = $orderby_data['join'];
 		$order_by = $orderby_data['order_by'];
-			
+		
+		
+		//Retrieve Recent page, then cache retrieved data:
+		//Cannot use get_pages() here because we want to filter/order by Templates,
+		//marked page infos etc... but we're forgiven if we cache the data after, no?
+		
 		$sql = "SELECT * FROM $wpdb->posts AS p 
 						 $join
 						 WHERE post_type = 'page' 
+						 $sql_autodrafts
 						 $order_by 
 						 LIMIT $offset, $nb_per_page
 						 ";
 
 		$pages = $wpdb->get_results($sql);
 		
+		//Inspired from WP get_pages() :
+		//Sanitize before caching so it'll only get done once
+		$num_pages = count($pages);
+		for ($i = 0; $i < $num_pages; $i++) {
+			$pages[$i] = sanitize_post($pages[$i], 'raw');
+		}
+	
+		// Update cache.
+		update_post_cache($pages);
+		
 		return array('pages'=>$pages,'pagination'=>compact('current_page','nb_per_page','total_items','total_pages'));
 	}
 	
-	private static function get_all_pages_ids(){
+	private static function get_all_pages_ids($allow_autodrafts=false){
 		global $wpdb;
 		
-		$sql = "SELECT ID FROM $wpdb->posts AS p WHERE post_type = 'page'";
+		$sql_autodrafts = " AND post_status != 'auto-draft' ";
+		if( $allow_autodrafts ){
+			$sql_autodrafts = '';
+		}
+		
+		$sql = "SELECT ID FROM $wpdb->posts AS p WHERE post_type = 'page' $sql_autodrafts";
 						 
 		$pages_ids = $wpdb->get_col($sql);
 		
