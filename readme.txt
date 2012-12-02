@@ -121,7 +121,7 @@ By default, APM is in English and French. Since 0.6.5, we also support Dutch. If
 * 0000026: Selecting a row will update the Change template panel after one more click (thanks to Lionet Pointet)
 * 0000025: Current template message with only the last selected page which has a custom template (thanks to Lionel Pointet)
 * 0000009: Pages with 'auto-draft' status appear as empty rows when loading the tree from WP pages (thanks to Lionel Pointet)
-Recent Pages list has been reactivated following user request.
+* Recent Pages list has been reactivated following user request.
 
 = 0.7.5 =
 * 0000022: Impossible to fold/unfold pages after adding subpages
