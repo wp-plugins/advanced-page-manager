@@ -3,7 +3,7 @@ Contributors: Uncategorized Creations
 Tags: pages, page, manage, management, page management, tree, rearrange, order, reorder, hierarchical, admin, cms, content management
 Requires at least: 3.4.2
 Tested up to: 3.4.2
-Stable tag: 0.8
+Stable tag: 0.8.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -116,6 +116,11 @@ By default, APM is in English and French. Since 0.6.5, we also support Dutch. If
 == Changelog ==
 
 > This plugin is in beta stage. Please check the *Other Notes* tab for more details. 中文用户吗？我们的插件也有中文翻译！请试一试，给我们提意见！
+
+= 0.8.5 =
+* 0000033: Move link no more available after (un)publishing
+* 0000032: Page stays selected after closing the template side panel
+* 0000029: Search label not positioned correctly
 
 = 0.8 =
 * 0000026: Selecting a row will update the Change template panel after one more click (thanks to Lionet Pointet)

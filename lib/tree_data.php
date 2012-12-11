@@ -75,6 +75,10 @@ class ApmTreeData{
 			//However, they may have the 'auto-draft' or 'trash' status.
 		}
 		
+		//Retrieve number of first level node to know if we can move nodes :
+		//A node is movable only if : depth > 1 OR (depth == 1 AND there is other nodes with depth == 1)  
+		$nb_first_level_nodes = $this->get_apm_tree_nb_nodes(true);
+		
 		//We loop on the nodes existing in our APM tree so that we can warn about pages that
 		//exist in APM tree and not in WP tree (deleted from outside the plugin) :
 		foreach($tree_to_display as $apm_id=>$node_tree_infos){
@@ -97,6 +101,8 @@ class ApmTreeData{
 
 			$is_folded = $node_tree_infos['nb_children'] > 0 && !in_array($apm_id,$unfolded_nodes);
 			$node_data->set_is_folded($is_folded);
+			
+			$node_data->set_is_movable($node_tree_infos['depth'] > 1 || $nb_first_level_nodes > 1);
 			
 			$ready_to_display_tree[$apm_id] = $json ? $node_data->get_flattened() : $node_data;
 			
@@ -130,6 +136,11 @@ class ApmTreeData{
 
 		$is_folded = $node_tree_infos['nb_children'] > 0 && $this->tree_state->node_is_folded($node);
 		$node_data->set_is_folded($is_folded);
+		
+		//Retrieve number of first level node to know if we can move nodes :
+		//A node is movable only if : depth > 1 OR (depth == 1 AND there is other nodes with depth == 1)  
+		$nb_first_level_nodes = $this->get_apm_tree_nb_nodes(true);
+		$node_data->set_is_movable($node_tree_infos['depth'] > 1 || $nb_first_level_nodes > 1);
 
 		return $json ? $node_data->get_flattened() : $node_data;
 	}
@@ -145,6 +156,10 @@ class ApmTreeData{
 		
 		$unfolded_nodes = $this->tree_state->get_unfolded_nodes($this->nodes_data->get_apm_ids());
 
+		//Retrieve number of first level node to know if we can move nodes :
+		//A node is movable only if : depth > 1 OR (depth == 1 AND there is other nodes with depth == 1)  
+		$nb_first_level_nodes = $this->get_apm_tree_nb_nodes(true);
+		
 		$ready_to_display_nodes = array();
 		
 		foreach($this->nodes_data->get_array() as $apm_id=>$node){
@@ -153,6 +168,8 @@ class ApmTreeData{
 			
 			$is_folded = $node_tree_infos['nb_children'] > 0 && !in_array($apm_id,$unfolded_nodes);
 			$node->set_is_folded($is_folded);
+			
+			$node->set_is_movable($node_tree_infos['depth'] > 1 || $nb_first_level_nodes > 1);
 			
 			$ready_to_display_nodes[$apm_id] = $node;
 		}
@@ -948,6 +965,25 @@ class ApmTreeData{
 			$unmark_nodes = ApmMarkedNodes::unmark_all_user_nodes();
 		}
 		return $unmark_nodes;
+	}
+	
+	/**
+	 * Retrieves the total number of nodes. Warning : it includes the root node.
+	 * Note : $this->apm_tree must be loaded before calling this.
+	 * @param boolean $only_first_level Set to true to count only first level nodes (the ones just under the root).
+	 */
+	private function get_apm_tree_nb_nodes($only_first_level=false){
+		$nb_nodes = 0;
+		
+		if( !empty($this->apm_tree) ){
+			if( $only_first_level ){
+				$nb_nodes = $this->apm_tree->count_node_direct_children(self::root_id);
+			}else{
+				$nb_nodes = $this->apm_tree->count_nodes();
+			}
+		}
+		
+		return $nb_nodes;
 	}
 	
 }

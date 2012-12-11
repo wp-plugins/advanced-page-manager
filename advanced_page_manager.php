@@ -2,7 +2,7 @@
 /*
  * Plugin Name: Advanced Page Manager
  * Description: A plugin that redefines the way you create, move, edit and publish your pages.  
- * Version: beta 3 (0.8)
+ * Version: beta 3 (0.8.5)
  * Author: Uncategorized Creations
  * Plugin URI: http://www.uncategorized-creations.com/
  * Author URI: http://www.uncategorized-creations.com/
@@ -316,6 +316,7 @@ class advanced_page_manager{
 		
 		$template_file = dirname(__FILE__) ."/templates/". ApmOptions::get_option('panel_page_template_name') ."/browse.php";
 		if( file_exists($template_file) ){
+			require_once(dirname(__FILE__).'/lib/custom_columns.php');
 			require_once($template_file);
 		}else{
 			self::show_error(__('Template not found',ApmConfig::i18n_domain) . ' : ['. $template_file .']');

@@ -7,7 +7,7 @@
 /*.wrap{position: relative; width: 130%}*/
 .wrap{position: relative; width: 130%}
 
-.wrap p.result-search-info{display: none; position: absolute; top: 5px; left: 245px; font-size: 14px}
+.wrap p.result-search-info{display: none; font-size: 14px; left: 360px; position: absolute; top: -2px; width: 400px}
 .wrap a{text-decoration: none}
 #browse_lost_pages{ clear: both; margin-top: 10px; width:100%}
 #browse_lost_pages td{ padding-right: 50px }

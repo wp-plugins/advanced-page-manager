@@ -248,8 +248,8 @@ require_once( 'functions.php' );
 				    </th>
 
 				    <?php
-				    	//Hook to add a column th :
-				    	do_action('apm_panel_page_add_col_after_2nd_th');
+				    	//Use 'apm_manage_pages_columns' hook to add a column th :
+				    	ApmCustomColumns::echo_custom_column_th('before_status');
 				    ?>
 
 				    <th scope="col" id="etat" class="manage-column column-etat sortable desc">
@@ -258,19 +258,43 @@ require_once( 'functions.php' );
 						    <span class="sorting-indicator"></span>
 					    </a>
 				    </th>
+				    
+				    <?php
+				    	//Use 'apm_manage_pages_columns' hook to add a column th :
+				    	ApmCustomColumns::echo_custom_column_th('before_date');
+				    ?>
+				    
 				    <th scope="col" id="date" class="manage-column column-date sortable desc">
 					    <a href="#">
 						    <span><?php _e('Date', ApmConfig::i18n_domain); ?></span>
 						    <span class="sorting-indicator"></span>
 					    </a>
 				    </th>
+				    
+				    <?php
+				    	//Use 'apm_manage_pages_columns' hook to add a column th :
+				    	ApmCustomColumns::echo_custom_column_th('before_template');
+				    ?>
+				    
 				    <th scope="col" id="models" class="manage-column column-models sortable desc">
 					    <a href="#">
 						    <span><?php _e('Template', ApmConfig::i18n_domain); ?></span>
 						    <span class="sorting-indicator"></span>
 					    </a>
 				    </th>
+				    
+				    <?php
+				    	//Use 'apm_manage_pages_columns' hook to add a column th :
+				    	ApmCustomColumns::echo_custom_column_th('before_add_page');
+				    ?>
+				    
 				    <th scope="col" id="add_action" class="manage-column column-add sortable desc"><span></span></th>
+				    
+				    <?php
+				    	//Use 'apm_manage_pages_columns' hook to add a column th :
+				    	ApmCustomColumns::echo_custom_column_th('after_add_page');
+				    ?>
+				    
 			    </tr>
 			    </thead>
 
@@ -292,8 +316,8 @@ require_once( 'functions.php' );
 				    </th>
 
 				    <?php
-				    	//Hook to add a column th :
-				    	do_action('apm_panel_page_add_col_after_2nd_th');
+				    	//Use 'apm_manage_pages_columns' hook to add a column th :
+				    	ApmCustomColumns::echo_custom_column_th('before_status');
 				    ?>
 
 				    <th scope="col" id="etat" class="manage-column column-etat sortable desc">
@@ -302,19 +326,42 @@ require_once( 'functions.php' );
 						    <span class="sorting-indicator"></span>
 					    </a>
 				    </th>
+				    
+				    <?php
+				    	//Use 'apm_manage_pages_columns' hook to add a column th :
+				    	ApmCustomColumns::echo_custom_column_th('before_date');
+				    ?>
+				    
 				    <th scope="col" id="date" class="manage-column column-date sortable desc">
 					    <a href="#">
 						    <span><?php _e('Date', ApmConfig::i18n_domain); ?></span>
 						    <span class="sorting-indicator"></span>
 					    </a>
 				    </th>
+				    
+				    <?php
+				    	//Use 'apm_manage_pages_columns' hook to add a column th :
+				    	ApmCustomColumns::echo_custom_column_th('before_template');
+				    ?>
+				    
 				    <th scope="col" id="models" class="manage-column column-models sortable desc">
 					    <a href="#">
 						    <span><?php _e('Template', ApmConfig::i18n_domain); ?></span>
 						    <span class="sorting-indicator"></span>
 					    </a>
 				    </th>
+				    
+				    <?php
+				    	//Use 'apm_manage_pages_columns' hook to add a column th :
+				    	ApmCustomColumns::echo_custom_column_th('before_add_page');
+				    ?>
+				    
 				    <th scope="col" id="add_action" class="manage-column column-models sortable desc"><span></span></th>
+				    
+				    <?php
+				    	//Use 'apm_manage_pages_columns' hook to add a column th :
+				    	ApmCustomColumns::echo_custom_column_th('after_add_page');
+				    ?>
 			    </tr>
 			    </tfoot>
 		    </table>

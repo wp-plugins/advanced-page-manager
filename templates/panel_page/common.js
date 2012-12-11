@@ -48,6 +48,12 @@ jQuery().ready(function(){
 				$.apm_common.close_column_panel();
 				return false;
 			});
+			
+			// Only panel change template and end button
+			$('.panel-change-template input.add-page-end').bind('click', function() {
+				// uncheck all nodes checked
+				$.apm_common.unselect_all_rows();
+			})
 
 			$('input[type=checkbox].select-all').unbind().bind('click', function(){
 				var select = $(this).attr('checked') == 'checked' ? true : false;

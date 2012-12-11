@@ -11,6 +11,7 @@ require_once( ABSPATH .'/wp-admin/includes/theme.php' );
 require_once( 'functions.php' );
 
 $total_nodes = count( $nodes );
+
 ?>
 <?php if( $total_nodes > 0 ) : ?>
 	<?php foreach($nodes as $node) : ?>
@@ -117,7 +118,7 @@ $total_nodes = count( $nodes );
 
 								<?php
 								// Drag / undrag actions available when tree has more a page.
-								if($total_nodes > 2) : ?>
+								if( $node->is_movable ) : ?>
 									<?php if( $node->status > -2 && $node->status < 4 ) : ?>
 										<span class="drag"><a href="#" title="<?php _e('Move', ApmConfig::i18n_domain); ?>" class="action-drag"><?php _e('Move', ApmConfig::i18n_domain); ?></a>&nbsp;|&nbsp;</span>
 									<?php endif ?>
@@ -133,12 +134,13 @@ $total_nodes = count( $nodes );
                     </div> <!-- End  apm-page-slot -->
 				</td>
 
-				<?php
-			    	//Hook to add a column td :
-			    	do_action('apm_panel_page_add_col_after_2nd_td',$node);
-			    ?>
-
 			    <?php if( $node->status > -2 ) : ?>
+			    	
+			    	<?php
+				    	//Use 'apm_manage_pages_custom_column' hook to add a column td :
+				    	ApmCustomColumns::echo_custom_column_td('before_status',$node->wp_id,$node);
+				    ?>
+			    
 					<td class="etat column-etat">
 						<?php if( $node->status > 1  && $node->status < 4 && $node->status != 3 ) : ?>
 							<div class="picto-publish"></div>
@@ -149,14 +151,30 @@ $total_nodes = count( $nodes );
 						<?php endif; ?>
 						<p><?php echo preg_replace('|(\d{4}).(\d{2}).(\d{2}) (\d{2}).(\d{2}).(\d{2})|','$3/$2/$1',$node->publication_date) ?></p>
 					</td>
+					
+					<?php
+				    	//Use 'apm_manage_pages_custom_column' hook to add a column td :
+				    	ApmCustomColumns::echo_custom_column_td('before_template',$node->wp_id,$node);
+				    ?>
 
 					<td class="tags column-tags">
 						<p class="template-name-<?php echo $node->template ?>"><?php cached_page_template_drowpdown($node->template); ?></p>
 					</td>
 
+					<?php
+				    	//Use 'apm_manage_pages_custom_column' hook to add a column td :
+				    	ApmCustomColumns::echo_custom_column_td('before_add_page',$node->wp_id,$node);
+				    ?>
+				    
 					<td><input type="submit" name="" class="button-secondary action-add-page" value="<?php _e('Add New', ApmConfig::i18n_domain); ?>"></td>
+					
+					<?php
+				    	//Use 'apm_manage_pages_custom_column' hook to add a column td :
+				    	ApmCustomColumns::echo_custom_column_td('after_add_page',$node->wp_id,$node);
+				    ?>
+				    
 				<?php else: ?>
-					<td colspan="3"></td>
+					<td colspan="<?php echo 3 + ApmCustomColumns::get_nb_custom_columns() ?>"></td>
 				<?php endif ?>
 
 			</tr>

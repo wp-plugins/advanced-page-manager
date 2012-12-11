@@ -33,6 +33,7 @@ class ApmActionsAjax{
 		$template_name = !empty($_POST['tree_template']) ? $_POST['tree_template'] : 'tree_display';
 		$tree_template_file = dirname(__FILE__) .'/../templates/'. ApmOptions::get_option('panel_page_template_name') .'/'. $template_name .'.php';
 		if( file_exists($tree_template_file) ){
+			require_once(dirname(__FILE__).'/../lib/custom_columns.php');
 			if( $return_array ){
 				$nodes_list = $nodes;
 				foreach($nodes_list as $node){

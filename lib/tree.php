@@ -337,6 +337,18 @@ class ApmTree{
 		return $tree_nodes;
 	}
 	
+	public function count_nodes(){
+		return count($this->get_nodes_flat());
+	}
+	
+	public function count_node_direct_children($node){
+		$nb_direct_children = 0;
+		if( array_key_exists($node,$this->tree) ){
+			$nb_direct_children = count($this->tree[$node]);
+		}
+		return $nb_direct_children;
+	}
+	
 	private function delete_node_descendance($sub_tree_root){
 		if( array_key_exists($sub_tree_root,$this->tree) ){
 			foreach($this->tree[$sub_tree_root] as $child){

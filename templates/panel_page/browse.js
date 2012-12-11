@@ -174,7 +174,7 @@ jQuery().ready(function(){
 
 			if(current_item.find('.fold_node').length > 0) {
 				auto_fold = true;
-				var fold_node_callback = function(){
+				var fold_node_callback = function(current_item){
 					_start_moving(current_item,root_node,auto_fold);
 				}
 				$.apm_browse.fold_node(current_item.find('.fold_node'),fold_node_callback);
@@ -219,9 +219,11 @@ jQuery().ready(function(){
 		fold_node: function(item,after_fold_callback) {
 
 			var link = $(this);
-			if(item && !item.isPropagationStopped) {
+			var isPropagationStopped = item.isPropagationStopped;
+			if(item && !isPropagationStopped) {
 			    link = item;
 			}
+			
 			var current_node = $.apm_common.get_node( link );
 
 			$.apm_common.start_big_loader();
@@ -230,21 +232,26 @@ jQuery().ready(function(){
 			    for(value in answer_ajax.folded_sub_tree_nodes) {
 				    if(answer_ajax.folded_sub_tree_nodes[value] != current_node) {
 					    $('#apm-'+answer_ajax.folded_sub_tree_nodes[value]).remove();
-
 				    }
 			    }
 
+			    //We replace the folded node with new data sent by the server :
+			    //Warning : From here, the old node is removed from DOM !
+			    link.closest('tr').replaceWith(answer_ajax.folded_sub_tree);
+			    
+			    var new_node_tr = $('#apm-'+ answer_ajax.folded_node);
+			    
+			    $.apm_common.after_every_action_callback(); 
+			    //TODO : We should have a function to update only one node event 
+			    //instead of reloading all nodes events!!
+			    
 			    // functionning differently when folding is triggered
-			    if(item.isPropagationStopped) {
+			    if( isPropagationStopped ) {
 			    	$('.container-list-big-loader').hide();
 			    }
-
-			    //$.apm_common.after_every_action_callback();
-
-			    link.removeClass('fold_node').addClass('unfold_node').unbind().bind('click', $.apm_browse.unfold_node);
-
+			    
 			    if( after_fold_callback != undefined ){
-			    	after_fold_callback();
+			    	after_fold_callback(new_node_tr);
 			    }
 
 			});

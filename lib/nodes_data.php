@@ -173,6 +173,7 @@ class ApmNodeDataDisplay{
 	private $url_front;
 	private $url_edit;
 	private $is_folded;
+	private $is_movable;
 	
 	private $meta_data = array(); //custom_fields
 	
@@ -231,6 +232,10 @@ class ApmNodeDataDisplay{
 	
 	public function set_is_folded($folded){
 		$this->is_folded = $folded;
+	}
+	
+	public function set_is_movable($is_movable){
+		$this->is_movable = $is_movable;
 	}
 	
 	public function set_node_is_not_in_wp(){

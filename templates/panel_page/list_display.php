@@ -105,8 +105,8 @@ $cpt = 1;
 				</td>
 
 				<?php
-			    	//Hook to add a column td :
-			    	do_action('apm_panel_page_add_col_after_2nd_td',$node);
+			    	//Use 'apm_manage_pages_custom_column' hook to add a column td :
+			    	ApmCustomColumns::echo_custom_column_td('before_status',$node->wp_id,$node);
 			    ?>
 
 				<td class="etat column-etat">
@@ -120,17 +120,37 @@ $cpt = 1;
 					<p><?php echo preg_replace('|(\d{4}).(\d{2}).(\d{2}) (\d{2}).(\d{2}).(\d{2})|','$3/$2/$1',$node->publication_date) ?></p>
 				</td>
 
+				<?php
+			    	//Use 'apm_manage_pages_custom_column' hook to add a column td :
+			    	ApmCustomColumns::echo_custom_column_td('before_date',$node->wp_id,$node);
+			    ?>
+				    
 				<td>
 					<p><?php echo preg_replace('|(\d{4}).(\d{2}).(\d{2}) (\d{2}).(\d{2}).(\d{2})|','$3/$2/$1',$node->publication_date) ?></p>
 				</td>
 
+				<?php
+			    	//Use 'apm_manage_pages_custom_column' hook to add a column td :
+			    	ApmCustomColumns::echo_custom_column_td('before_template',$node->wp_id,$node);
+			    ?>
+			    
 				<td class="tags column-tags">
 					<p class="template-name-<?php echo $node->template ?>"><?php cached_page_template_drowpdown($node->template); ?></p>
 				</td>
 
+				<?php
+			    	//Use 'apm_manage_pages_custom_column' hook to add a column td :
+			    	ApmCustomColumns::echo_custom_column_td('before_add_page',$node->wp_id,$node);
+			    ?>
+			    
 				<td>
 					<a href="<?php echo $where_is_page_link ?>" class="button-secondary action-go-page"><?php _e('Where is it ?', ApmConfig::i18n_domain); ?></a>
 				</td>
+				
+				<?php
+			    	//Use 'apm_manage_pages_custom_column' hook to add a column td :
+			    	ApmCustomColumns::echo_custom_column_td('after_add_page',$node->wp_id,$node);
+			    ?>
 			</tr>
 		<?php endif; ?>
 		<?php $cpt++ ?>
