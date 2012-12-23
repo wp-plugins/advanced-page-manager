@@ -7,6 +7,7 @@ jQuery().ready(function(){
 		page_overlayed_for_add: '',
 		page_overlayed_for_moving: '',
 		page_overlayed_for_droping: '',
+		auto_unfold_after_moving: false,
 		pos_calc: 62,
 
 		init: function(go_to_node) {
@@ -72,7 +73,7 @@ jQuery().ready(function(){
 			var pos = current_item.offset();
 
 			//Cancel any "move page" action that started before :
-			_cancel_drag(null,false);
+			_cancel_drag();
 
 			$('.error-add-first-page').hide();
 			$('.error-add-page').hide();
@@ -117,6 +118,7 @@ jQuery().ready(function(){
 			});
 			return false;
 		},
+		
 		add_first_page: function() {
 			$('.column-panel').show();
 			$('.panel-add-page').show();
@@ -164,36 +166,6 @@ jQuery().ready(function(){
 				}
 		},
 
-		drag_pages: function() {
-			var current_item = $(this).closest('tr');
-			var root_node = $.apm_common.get_node(current_item);
-			var auto_fold = false;
-
-			//Cancel any "add page" action that started before:
-			$.apm_common.close_column_panel();
-
-			if(current_item.find('.fold_node').length > 0) {
-				auto_fold = true;
-				var fold_node_callback = function(current_item){
-					_start_moving(current_item,root_node,auto_fold);
-				}
-				$.apm_browse.fold_node(current_item.find('.fold_node'),fold_node_callback);
-			}else{
-				_start_moving(current_item,root_node,auto_fold);
-			}
-
-			//$('.check-column').unbind();
-
-			return false;
-		},
-
-		hide_drag_drop_container: function() {
-			$('tr.type-post').unbind('mouseenter').bind('mouseenter', $.apm_browse.change_check_action );
-			$('.drag-container-selected-overlaying').remove();
-			$.apm_browse.page_overlayed_for_moving = '';
-			$('.drop-container-overlaying').remove();
-			$.apm_browse.page_overlayed_for_droping = '';
-		},
 
 		unfold_node: function(item) {
 
@@ -208,10 +180,12 @@ jQuery().ready(function(){
 			$.apm_common.start_big_loader();
 			$.apm_tree.unfold_node(current_node, function(answer_ajax){
 			    link.closest('tr').replaceWith(answer_ajax.unfolded_sub_tree);
+				
 			    $('.container-list-big-loader').hide();
 			    $.apm_common.after_every_action_callback();
-			    link.removeClass('unfold_node').addClass('fold_node').unbind().bind('click', $.apm_browse.fold_node);
+			    
 			    _update_add_page_overlay(answer_ajax.unfolded_sub_tree_nodes);
+			    _update_moving_overlays(answer_ajax.unfolded_sub_tree_nodes);
 			});
 			return false;
 		},
@@ -245,6 +219,9 @@ jQuery().ready(function(){
 			    //TODO : We should have a function to update only one node event 
 			    //instead of reloading all nodes events!!
 			    
+			    _update_add_page_overlay([answer_ajax.folded_node]);
+			    _update_moving_overlays([answer_ajax.folded_node]);
+			    
 			    // functionning differently when folding is triggered
 			    if( isPropagationStopped ) {
 			    	$('.container-list-big-loader').hide();
@@ -264,6 +241,49 @@ jQuery().ready(function(){
 					$.apm_common.init_reload();
 				}
 			});
+		},
+		
+		drag_pages: function() {
+			var current_item = $(this).closest('tr');
+			var moving_node = $.apm_common.get_node(current_item);
+			
+			$.apm_browse.auto_unfold_after_moving = false;
+			
+			//Cancel any "add page" action that started before:
+			$.apm_common.close_column_panel();
+
+			if(current_item.find('.fold_node').length > 0) {
+				$.apm_browse.auto_unfold_after_moving = true;
+				var fold_node_callback = function(current_item){
+					_start_moving(moving_node);
+				}
+				$.apm_browse.fold_node(current_item.find('.fold_node'),fold_node_callback);
+			}else{
+				_start_moving(moving_node);
+			}
+
+			//$('.check-column').unbind();
+
+			return false;
+		},
+
+		delete_moving_overlays: function() {
+			$('tr.type-post').unbind('mouseenter').bind('mouseenter', $.apm_browse.change_check_action );
+			$('.drag-container-selected-overlaying').remove();
+			
+			$('#apm-'+ $.apm_browse.page_overlayed_for_moving).find('.unfold_node, .fold_node').eq(0).css({'z-index':''}); //Back to original z-index
+
+			$.apm_browse.page_overlayed_for_moving = '';
+			
+			$('.drop-container-overlaying').remove();
+			$.apm_browse.page_overlayed_for_droping = '';
+			
+			$.apm_browse.auto_unfold_after_moving = false;
+		},
+		
+		delete_add_page_overlay: function(){
+			$.apm_browse.page_overlayed_for_add = '';
+			$('.drag-container-add-overlaying').remove();
 		},
 
 		scroll_to: function(element_id, new_nodes){
@@ -325,6 +345,8 @@ jQuery().ready(function(){
 			$.apm_browse.new_nodes = [];
 
 			_update_add_page_overlay();
+			_update_moving_overlays();
+			
 
 		}else{
 			alert(apm_messages.load_tree_error + " : " + ajax_answer.error);
@@ -355,8 +377,7 @@ jQuery().ready(function(){
 		var height_box = $('#' + item_to_overlay.attr('id')).height();
 		var overlay_host = item_to_overlay.find('.overlay_host').eq(0);
 
-		$.apm_browse.page_overlayed_for_add = '';
-		$('.drag-container-add-overlaying').remove();
+		$.apm_browse.delete_add_page_overlay();
 
 		$('#drag-container-add-template').clone(true).removeAttr('id').addClass('drag-container-add-overlaying').css({
 			'top' : '-10px',
@@ -385,11 +406,45 @@ jQuery().ready(function(){
 			});
 		}
 	}
+	
+	function _update_moving_overlays(nodes_to_check){
+		if( $.apm_browse.page_overlayed_for_moving != '' ){
+			
+			if( nodes_to_check != undefined ){
+				$.each(nodes_to_check,function(k,item_id){
+					
+					if( item_id == $.apm_browse.page_overlayed_for_moving ){
+						_update_moving_page_overlay();
+					}else{
+						$('#apm-'+item_id).unbind('mouseenter', _moving_row_mouse_enter).bind('mouseenter', _moving_row_mouse_enter);
+						$('#apm-'+ item_id +' a.cancel-drag').unbind().bind('click', function(){
+							_cancel_drag();
+							return false;
+						});
+					}
+					
+				});
+				
+			}else{
+				$('tr.type-post').unbind('mouseenter', _moving_row_mouse_enter).bind('mouseenter', _moving_row_mouse_enter);
 
-	function _set_moving_page_overlay(item_to_overlay){
-		var height_box = $('#' + item_to_overlay.attr('id')).height();
+				$('.cancel-drag').unbind().bind('click', function(){
+					_cancel_drag();
+					return false;
+				});
+			}
+			
+		}	
+	}
+	
+	function _update_moving_page_overlay(){
+		var item_to_overlay = $('#apm-' + $.apm_browse.page_overlayed_for_moving);
+		
+		var height_box = item_to_overlay.height();
 		var overlay_host = item_to_overlay.find('.overlay_host').eq(0);
-		$.apm_browse.page_overlayed_for_moving = '';
+		
+		item_to_overlay.find('.unfold_node, .fold_node').eq(0).css({'z-index':'1'}); //So that we can't fold/unfold the moving node
+		
 		$('.drag-container-selected-overlaying').remove();
 
 		$('#drag-container-selected-template').clone(true).removeAttr('id').addClass('drag-container-selected-overlaying').css({
@@ -397,15 +452,18 @@ jQuery().ready(function(){
 			'height' : height_box,
 			'width' : item_to_overlay.css('width')
 		}).appendTo(overlay_host).show();
+		
+	}
 
-		$.apm_browse.page_overlayed_for_moving = item_to_overlay.attr('id').replace('apm-','');
+	function _set_moving_page_overlay(item_to_overlay_apm_id){
+		$.apm_browse.page_overlayed_for_moving = item_to_overlay_apm_id;
+		_update_moving_page_overlay();
 	}
 
 	function _set_drop_page_overlay(item_to_overlay){
-		var height_box = $('#' + item_to_overlay.attr('id')).height();
+		var height_box = item_to_overlay.height();
 		var overlay_host = item_to_overlay.find('.overlay_host').eq(0);
 
-		$.apm_browse.page_overlayed_for_droping = '';
 		$('.drop-container-overlaying').remove();
 
 		$('#drop-container-template').clone(true).removeAttr('id').addClass('drop-container-overlaying').css({
@@ -417,68 +475,74 @@ jQuery().ready(function(){
 		$.apm_browse.page_overlayed_for_droping = item_to_overlay.attr('id').replace('apm-','');
 	}
 
-	function _start_moving(current_item,root_node,auto_fold){
+	function _start_moving(moving_node){
 
 	 	$('.container-list-big-loader').hide();
 
-	 	_set_moving_page_overlay(current_item);
-
-	 	var moving_mousenter_callback = function(){
-	 		_moving_row_mouse_enter(root_node,$(this));
-	 	};
-
-		$('tr.type-post').unbind('mouseenter', moving_mousenter_callback).bind('mouseenter', moving_mousenter_callback);
-
-		$('.cancel-drag').unbind().bind('click', function(){
-			_cancel_drag(current_item,auto_fold);
-			return false;
-		});
+	 	_set_moving_page_overlay(moving_node);
+	 	
+	 	_update_moving_overlays();
 
 	}
 
-	function _cancel_drag(current_item,auto_fold){
-		$.apm_browse.hide_drag_drop_container();
-		if( auto_fold ) {
-			$.apm_browse.unfold_node(current_item.find('.unfold_node'));
+	function _cancel_drag(){
+		var node_to_unfold = $.apm_browse.page_overlayed_for_moving;
+		var auto_unfold_after_moving = $.apm_browse.auto_unfold_after_moving;
+		
+		$.apm_browse.delete_moving_overlays(); //Empties $.apm_browse.page_overlayed_for_moving and $.apm_browse.auto_unfold_after_moving
+		
+		if( auto_unfold_after_moving && node_to_unfold != '' ) {
+			node_to_unfold = $('#apm-'+ node_to_unfold);
+			if( node_to_unfold.length ){
+				$.apm_browse.unfold_node(node_to_unfold.find('.unfold_node'));
+			}
 		}
 	}
 
-	function _moving_row_mouse_enter(root_node,current_item){
-		var root_node_target = $.apm_common.get_node(current_item);
+	function _moving_row_mouse_enter(){
+		
+		var target_node = $(this).attr('id').replace('apm-','')
+		
+		var moving_node = $.apm_browse.page_overlayed_for_moving;
+		
+		if(target_node == moving_node) return false;
 
-		if(root_node_target == root_node) return false;
-
-		_set_drop_page_overlay(current_item);
+		var target_item = $('#apm-'+ target_node);
+		
+		_set_drop_page_overlay(target_item);
 
 		var callback = function() {
-			$.apm_common.init_reload(root_node);
+			$.apm_common.init_reload(moving_node);
 		};
 
 		$('.drop-after').unbind().bind('click', function() {
-			$.apm_browse.hide_drag_drop_container();
+			$.apm_common.start_big_loader();
+			$.apm_browse.delete_moving_overlays();
 			$.apm_tree.edit(
-				'insert_after', root_node,
-				root_node_target, callback
+				'insert_after', moving_node,
+				target_node, callback
 			);
 		});
 
 		$('.drop-before').unbind().bind('click', function() {
-			$.apm_browse.hide_drag_drop_container();
+			$.apm_common.start_big_loader();
+			$.apm_browse.delete_moving_overlays();
 			$.apm_tree.edit(
-				'insert_before', root_node,
-				root_node_target, callback
+				'insert_before', moving_node,
+				target_node, callback
 			);
 		});
 
 		$('.drop-sub').unbind().bind('click', function() {
-			$.apm_browse.hide_drag_drop_container();
+			$.apm_common.start_big_loader();
+			$.apm_browse.delete_moving_overlays();
 			$.apm_tree.edit(
-				'insert_child', root_node,
-				root_node_target, callback
+				'insert_child', moving_node,
+				target_node, callback
 			);
 		});
 
-		current_item.bind('mouseleave', function(e){
+		target_item.bind('mouseleave', function(e){
 			$('.drop-container-overlaying').hide();
 			$.apm_browse.page_overlayed_for_droping = '';
 		});

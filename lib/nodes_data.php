@@ -733,6 +733,14 @@ class ApmNodeDataDisplayCollection{
 				$pages_found[$post->ID] = $post;
 			}
 			
+			
+			//Use this "apm_load_wp_data" hook to preload some data about WP pages before display :
+			//Something like update_post_caches($pages_found,'page'); can be used in this hook to preload terms for example.
+			//We don't do this update_post_caches() by default because we don't need pages terms info, 
+			//only meta data (see the following update_postmeta_cache). 
+			do_action('apm_load_wp_data',$pages_found);
+			
+			
 			//Preload wp cached meta data, so they are not retrieved one by one in 
 			//the following loop of "load_data_from_wp_entity()" :
 			update_postmeta_cache(array_keys($pages_found));

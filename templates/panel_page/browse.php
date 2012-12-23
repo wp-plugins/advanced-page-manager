@@ -9,7 +9,7 @@ require_once( 'functions.php' );
 	<div id="icon-edit-pages" class="icon32 icon32-posts-page"><br></div>
 
 	<?php if($is_browse) : ?>
-		<h2><?php _e('Pages', ApmConfig::i18n_domain); ?></h2>
+		<h2><?php _e('Pages', ApmConfig::i18n_domain); ?><span class="subtitle result-search-info"> <?php _e('Search results for', ApmConfig::i18n_domain); ?><strong>&laquo;&raquo;</strong></span></h2>
 	<?php else : ?>
 		<h2><?php _e('Marked Pages', ApmConfig::i18n_domain); ?></h2>
 	<?php endif; ?>
@@ -74,7 +74,11 @@ require_once( 'functions.php' );
 				<div class="form-buttons">
 					<input type="button" name="add-page-button" id="add-page-button" class="button button-primary" value="<?php _e('Add', ApmConfig::i18n_domain); ?>" />
 					<input type="button" name="add-page-end" class="add-page-end button right" value="<?php _e('Done', ApmConfig::i18n_domain); ?>" /><br />
+					
+					<!-- 
 					<a href="#" class="add-page-end right"><?php _e('Cancel', ApmConfig::i18n_domain); ?></a>
+					-->
+
 					<div style="clear:both"></div>
 				</div>
 			</div>
@@ -112,17 +116,26 @@ require_once( 'functions.php' );
 				<div>
 					<input type="button" name="add-template-button" id="add-template-button" class="button button-primary" value="<?php _e('Change', ApmConfig::i18n_domain); ?>" />
 					<input type="button" name="add-page-end" class="add-page-end button right" value="<?php _e('Done', ApmConfig::i18n_domain); ?>" /><br />
+					
+					<!--
 					<a href="#" class="add-page-end right"><?php _e('Cancel', ApmConfig::i18n_domain); ?></a>
+					-->
+
 					<div style="clear:both"></div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<div style="float:left; width: 80%; z-index:100; position:relative;">
+	    
+		<!-- TODO : drop this code if bug confirmed solved -->
+	    <!--
 	    <p class="result-search-info">
 		    <?php _e('Search results for', ApmConfig::i18n_domain); ?>
 		    <strong>&laquo;&raquo;</strong>
 	    </p>
+		-->
+
 	    <div style="clear:both"></div>
 
 	    <!-- actions lists -->

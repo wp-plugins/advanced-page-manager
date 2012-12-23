@@ -2,7 +2,7 @@
 
 class ApmConstants{
 	
-	const resources_version = '0.8.5';
+	const resources_version = '0.9';
 										   
 	public static $wp_status_map = array(-1=>'auto-draft',
 										 0=>'draft',

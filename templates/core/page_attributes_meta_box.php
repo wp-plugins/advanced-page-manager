@@ -48,13 +48,13 @@ if( $post->post_type == 'page' ){
 			<div id="apm_page_attributes_family_nav">
 				<?php $link = !empty($page_tree_positions->parent) ? get_edit_post_link($page_tree_positions->parent) : '' ?>
 				<div class="apm_page_attributes_nav_button_wrapper">
-					<a class="button <?php echo empty($link) ? 'disabled': '' ?>" href="<?php echo !empty($link) ? $link : '#' ?>" <?php echo empty($link) ? 'onclick="return false"' : '' ?>><?php _e('Edit Parent',ApmConfig::i18n_domain) ?></a>
+					<a class="button <?php echo empty($link) ? 'disabled': '' ?>" href="<?php echo !empty($link) ? $link : '#' ?>" <?php echo empty($link) ? 'onclick="return false"' : '' ?> <?php echo empty($link) ? 'disabled="disabled"': '' ?>><?php _e('Edit Parent',ApmConfig::i18n_domain) ?></a>
 				</div>
 				<div class="apm_page_attributes_nav_button_wrapper">
 					<?php $link = !empty($page_tree_positions->previous_sibling) ? get_edit_post_link($page_tree_positions->previous_sibling) : '' ?>
-					<a class="button <?php echo empty($link) ? 'disabled': '' ?>" href="<?php echo !empty($link) ? $link : '#' ?>" <?php echo empty($link) ? 'onclick="return false"' : '' ?>><?php _e('Edit Previous',ApmConfig::i18n_domain) ?></a>
+					<a class="button <?php echo empty($link) ? 'disabled': '' ?>" href="<?php echo !empty($link) ? $link : '#' ?>" <?php echo empty($link) ? 'onclick="return false"' : '' ?> <?php echo empty($link) ? 'disabled="disabled"': '' ?>><?php _e('Edit Previous',ApmConfig::i18n_domain) ?></a>
 					<?php $link = !empty($page_tree_positions->next_sibling) ? get_edit_post_link($page_tree_positions->next_sibling) : '' ?>
-					<a class="button <?php echo empty($link) ? 'disabled': '' ?>" href="<?php echo !empty($link) ? $link : '#' ?>" <?php echo empty($link) ? 'onclick="return false"' : '' ?>><?php _e('Edit Next',ApmConfig::i18n_domain) ?></a>
+					<a class="button <?php echo empty($link) ? 'disabled': '' ?>" href="<?php echo !empty($link) ? $link : '#' ?>" <?php echo empty($link) ? 'onclick="return false"' : '' ?> <?php echo empty($link) ? 'disabled="disabled"': '' ?>><?php _e('Edit Next',ApmConfig::i18n_domain) ?></a>
 				</div>
 				<div class="apm_page_attributes_subpages_wrapper">
 					<strong><?php _e('Subpage(s)',ApmConfig::i18n_domain) ?></strong>
@@ -85,7 +85,7 @@ if( $post->post_type == 'page' ){
 						<?php _e('No Subpage',ApmConfig::i18n_domain) ?>
 					<?php endif ?>
 					</div>
-					<a id="apm_page_attributes_subpage_link" class="button <?php echo empty($page_tree_positions->children) ? 'disabled' : '' ?>" href="#" <?php echo empty($page_tree_positions->children) ? 'onclick="return false"' : '' ?>><?php _e('Edit Subpage',ApmConfig::i18n_domain) ?></a>
+					<a id="apm_page_attributes_subpage_link" class="button <?php echo empty($page_tree_positions->children) ? 'disabled' : '' ?>" href="#" <?php echo empty($page_tree_positions->children) ? 'onclick="return false"' : '' ?> <?php echo empty($page_tree_positions->children) ? 'disabled="disabled"': '' ?>><?php _e('Edit Subpage',ApmConfig::i18n_domain) ?></a>
 				</div>
 			</div>	
 			<?php

@@ -2,7 +2,7 @@
 /*
  * Plugin Name: Advanced Page Manager
  * Description: A plugin that redefines the way you create, move, edit and publish your pages.  
- * Version: beta 3 (0.8.5)
+ * Version: beta 4 (0.9)
  * Author: Uncategorized Creations
  * Plugin URI: http://www.uncategorized-creations.com/
  * Author URI: http://www.uncategorized-creations.com/
@@ -156,12 +156,13 @@ class advanced_page_manager{
 	 * Enqueues scripts, styles and javascript localization used by the plugin
 	 */
 	public static function admin_enqueue_scripts(){
+
 		if( isset($_GET['page']) ){ 
 			
 			$load_api_and_template_resources = apply_filters('apm_load_api_and_template_resources',false);
 		    
 			if( $_GET['page'] == 'apm_browse_pages_menu' || $load_api_and_template_resources ){
-		        wp_enqueue_script('apm_tree_api_js',plugins_url('js/tree.js', __FILE__),array(),ApmConstants::resources_version);
+				wp_enqueue_script('apm_tree_api_js',plugins_url('js/tree.js', __FILE__),array(),ApmConstants::resources_version);
 				wp_localize_script('apm_tree_api_js','apm_api_js_data',self::get_js_vars());
 				
 				$template_path = "templates/". ApmOptions::get_option('panel_page_template_name');
@@ -169,7 +170,7 @@ class advanced_page_manager{
 				$js_template_path = $template_path ."/common.js";
 				$panel_js_file = dirname(__FILE__) .'/'. $js_template_path;
 				if( file_exists($panel_js_file) ){
-					wp_enqueue_script('apm_bo_common_scripts', plugins_url($js_template_path, __FILE__),array(),ApmConstants::resources_version);
+					wp_enqueue_script('apm_bo_common_scripts', plugins_url($js_template_path, __FILE__),array('jquery-color'),ApmConstants::resources_version);
 					wp_localize_script('apm_bo_common_scripts','apm_messages',self::get_js_messages());
 				}else{
 					self::show_error(__('Resource not found',ApmConfig::i18n_domain) . ' : ['. $panel_js_file .']');
@@ -199,7 +200,7 @@ class advanced_page_manager{
 				wp_localize_script('apm_tree_api_js','apm_api_js_data',self::get_js_vars());
 				
 				wp_enqueue_script('apm_post_edit_js',plugins_url('js/post_edit.js', __FILE__),array(),ApmConstants::resources_version);
-				
+
 				wp_register_style('apm_post_edit_css', plugins_url('css/post_edit.css', __FILE__), array(),ApmConstants::resources_version);
 	        	wp_enqueue_style('apm_post_edit_css', false, array(),ApmConstants::resources_version);
 			}

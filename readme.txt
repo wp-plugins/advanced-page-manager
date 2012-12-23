@@ -2,8 +2,8 @@
 Contributors: Uncategorized Creations
 Tags: pages, page, manage, management, page management, tree, rearrange, order, reorder, hierarchical, admin, cms, content management
 Requires at least: 3.4.2
-Tested up to: 3.4.2
-Stable tag: 0.8.5
+Tested up to: 3.5
+Stable tag: 0.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -72,8 +72,8 @@ Yes. The plugin manages regular pages and the menu builder has still access to t
 = Do I have to modify my theme ? =
 No. Regular page template tags and functions still work. Regular page template and permalinks are also supported. Also, we do have new template tags, however it is not mandatory to use them.
 
-= Does the plugin support extra columns in the page list ? =
-We study how to support extra columns in the APM pages panel. We've looked at the WP core itself and to several plugins making use of those extra columns (as Simply Exclude or Yoast SEO for example). We found 2 things. First, using the WP hook is very difficult as it expects to be on the original panel. Second, plugins insert themselves in many ways into the Pages panel (eg. bringing new scripts testing the current URL). So unfortunatly, we came to the conclusion that we won't support extra columns as it will introduce to much specific and unstable code in our plugin. However, we perfectly understand the importance of this feature for the users and the developpers. So, we're going to give you the possibility to access to the WP original Pages panel in order to let you enjoy again the extra columns you need. In addition to that, we're going to add official hooks to let plugin authors adding extra columns in the APM panels.
+= Does the plugin support extra columns in the page tree and lists ? =
+We've looked at the WP core itself and to several plugins making use of those extra columns (as Simply Exclude or Wordpress SEO for example). We found 2 things. First, using the WP hook is very difficult as it expects to be on the original panel. Second, plugins insert themselves in many ways into the Pages panel (eg. bringing new scripts testing the current URL). So unfortunatly, we came to the conclusion that we won't support extra columns as it will introduce to much specific and unstable code in our plugin. However, we perfectly understand the importance of this feature for the users and the developpers. So we've added following hooks to add extra columns : apm_manage_pages_columns, apm_manage_pages_custom_column and apm_load_wp_data.
 
 = How do I report a bug ? =
 Please, use the *Support* tab. However, remember this is not a commercial support of any kind. We check regularly the coming requests and questions and try to keep up with answering them. But we also have regular jobs and... lifes. One more detail : at the moment, we're all located in France. So if you are in another timezone, remember that even french sleep (yes I know, weird).
@@ -88,13 +88,13 @@ Yes (and we thank you in advance if so). All patches will be validated by our le
 Yes and... no :-) Home for APM is here : [http://www.uncategorized-creations.com/](http://www.uncategorized-creations.com/). At the moment, it's a single page with a logo. You can leave your email address to get fresh news about APM. In the future, it will be a complete website. In the meantime, you can also follow us on Twitter : [@uncatcrea](https://twitter.com/UncatCrea).
 
 = Which version of Wordpress do you support ? =
-All development have been done with Wordpress 3.4.2. We don't plan to support earlier versions. We are going to test Wordpress 3.5 soon to ensure that everything will be fine with it.
+We support Wordpress 3.4.2 and 3.5 since version 0.9. We don't plan to support earlier versions.
 
 = Which version of browsers do you support ? =
-All development have been done under the last version of Chrome (and Windows 7). We are now in the process to test all necessary platforms and browsers.
+All developments have been done under the last version of Chrome, Firefox, Safari and Internet Explorer (Windows 7).
 
 = Which language do you support ? =
-By default, APM is in English and French. Since 0.6.5, we also support Dutch. If you wish to, you can translate the interface in your own language [in the standard Wordpress way](http://codex.wordpress.org/Translating_WordPress).
+By default, APM is in English and French. If you wish to, you can translate the interface in your own language [in the standard Wordpress way](http://codex.wordpress.org/Translating_WordPress).
 
 = What is Uncategorized Creations ? =
 *Uncategorized Creations* is the name chosen by a bunch of (french) Wordpress addicts (technical or not). Advanced Page Manager is their first creation. Please see the *Other Notes* tab for more details.
@@ -117,6 +117,16 @@ By default, APM is in English and French. Since 0.6.5, we also support Dutch. If
 
 > This plugin is in beta stage. Please check the *Other Notes* tab for more details. 中文用户吗？我们的插件也有中文翻译！请试一试，给我们提意见！
 
+= 0.9 =
+* 0000040: [Wordpress 3.5.0] Edit Parent is always active
+* 0000038: [Wordpress 3.5.0] Wrong labels top padding for move layer button
+* 0000037: Cancel the... Cancel link :-)
+* 0000036: [Wordpress 3.5.0] Wrong template dropdown liste width overflow
+* 0000035: [Wordpress 3.5.0] Wrong top margin for Add New button
+* 0000034: [Wordpress 3.5.0] No red flash feedback after actions
+* 0000029: Search label not positioned correctly
+* 0000013: Custom columns added by other plugins not supported
+
 = 0.8.5 =
 * 0000033: Move link no more available after (un)publishing
 * 0000032: Page stays selected after closing the template side panel
@@ -135,23 +145,23 @@ By default, APM is in English and French. Since 0.6.5, we also support Dutch. If
 * Adds Chinese (zh_CN) translation (thanks to Weiwei Guo)
 
 = 0.7 =
-* Mantis 0000020: Clicks on After, Before, Subpage labels should check their corresponding checkboxes
-* Mantis 0000017: Move layer doesn't scale vertically
-* Mantis 0000016: Add New layer doesn't scale vertically
-* Mantis 0000015: Rows in tree doesn't scale vertically properly when content is big
-* Mantis 0000014: When renaming, title field allows empty value
-* Mantis 0000012: Subpages icon is positioned under the arrow
-* Mantis 0000011: Move link available when tree has only one page
+* 0000020: Clicks on After, Before, Subpage labels should check their corresponding checkboxes
+* 0000017: Move layer doesn't scale vertically
+* 0000016: Add New layer doesn't scale vertically
+* 0000015: Rows in tree doesn't scale vertically properly when content is big
+* 0000014: When renaming, title field allows empty value
+* 0000012: Subpages icon is positioned under the arrow
+* 0000011: Move link available when tree has only one page
 
 = 0.6.5 =
-* Mantis 0000002: No position selected in the Add New side panel when clicking (again) the Add New button
-* Mantis 0000004: Ajax layer not covering the whole width of the tree
-* Mantis 0000005: Add New layer doesn't cover the whole width of the page slot
-* Mantis 0000006: When creating the first page, Page Selected label is displayed
-* Mantis 0000007: After creating the first page, Add New panel remains open
-* Mantis 0000008: On the move layer, cancel button should be a link
-* Mantis 0000009: Pages with 'auto-draft' status appear as empty rows when loading the tree from WP pages
-* Mantis 0000010: Simple quotes are backslashed in french translation feedback messages
+* 0000002: No position selected in the Add New side panel when clicking (again) the Add New button
+* 0000004: Ajax layer not covering the whole width of the tree
+* 0000005: Add New layer doesn't cover the whole width of the page slot
+* 0000006: When creating the first page, Page Selected label is displayed
+* 0000007: After creating the first page, Add New panel remains open
+* 0000008: On the move layer, cancel button should be a link
+* 0000009: Pages with 'auto-draft' status appear as empty rows when loading the tree from WP pages
+* 0000010: Simple quotes are backslashed in french translation feedback messages
 * Cleans and secures (nonce) the options panel
 * Forces redirection of standard WP pages list to our cutomized pages tree (if it happens that someone gets there by any other way)
 * Removes obsolete config constants

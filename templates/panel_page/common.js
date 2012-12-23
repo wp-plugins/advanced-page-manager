@@ -8,6 +8,11 @@ jQuery().ready(function(){
 		selected_rows: [],
 
 		switch_type:function(type, filter, filter_data, go_to_node){
+			
+			if( _type == 'tree' ){
+				$.apm_browse.delete_moving_overlays();
+			}
+			
 			_type = type;
 			_filter = filter;
 			$.apm_common.selected_rows = [];
@@ -382,6 +387,7 @@ jQuery().ready(function(){
 			var success_callback = function() {
 				$.apm_common.init_reload();
 				$.apm_common.update_counters();
+				$.apm_common.unselect_all_rows();
 			}
 
 			if( list_node.length ) {
@@ -726,8 +732,8 @@ jQuery().ready(function(){
 			$('.add-page-title').html('');
 
 			$('.column-panel').hide();
-			$('.drag-container-add-overlaying').remove();
-			$.apm_browse.page_overlayed_for_add = '';
+			
+			$.apm_browse.delete_add_page_overlay();
 		}
 
 	};
