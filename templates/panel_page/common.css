@@ -50,11 +50,31 @@ th.sortable a, th.sorted a {padding: 7px 0px 8px}
 .picto_tags_inactive{display: inline-block; width: 11px; height: 12px; background-image: url(../../img/tag_inactive.png); margin-top: 15px}
 
 /* Ajax Layer */
-.container-list-big-loader{margin: 36px 0 0 0; width: 76%; height: auto; background-color: #dfdfdf; position: absolute; z-index: 1000; -moz-opacity :.5; opacity:.5; -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=30)"; filter: alpha(opacity=50)}
+.container-list-big-loader{
+	margin: 36px 0 0 0;
+	width: 76%;
+	height: auto;
+	background-color: rgba(223, 223, 223, 0.5) ;
+	position: absolute; 
+	z-index: 1000; 
+}
+
+.apm-working-msg {
+	position:relative;
+	left:10px;
+	top:10px;
+	padding:3px;
+	padding-left:18px;
+	font-size: 12px;
+	font-style: italic;
+	color:#7a7a7a;
+	background-image: url(img/ajax-spinner.gif);
+	background-repeat: no-repeat;
+}
 
 /* Move and Add action layers */
 .drop-container{position: absolute; display: none}
-.drop-container, .drag-container-selected, .drag-container-add{background-color: rgba(255, 251, 204, 0.7)}
+.drop-container, .drag-container-selected, .drag-container-add{background-color: rgba(255, 251, 204, 0.8)}
 .drag-container-selected, .drag-container-add{position: absolute; display: none; width: 76%}
 .drag-container-selected p, .drop-container p, .drag-container-add p{text-align: left; margin: 20px auto auto 20px;}
 
@@ -81,7 +101,9 @@ div.big_loader{text-align:center; width: auto}
 .apm-page-slot-margin_4{margin-left:76px;}
 .apm-page-slot-margin_5{margin-left:96px;}
 
+/* Containers for fold/unfold arrow and subpages icon */
 .apm-has-subpages{min-height:47px;width:31px;padding:6px 0 0 10px;float:left;}
+.apm-subpages-controls{display:none;} /* Controls for the Move layer */
 
 .apm-page-slot-td {background:url(img/bg-page-slot-shadow-2.jpg) repeat-y;}
 
@@ -95,7 +117,7 @@ div.big_loader{text-align:center; width: auto}
 
 .apm-row-actions {margin-bottom:20px;}
 
-.unfold_node, .fold_node{display: inline-block; width: 13px; height: 12px;color:#fff; position:relative; z-index:100}
+.unfold_node, .fold_node{display: inline-block; width: 13px; height: 12px;color:#fff; position:relative; /*z-index:100*/}
 .unfold_node{background-image: url(img/unfold.png)}
 .fold_node{background-image: url(img/fold.png)}
 .picto-subpage{display: inline-block; background-image: url(img/has-subpage.png); width:14px; height: 12px}

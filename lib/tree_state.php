@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Handles the tree fold/unfold logic, on a per user basis.
+ */
 class ApmTreeState{
 	
 	private $tree_state = array();
@@ -51,6 +53,14 @@ class ApmTreeState{
 	public static function delete_for_current_user(){
 		global $current_user;
 		delete_metadata('user',$current_user->ID,ApmConfig::tree_state_user_meta,'',false);
+	}
+	
+	public static function current_user_has_tree_state(){
+		global $current_user;
+		$user_tree_state = get_user_meta($current_user->ID,
+										 ApmConfig::tree_state_user_meta,
+										 true);
+		return !empty($user_tree_state);
 	}
 	
 	public function is_empty(){

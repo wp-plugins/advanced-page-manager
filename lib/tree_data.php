@@ -1053,10 +1053,7 @@ class ApmListData{
 					$result_infos['current_page'] = 0;
 					$result_infos['nb_per_page'] = !empty($pagination['nb_per_page']) ? $pagination['nb_per_page'] : 10;
 					$result_infos['total_pages'] = 0;
-					$this->load_list(array(0=>null)); 
-					//TODO : array(0=>null) is to be coherent with what happens hereunder when $apm_ids is empty...
-					// > see "$paginated_apm_ids[] = $apm_ids[$i];" 
-					// > we should do something about that...
+					$this->load_list(array()); 
 				}
 				
 				return $result_infos;
@@ -1121,10 +1118,7 @@ class ApmListData{
 					$result_infos['current_page'] = 0;
 					$result_infos['nb_per_page'] = !empty($pagination['nb_per_page']) ? $pagination['nb_per_page'] : 10;
 					$result_infos['total_pages'] = 0;
-					$this->load_list(array(0=>null)); 
-					//TODO : array(0=>null) is to be coherent with what happens hereunder when $apm_ids is empty...
-					// > see "$paginated_apm_ids[] = $apm_ids[$i];" 
-					// > we should do something about that...
+					$this->load_list(array()); 
 				}
 				
 				return $result_infos;
@@ -1161,15 +1155,15 @@ class ApmListData{
 				$current_page = $total_pages;
 			}
 			
-			$paginated_apm_ids = array();
-			$start = ($current_page-1)*$nb_per_page;
-			for($i=($current_page-1)*$nb_per_page; $i<$start+$nb_per_page && $i<$total_apm_ids; $i++ ){
-				$paginated_apm_ids[] = $apm_ids[$i]; 
-				//TODO: this is wrong when $apm_ids is empty!! > it returns a strange
-				//set full of null...
+			if( !empty($apm_ids) ){
+				$paginated_apm_ids = array();
+				$start = ($current_page-1)*$nb_per_page;
+				for($i=($current_page-1)*$nb_per_page; $i<$start+$nb_per_page && $i<$total_apm_ids; $i++ ){
+					$paginated_apm_ids[] = $apm_ids[$i]; 
+				}
+				$apm_ids = $paginated_apm_ids;
 			}
-			$apm_ids = $paginated_apm_ids;
-			
+							
 			$result_infos['current_page'] = $current_page;
 			$result_infos['nb_per_page'] = $nb_per_page;
 			$result_infos['total_pages'] = $total_pages;

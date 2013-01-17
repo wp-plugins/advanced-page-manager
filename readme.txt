@@ -3,15 +3,13 @@ Contributors: Uncategorized Creations
 Tags: pages, page, manage, management, page management, tree, rearrange, order, reorder, hierarchical, admin, cms, content management
 Requires at least: 3.4.2
 Tested up to: 3.5
-Stable tag: 0.9
+Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 A new way to create, move, edit and publish your pages for your favorite CMS.
 
 == Description ==
-
-> This plugin is in beta stage. Please check the *Other Notes* tab for more details. 中文用户吗？我们的插件也有中文翻译！请试一试，给我们提意见！
 
 **It is hard to manage Wordpress pages when it comes to have more than 10 static pages, right ?** Current UI makes it difficult to manage a whole tree of pages. Advanced Page Manager aims to create a totally new Page Manager Panel designed to help you get the job done.
 
@@ -43,8 +41,6 @@ Don't forget to keep up with APM at [http://www.uncategorized-creations.com/](ht
 
 == Installation ==
 
-> This plugin is in beta stage. Please check the *Other Notes* tab for more details. 中文用户吗？我们的插件也有中文翻译！请试一试，给我们提意见！
-
 Advanced Page Manager doesn't require specific action to be installed. Just follow the regular process :
 
 1. Upload `advanced-page-manager` to the `/wp-content/plugins/` directory
@@ -55,16 +51,11 @@ Advanced Page Manager doesn't require specific action to be installed. Just foll
 
 == Frequently Asked Questions ==
 
-> This plugin is in beta stage. Please check the *Other Notes* tab for more details. 中文用户吗？我们的插件也有中文翻译！请试一试，给我们提意见！
-
-= This plugin is beta. What does that mean ? =
-Advanced Page Manager is fresh out of the box. We have tested it but it is young and for sure have bugs. We are going to work hard to have it clean by the end of the year. For more details and how you can get involved, please check the *Other Notes* tab.
-
 = What happen to the regular Wordpress pages when the plugin is installed ? =
 Well nothing at all. The plugin creates a new management panel and still relies on the regular Wordpress pages. However we do use a new way to store page relationships to speed up display. Also we don't create any new database table and regular relationships are maintained. If you uninstall the plugin, pages will be there safe and sane.
 
 = Does the plugin have hooks ? =
-Currently, APM has some hooks but not a consistent way. After clearing beta stages, we are going to develop a lot more hooks as the plugin code will be stable.
+Currently, APM has some hooks but not a consistent way. We are going to develop a lot more hooks in the post 1.0 era.
 
 = Is the plugin compatible with the Wordpress menu builder ? =
 Yes. The plugin manages regular pages and the menu builder has still access to them.
@@ -77,9 +68,6 @@ We've looked at the WP core itself and to several plugins making use of those ex
 
 = How do I report a bug ? =
 Please, use the *Support* tab. However, remember this is not a commercial support of any kind. We check regularly the coming requests and questions and try to keep up with answering them. But we also have regular jobs and... lifes. One more detail : at the moment, we're all located in France. So if you are in another timezone, remember that even french sleep (yes I know, weird).
-
-= Do you accept beta testers ? =
-Yes. If you'd like to test Advanced Page Manager, please report in *Support* tab. Please note that we will only accept a restricted number of testers and that you should have at least one (validated) bug to report. Validation will be done by the core team. At last, please note that you have to report in english (however, you can report additionally in french if you want to).
 
 = Do you accept patches ? =
 Yes (and we thank you in advance if so). All patches will be validated by our lead developer. If accepted, you'll be mentionned as contributor to the plugin (if you accept so). To submit a patch please report in the *Support* tab.
@@ -115,7 +103,12 @@ By default, APM is in English and French. If you wish to, you can translate the 
 
 == Changelog ==
 
-> This plugin is in beta stage. Please check the *Other Notes* tab for more details. 中文用户吗？我们的插件也有中文翻译！请试一试，给我们提意见！
+= 1.0 =
+* 0000042: Unable to (un)fold subpages when moving pages
+* 0000044: Add New side panel remains open after all pages have been deleted
+* 0000045: After folding/unfolding subpages, Move layer disappears
+* 0000046: Add a pointer after plugin activation
+* 0000047: Add Ajax spinner
 
 = 0.9 =
 * 0000040: [Wordpress 3.5.0] Edit Parent is always active
@@ -176,24 +169,6 @@ By default, APM is in English and French. If you wish to, you can translate the 
 
 = 0.6 =
 Beta 1 released
-
-== Beta ==
-After 6 weeks of testing, we chose to release a beta version of Advanced Page Manager. We think it's a good way to get feedback as early as possible.
-
-The plugin core has been tested thoroughly but the UI is bit younger. It's pretty sure that bugs remain. For the next weeks, we're going focus on :
-* Testing on all necessary platforms and browsers
-* Get feedback from the early adopters
-* Writing documentation both for users and developers
-
-Our main goal is to stabilize the plugin in its current functionalities. Don't misinterpret that : we do have a lot of ideas to make a better Advanced Page Manager. However, we also know that the main priority is to have a good, simple and reliable product first.
-
-We hope to have that by the end of the year.
-
-= Do you accept beta testers ? =
-Yes. If you'd like to test Advanced Page Manager, please report in *Support* tab. We will only accept a restricted number of testers. You should have at least one (validated) bug to report. Validation will be done by the core team. At last, please note that you have to report in english (however, you can report additionally in french if you want to).
-
-= Do you accept patches ? =
-Yes (and we thank you in advance if so). All patches will be validated by our lead developer. If accepted, you'll be mentionned as contributor to the plugin (if you accept so). To submit a patch please report in the *Support* tab.
 
 == About ==
 Advanced Page Manager has been designed and developed by a group of Wordpress addicts doing professional Wordpress projects (among other things like living a normal life). The idea of Advanced Page Manager emerged as we were working on news sites with a lot of pro contents that were... not news but kind of knowledge base (eg. best practices, tutorials...). It was obvious that we could do those contents with standard posts but we had also to twist them in a way we felt as not as a good way to go. So we decided to give a boost to Wordpress pages to match a more CMS like management. But we also felt that we had to respect Wordpress (UI of course and also technically speaking). We are very happy to release it after 4 months of hard work and hope that you will enjoy it in your own projects.

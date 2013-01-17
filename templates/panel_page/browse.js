@@ -186,6 +186,7 @@ jQuery().ready(function(){
 			    
 			    _update_add_page_overlay(answer_ajax.unfolded_sub_tree_nodes);
 			    _update_moving_overlays(answer_ajax.unfolded_sub_tree_nodes);
+			    _update_drop_page_overlay(current_node);
 			});
 			return false;
 		},
@@ -221,6 +222,7 @@ jQuery().ready(function(){
 			    
 			    _update_add_page_overlay([answer_ajax.folded_node]);
 			    _update_moving_overlays([answer_ajax.folded_node]);
+			    _update_drop_page_overlay(answer_ajax.folded_node);
 			    
 			    // functionning differently when folding is triggered
 			    if( isPropagationStopped ) {
@@ -411,27 +413,19 @@ jQuery().ready(function(){
 		if( $.apm_browse.page_overlayed_for_moving != '' ){
 			
 			if( nodes_to_check != undefined ){
+				
 				$.each(nodes_to_check,function(k,item_id){
 					
 					if( item_id == $.apm_browse.page_overlayed_for_moving ){
 						_update_moving_page_overlay();
 					}else{
 						$('#apm-'+item_id).unbind('mouseenter', _moving_row_mouse_enter).bind('mouseenter', _moving_row_mouse_enter);
-						$('#apm-'+ item_id +' a.cancel-drag').unbind().bind('click', function(){
-							_cancel_drag();
-							return false;
-						});
 					}
 					
 				});
 				
 			}else{
 				$('tr.type-post').unbind('mouseenter', _moving_row_mouse_enter).bind('mouseenter', _moving_row_mouse_enter);
-
-				$('.cancel-drag').unbind().bind('click', function(){
-					_cancel_drag();
-					return false;
-				});
 			}
 			
 		}	
@@ -447,12 +441,16 @@ jQuery().ready(function(){
 		
 		$('.drag-container-selected-overlaying').remove();
 
-		$('#drag-container-selected-template').clone(true).removeAttr('id').addClass('drag-container-selected-overlaying').css({
+		var new_overlay = $('#drag-container-selected-template').clone(true).removeAttr('id').addClass('drag-container-selected-overlaying').css({
 			'top' : '-10px',
 			'height' : height_box,
 			'width' : item_to_overlay.css('width')
 		}).appendTo(overlay_host).show();
 		
+		$('a.cancel-drag',new_overlay).unbind().bind('click', function(){
+			_cancel_drag();
+			return false;
+		});
 	}
 
 	function _set_moving_page_overlay(item_to_overlay_apm_id){
@@ -466,13 +464,109 @@ jQuery().ready(function(){
 
 		$('.drop-container-overlaying').remove();
 
-		$('#drop-container-template').clone(true).removeAttr('id').addClass('drop-container-overlaying').css({
+		var new_overlay = $('#drop-container-template').clone(true).removeAttr('id').addClass('drop-container-overlaying').css({
 			'top' : '-10px',
 			'height' : height_box,
 			'width' : item_to_overlay.css('width')
 		}).appendTo(overlay_host).show();
 
-		$.apm_browse.page_overlayed_for_droping = item_to_overlay.attr('id').replace('apm-','');
+		//Display fold/unfold controls on the overlay :
+		var is_folded = item_to_overlay.find('a.unfold_node').length > 0;
+		var is_unfolded = item_to_overlay.find('a.fold_node').length > 0;
+		var subpages_controls = $(".apm-subpages-controls",new_overlay);
+		var subpages_controls_link = $("a",subpages_controls);
+		if (is_folded) { 
+			// Page has subpage(s) that are folded - Display controls
+			subpages_controls.css("display","inline");
+			subpages_controls_link.removeClass("fold_node").addClass("unfold_node");
+			subpages_controls_link.unbind().bind('click', $.apm_browse.unfold_node);
+
+		}else if (is_unfolded) { 
+			// Page has subpage(s) that are unfolded - display controls
+			subpages_controls.css("display","inline");
+			subpages_controls_link.removeClass("unfold_node").addClass("fold_node");
+			subpages_controls_link.unbind().bind('click', $.apm_browse.fold_node);
+		}else{
+			// Page has no subpage - hide controls
+			subpages_controls.css("display","none");
+		}
+		
+		//Update overlay events :
+		var moving_node = $.apm_browse.page_overlayed_for_moving;
+		var drop_node = item_to_overlay.attr('id').replace('apm-','');
+		
+		var callback = function() {
+			$.apm_common.init_reload(moving_node);
+		};
+		
+		$('a.cancel-drag',new_overlay).unbind().bind('click', function(){
+			_cancel_drag();
+			return false;
+		});
+		
+		$('.drop-after',new_overlay).unbind().bind('click', function() {
+			$.apm_common.start_big_loader();
+			$.apm_browse.delete_moving_overlays();
+			$.apm_tree.edit(
+				'insert_after', moving_node,
+				drop_node, callback
+			);
+		});
+
+		$('.drop-before',new_overlay).unbind().bind('click', function() {
+			$.apm_common.start_big_loader();
+			$.apm_browse.delete_moving_overlays();
+			$.apm_tree.edit(
+				'insert_before', moving_node,
+				drop_node, callback
+			);
+		});
+
+		$('.drop-sub',new_overlay).unbind().bind('click', function() {
+			$.apm_common.start_big_loader();
+			$.apm_browse.delete_moving_overlays();
+			$.apm_tree.edit(
+				'insert_child', moving_node,
+				drop_node, callback
+			);
+		});
+		
+		//Store the current node overlayed for droping :
+		$.apm_browse.page_overlayed_for_droping = drop_node;
+	}
+	
+	function _update_drop_page_overlay(target_node){
+		
+		var moving_node = $.apm_browse.page_overlayed_for_moving;
+		
+		//We are not moving any page : return.
+		if( moving_node == '' ){
+			return;
+		}
+		
+		//We won't drop the moving page on itself... return.
+		if( target_node == moving_node ){
+			return;
+		}
+		
+		//No need to set a drop overlay to a node that already has it :
+		if( target_node == $.apm_browse.page_overlayed_for_droping ){
+			return;
+		}
+		
+		var target_item = $('#apm-'+ target_node);
+
+		//Set the drop overlay :
+		_set_drop_page_overlay(target_item);
+
+		target_item.bind('mouseleave', function(e){
+			$('.drop-container-overlaying').hide();
+			$.apm_browse.page_overlayed_for_droping = '';
+		});
+	}
+
+	function _moving_row_mouse_enter(){
+		_update_drop_page_overlay($(this).attr('id').replace('apm-',''));
 	}
 
 	function _start_moving(moving_node){
@@ -497,55 +591,6 @@ jQuery().ready(function(){
 				$.apm_browse.unfold_node(node_to_unfold.find('.unfold_node'));
 			}
 		}
-	}
-
-	function _moving_row_mouse_enter(){
-		
-		var target_node = $(this).attr('id').replace('apm-','')
-		
-		var moving_node = $.apm_browse.page_overlayed_for_moving;
-		
-		if(target_node == moving_node) return false;
-
-		var target_item = $('#apm-'+ target_node);
-		
-		_set_drop_page_overlay(target_item);
-
-		var callback = function() {
-			$.apm_common.init_reload(moving_node);
-		};
-
-		$('.drop-after').unbind().bind('click', function() {
-			$.apm_common.start_big_loader();
-			$.apm_browse.delete_moving_overlays();
-			$.apm_tree.edit(
-				'insert_after', moving_node,
-				target_node, callback
-			);
-		});
-
-		$('.drop-before').unbind().bind('click', function() {
-			$.apm_common.start_big_loader();
-			$.apm_browse.delete_moving_overlays();
-			$.apm_tree.edit(
-				'insert_before', moving_node,
-				target_node, callback
-			);
-		});
-
-		$('.drop-sub').unbind().bind('click', function() {
-			$.apm_common.start_big_loader();
-			$.apm_browse.delete_moving_overlays();
-			$.apm_tree.edit(
-				'insert_child', moving_node,
-				target_node, callback
-			);
-		});
-
-		target_item.bind('mouseleave', function(e){
-			$('.drop-container-overlaying').hide();
-			$.apm_browse.page_overlayed_for_droping = '';
-		});
 	}
 
 });

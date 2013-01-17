@@ -221,7 +221,7 @@ require_once( 'functions.php' );
 	    <!-- Tree -->
 	    <div class="container-list">
 		    <div class="container-list-big-loader">
-			    <div class="big_loader"><span></span></div>
+			    <div class="apm-working-msg"><?php _e("Working", ApmConfig::i18n_domain); ?>...</div>
 		    </div>
 
 		    <div id="drag-container-selected-template" class="drag-container-selected">
@@ -240,7 +240,11 @@ require_once( 'functions.php' );
 
 		    <div id="drop-container-template" class="drop-container">
 			    <p>
-				    <strong><?php _e('Move my page', ApmConfig::i18n_domain); ?> :&nbsp;</strong>
+		    		<span class="apm-subpages-controls">
+		    			<a href="#"></a>
+		    			<span class="picto-subpage"></span>
+		    		</span>
+				    <strong style="margin-left:0px;"><?php _e('Move my page', ApmConfig::i18n_domain); ?> :&nbsp;</strong>
 				    <input type="button" name="drop-after" class="drop-after button" value="<?php _e('After', ApmConfig::i18n_domain); ?>" />
 				    <input type="button" name="drop-before" class="drop-before button" value="<?php _e('Before', ApmConfig::i18n_domain); ?>" />
 				    <input type="button" name="drop-sub" class="drop-sub button" value="<?php _e('As a subpage', ApmConfig::i18n_domain); ?>" />

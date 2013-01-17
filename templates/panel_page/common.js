@@ -395,6 +395,8 @@ jQuery().ready(function(){
 					$.apm_tree.delete_multiple_nodes(list_node,success_callback);
 				}
 			}
+			
+			$.apm_common.close_column_panel();
 			return false;
 		},
 

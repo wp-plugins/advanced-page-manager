@@ -116,26 +116,27 @@ class ApmOptions{
 		$lost_pages = array();
 		
 		$tree = ApmTreeDb::get_last_tree();
-		
-		$tree = new ApmTree($tree);
-		$tree_apm_ids = $tree->get_nodes_flat();
-		$tree_wp_ids = ApmNodeDataIntern::get_wp_ids($tree_apm_ids);
-		$tree_wp_ids = array_diff($tree_wp_ids,array(ApmTreeData::root_id)); //Remove the zeroes (for root).
-		
-		$sql_autodrafts = " AND post_status != 'auto-draft' ";
-		if( $allow_autodrafts ){
-			$sql_autodrafts = '';
-		}
-		
-		$sql = "SELECT * FROM $wpdb->posts AS p 
-						 WHERE p.post_type = 'page' $sql_autodrafts AND p.ID NOT IN ('". implode("','",$tree_wp_ids) ."')";
-		
-		$lost_pages_raw = $wpdb->get_results($sql);
-		
-		if( !empty($lost_pages_raw) ){
-			foreach($lost_pages_raw as $page){
-				$page->post_title = _draft_or_post_title($page->ID);
-				$lost_pages[$page->ID] = $page;
+		if( !empty($tree) ){
+			$tree = new ApmTree($tree);
+			$tree_apm_ids = $tree->get_nodes_flat();
+			$tree_wp_ids = ApmNodeDataIntern::get_wp_ids($tree_apm_ids);
+			$tree_wp_ids = array_diff($tree_wp_ids,array(ApmTreeData::root_id)); //Remove the zeroes (for root).
+			
+			$sql_autodrafts = " AND post_status != 'auto-draft' ";
+			if( $allow_autodrafts ){
+				$sql_autodrafts = '';
+			}
+			
+			$sql = "SELECT * FROM $wpdb->posts AS p 
+							 WHERE p.post_type = 'page' $sql_autodrafts AND p.ID NOT IN ('". implode("','",$tree_wp_ids) ."')";
+			
+			$lost_pages_raw = $wpdb->get_results($sql);
+			
+			if( !empty($lost_pages_raw) ){
+				foreach($lost_pages_raw as $page){
+					$page->post_title = _draft_or_post_title($page->ID);
+					$lost_pages[$page->ID] = $page;
+				}
 			}
 		}
 		
@@ -165,8 +166,6 @@ class ApmOptions{
 			exit();
 		}
 
-		self::check_tree_loaded();
-		
 		$redirect_url = self::get_base_url(true);
 		
 		if( !empty($_GET['apm_options_action']) ){
@@ -193,6 +192,7 @@ class ApmOptions{
 					
 				case 'restore_page':
 					if( !empty($_GET['wp_id']) ){
+						
 						//Check if the page is still lost : 
 						$lost_pages = self::get_lost_pages();
 						if( array_key_exists($_GET['wp_id'],$lost_pages) ){

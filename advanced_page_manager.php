@@ -2,7 +2,7 @@
 /*
  * Plugin Name: Advanced Page Manager
  * Description: A plugin that redefines the way you create, move, edit and publish your pages.  
- * Version: beta 4 (0.9)
+ * Version: 1.0
  * Author: Uncategorized Creations
  * Plugin URI: http://www.uncategorized-creations.com/
  * Author URI: http://www.uncategorized-creations.com/
@@ -34,6 +34,7 @@ require_once(dirname(__FILE__).'/lib/constants.php');
 require_once(dirname(__FILE__).'/lib/addons.php');
 require_once(dirname(__FILE__).'/lib/bo_context.php');
 require_once(dirname(__FILE__).'/lib/tree_data.php');
+require_once(dirname(__FILE__).'/lib/pointers.php');
 require_once(dirname(__FILE__).'/lib/functions.php');
 require_once(dirname(__FILE__).'/lib/template_tags.php');
 

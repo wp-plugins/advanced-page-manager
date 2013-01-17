@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Page Manager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-30 22:08+0100\n"
-"PO-Revision-Date: 2012-11-30 22:09+0100\n"
+"POT-Creation-Date: 2013-01-17 17:52+0100\n"
+"PO-Revision-Date: 2013-01-17 17:53+0100\n"
 "Last-Translator: Dev Wp <devwp@devwp.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -17,21 +17,21 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../advanced_page_manager.php:117
+#: ../advanced_page_manager.php:118
 msgid "All Pages"
 msgstr "Toutes les pages"
 
-#: ../advanced_page_manager.php:151
+#: ../advanced_page_manager.php:152
 msgid "Settings"
 msgstr "Paramètres"
 
-#: ../advanced_page_manager.php:175 ../advanced_page_manager.php:183
-#: ../advanced_page_manager.php:191 ../advanced_page_manager.php:219
-#: ../advanced_page_manager.php:306
+#: ../advanced_page_manager.php:177 ../advanced_page_manager.php:185
+#: ../advanced_page_manager.php:193 ../advanced_page_manager.php:221
+#: ../advanced_page_manager.php:308
 msgid "Resource not found"
 msgstr "Ressource introuvable"
 
-#: ../advanced_page_manager.php:282
+#: ../advanced_page_manager.php:284
 msgid ""
 "Your session has expired.\n"
 "You will be redirected to login page."
@@ -40,15 +40,15 @@ msgstr ""
 "Vous allez être redirigé(e) vers le formulaire de connexion de Wordpress "
 "afin de pouvoir vous reconnecter."
 
-#: ../advanced_page_manager.php:303
+#: ../advanced_page_manager.php:305
 msgid "An $apm_messages array should be defined in"
 msgstr "Un tableau $apm_messages devrait être défini dans"
 
-#: ../advanced_page_manager.php:321 ../ajax/actions_ajax.php:53
+#: ../advanced_page_manager.php:324 ../ajax/actions_ajax.php:54
 msgid "Template not found"
 msgstr "Modèle non trouvé"
 
-#: ../advanced_page_manager.php:347
+#: ../advanced_page_manager.php:350
 msgid "Page Attributes"
 msgstr "Attributs de la page"
 
@@ -56,7 +56,27 @@ msgstr "Attributs de la page"
 msgid "Addons activation parameters saved successfuly"
 msgstr "Etats d'activation des extensions enregistrés"
 
-#: ../lib/nodes_data.php:238
+#: ../lib/custom_columns.php:71 ../templates/panel_page/browse.php:274
+#: ../templates/panel_page/browse.php:342
+msgid "Status"
+msgstr "État"
+
+#: ../lib/custom_columns.php:72 ../templates/panel_page/browse.php:286
+#: ../templates/panel_page/browse.php:354
+msgid "Date"
+msgstr "Date"
+
+#: ../lib/custom_columns.php:73
+#: ../templates/core/page_attributes_meta_box.php:35
+#: ../templates/panel_page/browse.php:50
+#: ../templates/panel_page/browse.php:298
+#: ../templates/panel_page/browse.php:366
+#: ../templates/panel_page/list_display.php:94
+#: ../templates/panel_page/tree_display.php:115
+msgid "Template"
+msgstr "Modèle"
+
+#: ../lib/nodes_data.php:243
 msgid ""
 "This page has been deleted from outside Advanced Page Manager. It should be "
 "deleted from this tree, after having put valid subpages in a safe place."
@@ -65,25 +85,25 @@ msgstr ""
 "supprimer de cette arborescence, après avoir mis ses éventuelles sous-pages "
 "en sécurité."
 
-#: ../lib/nodes_data.php:288
+#: ../lib/nodes_data.php:293
 msgid "(no title)"
 msgstr "(pas de titre)"
 
-#: ../lib/options.php:164
+#: ../lib/options.php:165
 msgid "Could not save plugin settings : security check failed."
 msgstr ""
 "Impossible d'enregistrer les modifications sur les paramètres du plugin : le "
 "test de sécurité a échoué."
 
-#: ../lib/options.php:178
+#: ../lib/options.php:177
 msgid "Plugin data (except options) have been deleted"
 msgstr "Les données du plugin (sauf les options) ont été effacées"
 
-#: ../lib/options.php:184
+#: ../lib/options.php:183
 msgid "Plugin options have been deleted "
 msgstr "Les options du plugin ont été effacées"
 
-#: ../lib/options.php:190
+#: ../lib/options.php:189
 msgid "Fold / Unfold data have been deleted"
 msgstr "Les informations de plié / déplié ont été effacées"
 
@@ -110,6 +130,16 @@ msgstr ""
 #: ../lib/options.php:243
 msgid "Admin options saved successfuly"
 msgstr "Options enregistrées"
+
+#: ../lib/pointers.php:25
+msgid "Advanced Page Manager plugin activated !"
+msgstr "Advanced Page Manager est activé !"
+
+#: ../lib/pointers.php:25
+msgid "Click \"Pages\" item to discover the new Pages panel."
+msgstr ""
+"Cliquez sur le menu \"Pages\" pour découvrir la nouvelle interface de "
+"gestion des pages."
 
 #: ../lib/addons/flagged_pages.php:28
 msgid "Flagged pages"
@@ -148,38 +178,42 @@ msgstr "En ligne"
 msgid "Offline"
 msgstr "Hors ligne"
 
-#: ../lib/addons/flagged_pages.php:132
+#: ../lib/addons/flagged_pages.php:134
 msgid "Delete flags data"
 msgstr "Effacer les données de marquage"
 
-#: ../lib/addons/flagged_pages.php:132
+#: ../lib/addons/flagged_pages.php:134
 msgid "delete flags for all pages"
 msgstr "efface le marquage pour toutes les pages"
 
-#: ../lib/addons/flagged_pages.php:141
+#: ../lib/addons/flagged_pages.php:143
 msgid "Flags data has been successfully deleted"
 msgstr "Les informations de marquage ont été effacées"
 
-#: ../lib/addons/pages_taxonomies.php:22
+#: ../lib/addons/pages_taxonomies.php:29
 msgid "Pages Tags"
 msgstr "Tags pour les pages"
 
-#: ../lib/addons/pages_taxonomies.php:26
+#: ../lib/addons/pages_taxonomies.php:33
 msgid "Pages Categories"
 msgstr "Catégories pour les pages"
 
-#: ../lib/addons/pages_taxonomies.php:64
+#: ../lib/addons/pages_taxonomies.php:71
 msgid "Page taxonomies settings"
-msgstr ""
+msgstr "Paramètres des taxonomies de pages"
 
-#: ../lib/addons/pages_taxonomies.php:85
+#: ../lib/addons/pages_taxonomies.php:92
 #: ../templates/core/bo_options_panel.php:44
 #: ../templates/core/bo_options_panel.php:97
 msgid "Save changes"
 msgstr "Enregistrer les modifications"
 
-#: ../lib/addons/pages_taxonomies.php:112
+#: ../lib/addons/pages_taxonomies.php:119
 msgid "Page taxonomies settings saved successfuly"
+msgstr "Paramètres des taxonomies de pages enregistrées avec succès"
+
+#: ../lib/addons/pages_taxonomies.php:150
+msgid "None"
 msgstr ""
 
 #: ../lib/addons/test_crea_transversal_taxos.php:14
@@ -282,22 +316,13 @@ msgstr "Page marquée : cliquer ici pour supprimer le marquage de cette page."
 msgid "Page not flagged : click here to flag"
 msgstr "Page non marquée : cliquer ici pour marquer la page"
 
-#: ../templates/core/page_attributes_meta_box.php:35
-#: ../templates/panel_page/browse.php:50
-#: ../templates/panel_page/browse.php:269
-#: ../templates/panel_page/browse.php:313
-#: ../templates/panel_page/list_display.php:94
-#: ../templates/panel_page/tree_display.php:114
-msgid "Template"
-msgstr "Modèle"
-
 #: ../templates/core/page_attributes_meta_box.php:36
 msgid "Page Template"
 msgstr "Modèle de la page"
 
 #: ../templates/core/page_attributes_meta_box.php:38
 #: ../templates/panel_page/browse.php:52
-#: ../templates/panel_page/browse.php:100
+#: ../templates/panel_page/browse.php:104
 #: ../templates/panel_page/functions.php:79
 #: ../templates/panel_page_sample/browse.php:93
 #: ../templates/panel_page_sample/browse.php:167
@@ -307,7 +332,7 @@ msgid "Default Template"
 msgstr "Modèle par défaut"
 
 #: ../templates/core/page_attributes_meta_box.php:44
-#: ../templates/panel_page/list_display.php:132
+#: ../templates/panel_page/list_display.php:147
 msgid "Where is it ?"
 msgstr "Où est-elle ?"
 
@@ -348,17 +373,22 @@ msgid "No Page Template found in current theme directory!"
 msgstr "Aucun template de page trouvé dans le répertoire du thème!"
 
 #: ../templates/panel_page/browse.php:12
-#: ../templates/panel_page/browse.php:245
-#: ../templates/panel_page/browse.php:289
+#: ../templates/panel_page/browse.php:262
+#: ../templates/panel_page/browse.php:330
 msgid "Pages"
 msgstr "Pages"
+
+#: ../templates/panel_page/browse.php:12
+#: ../templates/panel_page/browse.php:134
+msgid "Search results for"
+msgstr "Résultats de recherche pour"
 
 #: ../templates/panel_page/browse.php:14
 msgid "Marked Pages"
 msgstr "Pages marquées"
 
 #: ../templates/panel_page/browse.php:38
-#: ../templates/panel_page/tree_display.php:157
+#: ../templates/panel_page/tree_display.php:169
 msgid "Add New"
 msgstr "Ajouter"
 
@@ -384,12 +414,12 @@ msgid "Position"
 msgstr "Position"
 
 #: ../templates/panel_page/browse.php:60
-#: ../templates/panel_page/browse.php:231
+#: ../templates/panel_page/browse.php:248
 msgid "After"
 msgstr "Après"
 
 #: ../templates/panel_page/browse.php:61
-#: ../templates/panel_page/browse.php:232
+#: ../templates/panel_page/browse.php:249
 msgid "Before"
 msgstr "Avant"
 
@@ -406,120 +436,110 @@ msgid "Add"
 msgstr "Ajouter"
 
 #: ../templates/panel_page/browse.php:76
-#: ../templates/panel_page/browse.php:114
+#: ../templates/panel_page/browse.php:118
 msgid "Done"
 msgstr "Terminer"
 
-#: ../templates/panel_page/browse.php:77
-#: ../templates/panel_page/browse.php:115
-#: ../templates/panel_page/browse.php:217
-#: ../templates/panel_page/browse.php:224
-#: ../templates/panel_page/browse.php:234
+#: ../templates/panel_page/browse.php:79
+#: ../templates/panel_page/browse.php:121
+#: ../templates/panel_page/browse.php:230
+#: ../templates/panel_page/browse.php:237
+#: ../templates/panel_page/browse.php:251
 #: ../templates/panel_page/list_display.php:61
-#: ../templates/panel_page/tree_display.php:81
+#: ../templates/panel_page/tree_display.php:82
 msgid "Cancel"
 msgstr "Annuler"
 
-#: ../templates/panel_page/browse.php:84
-#: ../templates/panel_page/browse.php:187
+#: ../templates/panel_page/browse.php:88
+#: ../templates/panel_page/browse.php:200
 msgid "Change Template"
 msgstr "Changer de modèle"
 
-#: ../templates/panel_page/browse.php:86
+#: ../templates/panel_page/browse.php:90
 #: ../templates/panel_page/js_messages.php:30
 msgid "No page selected"
 msgstr "Acune page sélectionnée"
 
-#: ../templates/panel_page/browse.php:89
+#: ../templates/panel_page/browse.php:93
 msgid "Current Template"
 msgstr "Modèle actuel"
 
-#: ../templates/panel_page/browse.php:91
+#: ../templates/panel_page/browse.php:95
 #: ../templates/panel_page/js_messages.php:32
 msgid "Selected pages have different templates"
 msgstr "Les pages sélectionnées ont des modèles différents"
 
-#: ../templates/panel_page/browse.php:95
+#: ../templates/panel_page/browse.php:99
 msgid "New Template"
 msgstr "Nouveau modèle"
 
-#: ../templates/panel_page/browse.php:113
+#: ../templates/panel_page/browse.php:117
 msgid "Change"
 msgstr "Changer"
 
-#: ../templates/panel_page/browse.php:123
-msgid "Search results for"
-msgstr "Résultats de recherche pour"
-
-#: ../templates/panel_page/browse.php:162
-#: ../templates/panel_page/browse.php:164
+#: ../templates/panel_page/browse.php:175
+#: ../templates/panel_page/browse.php:177
 msgid "Search Pages"
 msgstr "Chercher dans les pages"
 
-#: ../templates/panel_page/browse.php:170
+#: ../templates/panel_page/browse.php:183
 msgid "Bulk Actions"
 msgstr "Actions groupées"
 
-#: ../templates/panel_page/browse.php:172
+#: ../templates/panel_page/browse.php:185
 msgid "Unselect All"
 msgstr "Tout désélectionner"
 
-#: ../templates/panel_page/browse.php:175
+#: ../templates/panel_page/browse.php:188
 msgid "Fold All"
 msgstr "Tout replier"
 
-#: ../templates/panel_page/browse.php:177
+#: ../templates/panel_page/browse.php:190
 msgid "Unmark All"
 msgstr "Tout démarquer"
 
-#: ../templates/panel_page/browse.php:185
+#: ../templates/panel_page/browse.php:198
 #: ../templates/panel_page/list_display.php:86
-#: ../templates/panel_page/tree_display.php:106
+#: ../templates/panel_page/tree_display.php:107
 msgid "Publish"
 msgstr "Publier"
 
-#: ../templates/panel_page/browse.php:186
+#: ../templates/panel_page/browse.php:199
 #: ../templates/panel_page/list_display.php:82
-#: ../templates/panel_page/tree_display.php:102
+#: ../templates/panel_page/tree_display.php:103
 msgid "Unpublish"
 msgstr "Dépublier"
 
-#: ../templates/panel_page/browse.php:190
+#: ../templates/panel_page/browse.php:203
 #: ../templates/panel_page/list_display.php:98
-#: ../templates/panel_page/tree_display.php:127
+#: ../templates/panel_page/tree_display.php:128
 msgid "Delete"
 msgstr "Supprimer"
 
-#: ../templates/panel_page/browse.php:202
-#: ../templates/panel_page/browse.php:327
+#: ../templates/panel_page/browse.php:215
+#: ../templates/panel_page/browse.php:391
 msgid "Selected Item(s)"
 msgstr "sélectionnée(s)"
 
-#: ../templates/panel_page/browse.php:216
+#: ../templates/panel_page/browse.php:224
+msgid "Working"
+msgstr "Chargement"
+
+#: ../templates/panel_page/browse.php:229
 msgid "You have chosen to move this page (and its subpages) elsewhere"
 msgstr "Vous avez choisi de déplacer cette page (et ses sous-pages)"
 
-#: ../templates/panel_page/browse.php:223
+#: ../templates/panel_page/browse.php:236
 msgid "You are adding pages relative to this one"
 msgstr "Vous êtes en train d'ajouter des pages par rapport à celle-ci"
 
-#: ../templates/panel_page/browse.php:230
+#: ../templates/panel_page/browse.php:247
 msgid "Move my page"
 msgstr "Déplacer ma page"
 
-#: ../templates/panel_page/browse.php:233
+#: ../templates/panel_page/browse.php:250
 msgid "As a subpage"
 msgstr "En tant que sous-page"
-
-#: ../templates/panel_page/browse.php:257
-#: ../templates/panel_page/browse.php:301
-msgid "Status"
-msgstr "État"
-
-#: ../templates/panel_page/browse.php:263
-#: ../templates/panel_page/browse.php:307
-msgid "Date"
-msgstr "Date"
 
 #: ../templates/panel_page/functions.php:21
 msgid "Recent Pages"
@@ -600,44 +620,44 @@ msgid "No template"
 msgstr "Aucun modèle"
 
 #: ../templates/panel_page/list_display.php:50
-#: ../templates/panel_page/tree_display.php:69
+#: ../templates/panel_page/tree_display.php:70
 msgid "Trash"
 msgstr "Corbeille"
 
 #: ../templates/panel_page/list_display.php:66
-#: ../templates/panel_page/tree_display.php:86
+#: ../templates/panel_page/tree_display.php:87
 msgid "Rename"
 msgstr "Renommer"
 
 #: ../templates/panel_page/list_display.php:71
-#: ../templates/panel_page/tree_display.php:91
+#: ../templates/panel_page/tree_display.php:92
 msgid "View"
 msgstr "Afficher"
 
 #: ../templates/panel_page/list_display.php:73
-#: ../templates/panel_page/tree_display.php:93
+#: ../templates/panel_page/tree_display.php:94
 msgid "Preview"
 msgstr "Aperçu"
 
 #: ../templates/panel_page/list_display.php:80
-#: ../templates/panel_page/tree_display.php:100
+#: ../templates/panel_page/tree_display.php:101
 msgid "Restore"
 msgstr "Restaurer"
 
 #: ../templates/panel_page/list_display.php:90
-#: ../templates/panel_page/tree_display.php:110
+#: ../templates/panel_page/tree_display.php:111
 msgid "Edit"
 msgstr "Modifier"
 
-#: ../templates/panel_page/tree_display.php:38
+#: ../templates/panel_page/tree_display.php:39
 msgid "Select Subpages"
 msgstr "Cocher les sous-pages"
 
-#: ../templates/panel_page/tree_display.php:39
+#: ../templates/panel_page/tree_display.php:40
 msgid "Unselect Subpages"
 msgstr "Décocher les sous-pages"
 
-#: ../templates/panel_page/tree_display.php:122
+#: ../templates/panel_page/tree_display.php:123
 msgid "Move"
 msgstr "Déplacer"
 
