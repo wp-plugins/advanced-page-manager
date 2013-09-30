@@ -182,11 +182,12 @@ Beta 1 released
 
 == About ==
 
-=Hooks=
+= Hooks =
 
 **Add custom columns**
 
 **apm_manage_pages_columns**
+
 * Type filter
 * Purpose : allows to add or modify columns to display on the APM pages tree and lists
 * Takes one argument / return value
@@ -194,6 +195,7 @@ Beta 1 released
 * The usage is the same as [the native "manage_pages_columns" WordPress hook](http://codex.wordpress.org/Plugin_API/Filter_Reference/manage_pages_columns)
 
 **apm_manage_pages_custom_column**
+
 * Type : action
 * Purpose : displays the custom column information for each page row in the APM tree.
 * Takes 3 arguments
@@ -217,7 +219,8 @@ function apm_manage_pages_custom_column($column_name,$post_id,$apm_node){
       }
 }`
 
-** apm_load_wp_data**
+**apm_load_wp_data**
+
 * Type : action
 * Purpose : allows to preload information about all pages at once that are going to be displayed in the APM tree. Useful when creating custom columns : you load the data required in the custom column in one single query before display, instead of making one query per page row
 * Takes one argument
@@ -237,6 +240,7 @@ function apm_manage_pages_custom_column($column_name,$post_id,$apm_node){
 **Add custom action links**
 
 **apm_tree_row_actions**
+
 * Type : action
 * Purpose : allows to add actions links (in addition to the native *Rename*, *(Pre)view*, *(Un)publish*, *Edit*, *Template*, *Move*, *Delete*) in APM tree rows
 * Takes 2 arguments
@@ -244,6 +248,7 @@ function apm_manage_pages_custom_column($column_name,$post_id,$apm_node){
 * $apm_node : Contains APM specific page info used to display the row (object)
 
 **apm_list_row_actions**
+
 * Type : action
 * Purpose : allows to add actions links (in addition to the native *Rename*, *(Pre)view*, *(Un)publish*, *Edit*, *Template*, *Delete*) in APM lists rows
 * Takes 2 arguments
@@ -260,7 +265,7 @@ function my_row_actions($page_id,$apm_node){
       <?php
 }`
 
-=Who's behind this plugin ?=
+= Who's behind this plugin ? =
 
 *January the 21st, 2013* - Advanced Page Manager has been designed and developed by a group of Wordpress addicts doing professional Wordpress projects (among other things like living a normal life). The idea of Advanced Page Manager emerged as we were working on news sites with a lot of pro contents that were... not news but kind of knowledge base (eg. best practices, tutorials...). It was obvious that we could do those contents with standard posts but we had also to twist them in a way we felt as not as a good way to go. So we decided to give a boost to Wordpress pages to match a more CMS like management. But we also felt that we had to respect Wordpress (UI of course and also technically speaking). We are very happy to release it after 4 months of hard work and hope that you will enjoy it in your own projects.
 
