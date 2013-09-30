@@ -8,6 +8,8 @@ class ApmActionsAjax{
 	
 	/**
 	 * Answer that will be converted to json in self::send_json()
+	 * An "echoed_before_json" key may be added if some content was echoed before
+	 * the json answer (see self::send_json()).
 	 * @var array
 	 */
 	protected static $json_data = array('ok'=>1,'error'=>'');
@@ -72,6 +74,15 @@ class ApmActionsAjax{
 		}
 		
 		self::$json_data['action'] = isset($_POST['action']) ? $_POST['action'] : '';
+		
+		//If something was displayed before, clean it so that our answer can
+		//be valid json (and store it in an "echoed_before_json" answer key
+		//so that we can warn the user about it) :
+		$content_already_echoed = ob_get_contents();
+		if( !empty($content_already_echoed) ){
+			self::$json_data['echoed_before_json'] = $content_already_echoed;
+			ob_end_clean();
+		}
 		
 		header('Content-type: application/json');
 		echo json_encode(self::$json_data);

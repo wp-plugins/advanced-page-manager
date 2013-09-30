@@ -11,7 +11,6 @@
  */
 
 header('Content-Type: text/html; charset=UTF-8');
-define('DOING_AJAX', true);
 
 require_once(dirname(__FILE__)."/api_ajax.php");
 ApmApiAjax::check_admin_user_connected();
@@ -19,8 +18,8 @@ ApmApiAjax::check_admin_user_connected();
 //Check the AJAX nonce
 check_ajax_referer('apm_ajax_request');
 
-if ( isset($_POST['action']) ){
-	$action = $_POST['action'];
+if ( isset($_POST['apm_action']) ){
+	$action = $_POST['apm_action'];
 	
 	require_once(dirname(__FILE__)."/tree_ajax.php");
 	require_once(dirname(__FILE__)."/list_ajax.php");

@@ -1,5 +1,6 @@
 <?php
 
+require_once(dirname(__FILE__).'/config.php');
 require_once(dirname(__FILE__).'/tree.php');
 require_once(dirname(__FILE__).'/tree_db.php');
 require_once(dirname(__FILE__).'/nodes_data.php');
@@ -490,6 +491,48 @@ class ApmTreeData{
 	}
 	
 	/**
+	 * Insert a given page in the APM tree
+	 * @param object $post
+	 */
+	public static function insert_page_from_outside($page){
+		$tree = new ApmTreeData();
+		$tree->load_last_tree();
+		if( !$tree->is_wp_page_in_tree($page->ID) && in_array($page->post_status,ApmConfig::$allowed_post_status) ){
+			$parent_id = empty($page->post_parent) ? ApmTreeData::root_id : $page->post_parent;
+			$insert_infos = $tree->get_new_page_insert_infos_from_sibling($parent_id,$page->menu_order);
+			$tree->add_new_node($insert_infos['action'],$insert_infos['index_node'],'page',$page->ID);
+		}
+	}
+	
+	private function get_new_page_insert_infos_from_sibling($parent_id,$sibling_menu_order){
+		
+		$sibling_menu_order = (int)$sibling_menu_order;
+		
+		$insert_infos = array('action'=>'insert_child','index_node'=>$parent_id);
+		
+		$parent_tree_infos = $this->apm_tree->get_node_tree_infos($parent_id);
+		$siblings = $parent_tree_infos['children'];
+		
+		if( $sibling_menu_order < (count($siblings)-1) ){
+			$insert_infos['action'] = 'insert_after';
+			$insert_infos['index_node'] = $siblings[$sibling_menu_order];
+		}
+		
+		return $insert_infos;
+	}
+	
+	/**
+	 * Checks if a given page id is in the APM tree
+	 * @param int $page_wp_id
+	 * @return boolean
+	 */
+	public function is_wp_page_in_tree($page_wp_id){
+		//Assumes that apm_id = wp_id
+		$tree_nodes = $this->get_tree_nodes();
+		return in_array($page_wp_id,$tree_nodes);
+	}
+	
+	/**
 	 * If $load_data = true and $no_wp_data = true, will load only internal data (type and wp_id).
 	 * @param boolean $load_data
 	 * @param boolean $no_wp_data
@@ -681,14 +724,21 @@ class ApmTreeData{
 		$tree = array($root_apm_id=>array());
 		$this->nodes_data->add($root_apm_id,'root',0,true);
 		
-		$sql_autodrafts = " AND post_status != 'auto-draft' ";
+		$allowed_post_status = ApmConfig::$allowed_post_status;
+		
 		if( $allow_autodrafts ){
-			$sql_autodrafts = '';
+			$allowed_post_status[] = 'auto-draft';
 		}
+		
+		$allowed_post_status = apply_filters('apm_allowed_post_status',$allowed_post_status,'set_tree_and_nodes_data_from_wp_entities');
+		
+		$allowed_post_status = array_map("addslashes",$allowed_post_status);
+		
+		$sql_status = " AND post_status IN ('". implode("','",$allowed_post_status) ."') ";
 		
 		$sql = "SELECT ID,post_parent 
 					FROM $wpdb->posts 
-					WHERE post_type='page' $sql_autodrafts 
+					WHERE post_type='page' $sql_status 
 					ORDER BY post_parent ASC, menu_order ASC";
 		
 		$pages = $wpdb->get_results($sql);
@@ -914,8 +964,20 @@ class ApmTreeData{
 	}
 	
 	public static function insert_wp_page($page_name,$page_template=''){
-		$new_page_id = wp_insert_post(array('post_title'=>$page_name,
-											'post_type'=>'page'));
+		
+		remove_action('wp_insert_post',  array('advanced_page_manager','wp_insert_post'));
+		
+		$post_type = 'page'; //TODO dynamise post_type
+		
+		//Use of "default_title" hook so that the default title may still be customized using "default_title" hook with a higher priority than 10.
+		$callback = create_function('$title,$post', 'return $post->post_type == "'. $post_type .'" ? "'. $page_name .'" : $title;');
+		add_filter('default_title', $callback, 10, 2);
+		$post = get_default_post_to_edit($post_type);
+		remove_filter('default_title', $callback);
+		
+		$new_page_id = wp_insert_post((array)$post);
+		
+		add_action('wp_insert_post',  array('advanced_page_manager','wp_insert_post'),10,2);
 		
 		if( !empty($page_template) ){
 			ApmNodeDataDisplay::set_page_template($new_page_id,$page_template);
@@ -1200,8 +1262,9 @@ class ApmListData{
 		$orderby_data = self::get_sql_orderby_data($orders);
 		$order_join = $orderby_data['join'];
 		$order_by = $orderby_data['order_by'];
-		
 	
+		//TODO : this "autodrafts" test can be removed since when we're here, 
+		//the status can only be "online" or "offline".  
 		$sql_autodrafts = " AND post_status != 'auto-draft' ";
 		if( $allow_autodrafts ){
 			$sql_autodrafts = '';
@@ -1539,8 +1602,12 @@ class ApmWpPageTreeData{
 	 */
 	private $node_data = null;	
 	
-	public function __construct(){
-		$this->node_data = new ApmNodeDataDisplay();
+	public function __construct(ApmNodeDataDisplay $default_node_data=null){
+		if( $default_node_data == null ){
+			$this->node_data = new ApmNodeDataDisplay();
+		}else{
+			$this->node_data = clone $default_node_data;
+		}
 	}
 	
 	public function __get($property){
@@ -1583,12 +1650,13 @@ class ApmWpPageTreeData{
 	public static function get_multiple_from_wp_pages($wp_pages,$no_marked_infos=false,$no_wp_data=false,$no_position_infos=false,$extended_position_infos=true){
 		$nodes_data = array();
 		if( self::load_last_tree() ){
-			$nodes_data = ApmNodeDataDisplay::get_multiple_from_wp_pages($wp_pages);
-			foreach($nodes_data as $wp_id => $node_data){
+			$nodes_data_raw = ApmNodeDataDisplay::get_multiple_from_wp_pages($wp_pages);
+			foreach($nodes_data_raw as $wp_id => $node_data){
 				if( !$no_position_infos ){
-					$nodes_data[$wp_id]->set_node_position(self::$apm_tree->get_node_tree_infos($node_data->apm_id,$extended_position_infos));
-					$nodes_data[$wp_id]->convert_positions_infos_to_wp_ids(); //TODO : this is not optimized...
+					$node_data->set_node_position(self::$apm_tree->get_node_tree_infos($node_data->apm_id,$extended_position_infos));
+					$node_data->convert_positions_infos_to_wp_ids(); //TODO : this is not optimized...
 				}
+				$nodes_data[$wp_id] = new ApmWpPageTreeData($node_data);
 			}
 		}
 		return $nodes_data;

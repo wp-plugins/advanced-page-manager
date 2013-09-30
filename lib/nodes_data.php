@@ -212,6 +212,10 @@ class ApmNodeDataDisplay{
 		return null;
 	}
 	
+	public function __clone(){
+		$this->intern_data = clone $this->intern_data;
+	}
+	
 	public function set($attributes = array()){
 		foreach($attributes as $attribute=>$value){
 			if( property_exists(get_class($this),$attribute) ){
@@ -248,7 +252,7 @@ class ApmNodeDataDisplay{
 	 * @param ApmNodeDataIntern $intern_data
 	 */
 	public function set_intern_data(ApmNodeDataIntern $intern_data){
-		$this->intern_data = $intern_data;
+		$this->intern_data = clone $intern_data;
 	}
 	
 	public function set_meta_data($key,$value){
@@ -717,14 +721,51 @@ class ApmNodeDataDisplayCollection{
 				$posts = array_merge($posts,$posts_draft,$posts_pending,$posts_trash,$posts_private);
 				*/
 				
+				$allowed_post_status = ApmConfig::$allowed_post_status;
+				
 				//Note : we keep 'auto-draft' here to handle them in case there are some in $ids_wp,
 				//which should not happen because 'auto-draft' are not retrieved at APM tree creation,
 				//but can still happen if 'auto-draft' status is set outside the plugin.  
-				$posts = get_pages(array('include'=>array_values($ids_wp),'post_type'=>'page','post_status'=>'draft,publish,pending,trash,private,auto-draft'));
-
+				$allowed_post_status[] = 'auto-draft';
+				
+				$allowed_post_status = apply_filters('apm_allowed_post_status',$allowed_post_status,'load_wp_data');
+				
+				$allowed_post_status = array_map("addslashes",$allowed_post_status);
+				
+				$posts = get_pages(array('include'=>array_values($ids_wp),'post_type'=>'page','post_status'=>implode(',',$allowed_post_status)));
+				
+				/*
+				//If some problem occurs related to the use of the get_pages() function (for example if it is
+				//hooked by another plugin), keep in mind that we can do it by hand:
+				//To build the exact same query as in the native get_pages() function:
+				//Copied from the WP get_pages() function :
+				global $wpdb;
+				$inclusions = '';
+				$incpages = wp_parse_id_list(array_values($ids_wp));
+				if( !empty( $incpages ) ){
+					foreach( $incpages as $incpage ) {
+						if( empty($inclusions) ){
+							$inclusions = $wpdb->prepare(' AND ( ID = %d ', $incpage);
+						}else{
+							$inclusions .= $wpdb->prepare(' OR ID = %d ', $incpage);
+						}
+					}
+				}
+				if( !empty($inclusions) ){
+					$inclusions .= ')';
+				}
+				
+				$sql = "SELECT * FROM $wpdb->posts   
+						WHERE post_type = 'page' AND post_status IN ('draft', 'publish', 'pending', 'trash', 'private', 'auto-draft')   
+							  $inclusions 
+						ORDER BY wp_posts.post_title ASC";
+				
+				//$posts = $wpdb->get_results($sql);
+				//_prime_post_caches($posts_ids);
+				 */
+				
 				//TODO : test performances issues when there is a lot of pages (>500) : 
-				//commpare this get_pages() call to a query built by hand :
-				//global $wpdb;
+				//And commpare this to :
 				//$posts = $wpdb->get_results($wpdb->prepare("SELECT * from $wpdb->posts WHERE post_type = 'page' AND ID IN ('". implode("','",$ids_wp) ."')"));
 				
 			}

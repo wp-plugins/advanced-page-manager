@@ -6,8 +6,8 @@
 	?>
 
 	<?php 
-		$feedback_msg = !empty($_GET['apm_options_msg']) ? stripslashes($_GET['apm_options_msg']) : ApmOptions::$feedback['msg'];
-		$feedback_type = !empty($_GET['apm_options_msg_type']) ? stripslashes($_GET['apm_options_msg_type']) : ApmOptions::$feedback['type'];
+		$feedback_msg = !empty($_GET['apm_options_msg']) ? ApmOptions::get_msg( $_GET['apm_options_msg'] ) : ApmOptions::$feedback['msg'];
+		$feedback_type = !empty($_GET['apm_options_msg_type']) ? ApmOptions::get_msg_type( $_GET['apm_options_msg_type'] ) : ApmOptions::$feedback['type'];
 	?>
 	<?php if( !empty($feedback_msg) ): ?>
 		<div class="<?php echo $feedback_type == 'error' ? 'error' : 'updated' ?>">

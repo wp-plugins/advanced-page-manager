@@ -212,9 +212,9 @@ jQuery().ready(function(){
 		
 		var s = {};
 		s.type = "POST";
-		s.url = apm_api_js_data.site_url + "/?apm_sb_ajax_page=ajax-processor";
+		s.url = apm_api_js_data.ajax_url;
 		
-		s.data = $.extend(s.data, { action: action, _ajax_nonce: apm_api_js_data.wp_nonce });
+		s.data = $.extend(s.data, { action: 'apm_tree_actions', apm_action: action, _ajax_nonce: apm_api_js_data.wp_nonce });
 		if(params){
 			s.data = $.extend(s.data, params);
 		}		
@@ -230,8 +230,8 @@ jQuery().ready(function(){
 		s.global = false;
 		s.timeout = 100000;
 		s.success = ajax_success_callback;
-		s.error = function(ajax_answer) {
-			_ajax_error(action,ajax_answer);
+		s.error = function(jqXHR,textStatus,errorThrown) {
+			_ajax_error(action,jqXHR,textStatus,errorThrown);
 		}
 		
 		_actions_times[action] = {start: new Date().getTime(), stop: 0, duration: 0};
@@ -241,20 +241,30 @@ jQuery().ready(function(){
 	}
 	
 	function _ajax_success(action,ajax_answer){
-		switch(action){
-			case 'tree_load':
-				break;
+		if( ajax_answer.echoed_before_json != undefined ){
+			var before_json = ajax_answer.echoed_before_json;
+			if( typeof console == "object" ){
+				console.log('APM AJAX Warning : some content is echoed before JSON answer : '+
+						(before_json.length > 500 ? before_json.substr(0,500)+ '...' : before_json) );
+			}
 		}
 	}
 	
-	function _ajax_error(action,ajax_answer){
-		//This fires also when we click to fast to change page while an action has been called.
-		//TODO : maybe do something here but not the following alert... very annoying...
-		//alert('Error : jQuery.ajax() failed!');
-		switch(action){
-			case 'tree_load':
-				break;
+	function _ajax_error(action,jqXHR,textStatus,errorThrown){
+		
+		if( jqXHR.readyState == 0 ){
+			//This fires when we click too fast to change page while an action has been called.
+			//This is of no consequence. Just return.
+			return;
 		}
+		
+		if( typeof console == "object" ){
+			console.log('APM AJAX Error on '+ action +' : '+ textStatus);
+			var json_answer = jqXHR.responseText;
+			console.log('APM AJAX JSON answer : '+ (json_answer.length > 500 ? json_answer.substr(0,500)+ '...' : json_answer) );
+			console.log('Error thrown : ', errorThrown, jqXHR);
+		}
+		
 	}
 	
 });

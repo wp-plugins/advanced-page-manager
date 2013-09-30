@@ -97,6 +97,12 @@ $cpt = 1;
 								<?php if( have_right() ) : ?>
 									<span class="delete"><a href="#" title="<?php _e('Delete', ApmConfig::i18n_domain); ?>" class="action-delete-page"><?php _e('Delete', ApmConfig::i18n_domain); ?></a></span>
 								<?php endif; ?>
+								
+								<?php
+					                //Hook to add custom actions links : see also "apm_tree_row_actions" (tree_display.php) to do the same on APM tree display.
+					                do_action( 'apm_list_row_actions', $node->wp_id, $node );
+				                ?>
+				                
 							</div><!-- End row-actions -->
 
                         </div> <!-- End apm-title-wrapper -->

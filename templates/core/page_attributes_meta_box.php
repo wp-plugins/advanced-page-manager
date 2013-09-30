@@ -91,12 +91,18 @@ if( $post->post_type == 'page' ){
 			<?php
 		}else{
 			//The page is not in APM tree :
+			$allowed_post_status = ApmConfig::$allowed_post_status;
+			$allowed_post_status = apply_filters('apm_allowed_post_status',$allowed_post_status,'page_attributes_meta_box');
+			$message = __('This page is not in the Advanced Page Manager tree.',ApmConfig::i18n_domain);
+			$message = apply_filters('apm_page_attributes_metabox_not_in_tree_message',$message);
 			?>
-			<div id="apm_page_not_in_apm_tree">
-				<?php _e('This page is not in the Advanced Page Manager tree.',ApmConfig::i18n_domain) ?>
-				<br/><br/><a class="button" href="<?php echo ApmOptions::get_restore_page_url($post->ID) ?>"><?php _e('Insert this page as last page of the tree',ApmConfig::i18n_domain) ?></a>
-			</div>
-			<?php 
+				<div id="apm_page_not_in_apm_tree">
+					<?php echo $message ?>
+					<?php if( in_array($post->post_status,$allowed_post_status) ): ?>
+						<br/><br/><a class="button" href="<?php echo ApmOptions::get_restore_page_url($post->ID) ?>"><?php _e('Insert this page as last page of the tree',ApmConfig::i18n_domain) ?></a>
+					<?php endif ?>
+				</div>
+			<?php
 		}
 		
 	}else{

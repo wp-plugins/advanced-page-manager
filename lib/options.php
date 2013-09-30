@@ -1,5 +1,7 @@
 <?php
 
+require_once(dirname(__FILE__) .'/config.php');
+
 class ApmOptions{
 	
 	/**
@@ -122,13 +124,20 @@ class ApmOptions{
 			$tree_wp_ids = ApmNodeDataIntern::get_wp_ids($tree_apm_ids);
 			$tree_wp_ids = array_diff($tree_wp_ids,array(ApmTreeData::root_id)); //Remove the zeroes (for root).
 			
-			$sql_autodrafts = " AND post_status != 'auto-draft' ";
+			$allowed_post_status = ApmConfig::$allowed_post_status;
+			
 			if( $allow_autodrafts ){
-				$sql_autodrafts = '';
+				$allowed_post_status[] = 'auto-draft';
 			}
 			
+			$allowed_post_status = apply_filters('apm_allowed_post_status',$allowed_post_status,'get_lost_pages');
+			
+			$allowed_post_status = array_map("addslashes",$allowed_post_status);
+			
+			$sql_status = " AND post_status IN ('". implode("','",$allowed_post_status) ."') ";
+			
 			$sql = "SELECT * FROM $wpdb->posts AS p 
-							 WHERE p.post_type = 'page' $sql_autodrafts AND p.ID NOT IN ('". implode("','",$tree_wp_ids) ."')";
+							 WHERE p.post_type = 'page' $sql_status AND p.ID NOT IN ('". implode("','",$tree_wp_ids) ."')";
 			
 			$lost_pages_raw = $wpdb->get_results($sql);
 			
@@ -169,24 +178,28 @@ class ApmOptions{
 		$redirect_url = self::get_base_url(true);
 		
 		if( !empty($_GET['apm_options_action']) ){
+
+			//Bugfix "Headers already sent" on action in Pages > Settings > Plugin data management for some configs.
+			//TODO : see if we can identify more precisely what is causing this to find a more targeted fix.
+			$buffer = ob_get_clean();
 			
 			switch( $_GET['apm_options_action'] ){
 				
 				case 'delete_all_data':
 					ApmTreeData::delete_database_data(false);
-					wp_redirect(add_query_arg(array('apm_options_msg'=>urlencode(__("Plugin data (except options) have been deleted",ApmConfig::i18n_domain))),$redirect_url));
+					wp_redirect( add_query_arg( array( 'apm_options_msg'=>2 ), $redirect_url ) );
 					exit();
 					break;
 					
 				case 'delete_options':
 					ApmOptions::delete_database_data();
-					wp_redirect(add_query_arg(array('apm_options_msg'=>urlencode(__("Plugin options have been deleted ",ApmConfig::i18n_domain))),$redirect_url));
+					wp_redirect( add_query_arg( array( 'apm_options_msg'=>3 ), $redirect_url ) );
 					exit();
 					break;
 					
 				case 'delete_folding_infos':
 					ApmTreeState::delete_all();
-					wp_redirect(add_query_arg(array('apm_options_msg'=>urlencode(__("Fold / Unfold data have been deleted",ApmConfig::i18n_domain))),$redirect_url));
+					wp_redirect( add_query_arg( array( 'apm_options_msg'=>4 ), $redirect_url ) );
 					exit();
 					break;
 					
@@ -219,7 +232,7 @@ class ApmOptions{
 					//Restore apm tree from WP pages tree
 					$tree = new ApmTreeData();
 					$tree->reset_tree_and_data();
-					wp_redirect(add_query_arg(array('apm_options_msg'=>urlencode(__('APM tree successfully restored from Wordpress pages',ApmConfig::i18n_domain))),$redirect_url));
+					wp_redirect( add_query_arg( array( 'apm_options_msg'=>5 ), $redirect_url ) );
 					exit();
 					break;
 					
@@ -227,10 +240,14 @@ class ApmOptions{
 					$tree = new ApmTreeData();
 					$tree->load_last_tree();
 					$tree->synchronize_tree_with_wp_entities();
-					wp_redirect(add_query_arg(array('apm_options_msg'=>urlencode(__('Wordpress pages tree successfully restore from APM tree',ApmConfig::i18n_domain))),$redirect_url));
+					wp_redirect( add_query_arg( array( 'apm_options_msg'=>6 ), $redirect_url ) );
 					exit();
 					break;
 			}
+			
+			//Bugfix "Headers already sent" on action in Pages > Settings > Plugin data management for some configs.
+			//TODO : see if we can identify more precisely what is causing this to find a more targeted fix.
+			echo $buffer;
 			
 			do_action('apm_options_handle_get_action',$_GET['apm_options_action'],$redirect_url);
 			
@@ -257,6 +274,42 @@ class ApmOptions{
 			$tree = new ApmTreeData();
 			$tree->load_last_tree(); //Will load the tree from WP entities
 		}
+	}
+	
+	/**
+	* Returns a feedback message
+	*/
+	public static function get_msg( $msg ){
+		$msg = intval( $msg );
+		
+		// Possible feedback messages displayed when editing options
+		$feedback_msg = array(
+			1 => __( 'Addons activation parameters saved successfuly', ApmConfig::i18n_domain ),
+			2 => __( 'Plugin data (except options) have been deleted', ApmConfig::i18n_domain ),
+			3 => __( 'Plugin options have been deleted ', ApmConfig::i18n_domain ),
+			4 => __( 'Fold / Unfold data have been deleted', ApmConfig::i18n_domain ),
+			5 => __( 'APM tree successfully restored from Wordpress pages', ApmConfig::i18n_domain ),
+			6 => __( 'Wordpress pages tree successfully restore from APM tree', ApmConfig::i18n_domain ),
+			7 => __( 'Flags data has been successfully deleted', ApmConfig::i18n_domain ),
+			8 => __( 'Page taxonomies settings saved successfuly', ApmConfig::i18n_domain ),
+		);
+		
+		return !empty( $feedback_msg[$msg] ) ? $feedback_msg[$msg] : self::$feedback['msg'];
+	}
+	
+	/**
+	* Returns a feedback message type
+	*/
+	public static function get_msg_type( $type ){
+		$type = intval( $type );
+		
+		// Possible feedback message types displayed when editing options
+		$feedback_type = array(
+			1 => 'info',
+			2 => 'error',
+		);
+		
+		return !empty( self::$feedback_type[$type] ) ? self::$feedback_type[$type] : self::$feedback['type'];
 	}
 	
 	/**

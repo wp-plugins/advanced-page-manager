@@ -1,9 +1,9 @@
-=== Advanced Page Manager ===
+﻿=== Advanced Page Manager ===
 Contributors: Uncategorized Creations
 Tags: pages, page, manage, management, page management, tree, rearrange, order, reorder, hierarchical, admin, cms, content management
 Requires at least: 3.4.2
-Tested up to: 3.5.1
-Stable tag: 1.0
+Tested up to: 3.6.1
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -24,7 +24,7 @@ Discover how in 3 minutes (better in HD or 480p).
 * **Classic actions.** Of course, classic actions such as *Edit*, *Preview*/*View* are still there !
 * **Add, move and delete pages from within the tree.** But you will also be able to add, move and delete pages from within the tree. And no more cumbersome drag/drop to move pages. We have created a zen way for you to do that :-) Also, you don't have to edit to add a page anymore. Just click the *Add New* button.
 * **New Status for pages.** Wordpress Status are fine for posts but sound odd for pages. With APM, your pages are online or... offline. Simple no ?
-* **Publish/unpublish.** Push online (or offline) one or more pages directly from the tree.
+* **Publish/unpublish.** Push online (or pull offline) one or more pages directly from the tree.
 * **Template Management.** Affect or change template for 1 page or any selected range of pages.
 * **Select pages.** We also provide an easy way to select all subpages for a given parent page.
 * **Where is my page ?** From the *Edit* panel, the result lists or even the theme itself, you'll be able to find your page in the tree thanks to the *Where my page?* button.
@@ -33,11 +33,11 @@ Discover how in 3 minutes (better in HD or 480p).
 * **Theme integration.** We also respect your theme. Pages are still pages even managed by APM. No need to change your templates.
 * **Template Tags.** However, we provide a new set of Template Tags to handle pages in your themes. Feel free to use them if you need to.
 * **Don't like it ?** Under the hood, it's still Wordpress. If you uninstall APM, your pages will be there because it's your content and we care for it.
-* **Don't speak English ?** APM is also available in French and Dutch. Want it in your language ? All strings are available to translation in the [Wordpress way](http://codex.wordpress.org/Translating_WordPress).
+* **Don't speak English ?** APM is also available in French. Want it in your language ? All strings are available to translation in the [Wordpress way](http://codex.wordpress.org/Translating_WordPress).
 
 **Download and install Advanced Page Manager to fully enjoy it !**
 
-Don't forget to keep up with APM at [http://www.uncategorized-creations.com/](http://www.uncategorized-creations.com/) or follow our Twitter account : [@uncatcrea](https://twitter.com/UncatCrea).
+Don't forget to keep up with APM at [http://www.uncategorized-creations.com/](http://www.uncategorized-creations.com/) or follow us on Twitter : [@uncatcrea](https://twitter.com/UncatCrea).
 
 == Installation ==
 
@@ -55,28 +55,28 @@ Advanced Page Manager doesn't require specific action to be installed. Just foll
 Well nothing at all. The plugin creates a new management panel and still relies on the regular Wordpress pages. However we do use a new way to store page relationships to speed up display. Also we don't create any new database table and regular relationships are maintained. If you uninstall the plugin, pages will be there safe and sane.
 
 = Does the plugin have hooks ? =
-Currently, APM has some hooks but not a consistent way. We are going to develop a lot more hooks in the post 1.0 era.
+Currently, APM has some hooks but not in a consistent way. We are going to develop a lot more hooks in the post 1.0 era. Currently, hooks are available to add custom columns and action links (see *Other Notes* tab)
 
 = Is the plugin compatible with the Wordpress menu builder ? =
 Yes. The plugin manages regular pages and the menu builder has still access to them.
 
 = Do I have to modify my theme ? =
-No. Regular page template tags and functions still work. Regular page template and permalinks are also supported. Also, we do have new template tags, however it is not mandatory to use them.
+No. Regular page template tags and functions still work. Regular page template and permalinks are also supported. We do have new template tags, however it is not mandatory to use them.
 
 = Does the plugin support extra columns in the page tree and lists ? =
-We've looked at the WP core itself and to several plugins making use of those extra columns (as Simply Exclude or Wordpress SEO for example). We found 2 things. First, using the WP hook is very difficult as it expects to be on the original panel. Second, plugins insert themselves in many ways into the Pages panel (eg. bringing new scripts testing the current URL). So unfortunatly, we came to the conclusion that we won't support extra columns as it will introduce to much specific and unstable code in our plugin. However, we perfectly understand the importance of this feature for the users and the developpers. So we've added following hooks to add extra columns : apm_manage_pages_columns, apm_manage_pages_custom_column and apm_load_wp_data.
+We've looked at the WP core itself and to several plugins making use of those extra columns (as Simply Exclude or Wordpress SEO for example). We found 2 things. First, using the WP hook is very difficult as it expects to be on the original panel. Second, plugins insert themselves in many ways into the Pages panel (eg. bringing new scripts testing the current URL). So unfortunatly, we came to the conclusion that we won't support extra columns as it will introduce to much specific and unstable code in our plugin. However, we perfectly understand the importance of this feature for the users and the developpers. So we've added following hooks to add extra columns : apm_manage_pages_columns, apm_manage_pages_custom_column and apm_load_wp_data (see *Other Notes* tab)
 
 = How do I report a bug ? =
 Please, use the *Support* tab. However, remember this is not a commercial support of any kind. We check regularly the coming requests and questions and try to keep up with answering them. But we also have regular jobs and... lifes. One more detail : at the moment, we're all located in France. So if you are in another timezone, remember that even french sleep (yes I know, weird).
 
 = Do you accept patches ? =
-Yes (and we thank you in advance if so). All patches will be validated by our lead developer. If accepted, you'll be mentionned as contributor to the plugin (if you accept so). To submit a patch please report in the *Support* tab.
+Yes (and we thank you in advance if so). All patches will be validated by our lead developer (yes that's you Mathieu). If accepted, you'll be mentionned as contributor to the plugin (if you accept so). To submit a patch please report in the *Support* tab.
 
 = Do you have a website for this plugin ? =
-Yes and... no :-) Home for APM is here : [http://www.uncategorized-creations.com/](http://www.uncategorized-creations.com/). At the moment, it's a single page with a logo. You can leave your email address to get fresh news about APM. In the future, it will be a complete website. In the meantime, you can also follow us on Twitter : [@uncatcrea](https://twitter.com/UncatCrea).
+Yes and... no :-) Home for APM is here : [http://www.uncategorized-creations.com/](http://www.uncategorized-creations.com/). At the moment, it's a single page with a logo. You can leave your email address to get fresh news about APM. In far distant future, it might be a complete website. In the meantime, you can also follow us on Twitter : [@uncatcrea](https://twitter.com/UncatCrea).
 
 = Which version of Wordpress do you support ? =
-We support Wordpress 3.4.2 and 3.5 since version 0.9. We don't plan to support earlier versions.
+We support Wordpress 3.4.2, 3.5 up to the 3.6.1. We don't plan to support earlier versions.
 
 = Which version of browsers do you support ? =
 All developments have been done under the last version of Chrome, Firefox, Safari and Internet Explorer (Windows 7).
@@ -103,12 +103,22 @@ By default, APM is in English and French. If you wish to, you can translate the 
 
 == Changelog ==
 
+= 1.1 =
+* Wordpress 3.6 support
+* 0000061: Support for get_default_post_to_edit() function
+* 0000060: Headers already sent in options page (thanks to Lionel Pointet)
+* 0000059: XSS In Options Panel (thanks to Lionel Pointet)
+* 0000058: Hooks needed to add action links
+* 0000056: Enhanced post_status and wp_ajax management
+* 0000051: define('FORCE_SSL_ADMIN', true) blocks pages tree loading
+
 = 1.0 =
-* 0000042: Unable to (un)fold subpages when moving pages
-* 0000044: Add New side panel remains open after all pages have been deleted
-* 0000045: After folding/unfolding subpages, Move layer disappears
-* 0000046: Add a pointer after plugin activation
+* WordPress 3.5 support
 * 0000047: Add Ajax spinner
+* 0000046: Add a pointer after plugin activation
+* 0000045: After folding/unfolding subpages, Move layer disappears
+* 0000044: Add New side panel remains open after all pages have been deleted
+* 0000042: Unable to (un)fold subpages when moving pages
 
 = 0.9 =
 * 0000040: [Wordpress 3.5.0] Edit Parent is always active
@@ -126,7 +136,7 @@ By default, APM is in English and French. If you wish to, you can translate the 
 * 0000029: Search label not positioned correctly
 
 = 0.8 =
-* 0000026: Selecting a row will update the Change template panel after one more click (thanks to Lionet Pointet)
+* 0000026: Selecting a row will update the Change template panel after one more click (thanks to Lionel Pointet)
 * 0000025: Current template message with only the last selected page which has a custom template (thanks to Lionel Pointet)
 * 0000009: Pages with 'auto-draft' status appear as empty rows when loading the tree from WP pages (thanks to Lionel Pointet)
 * Recent Pages list has been reactivated following user request.
@@ -147,14 +157,14 @@ By default, APM is in English and French. If you wish to, you can translate the 
 * 0000011: Move link available when tree has only one page
 
 = 0.6.5 =
-* 0000002: No position selected in the Add New side panel when clicking (again) the Add New button
-* 0000004: Ajax layer not covering the whole width of the tree
-* 0000005: Add New layer doesn't cover the whole width of the page slot
-* 0000006: When creating the first page, Page Selected label is displayed
-* 0000007: After creating the first page, Add New panel remains open
-* 0000008: On the move layer, cancel button should be a link
-* 0000009: Pages with 'auto-draft' status appear as empty rows when loading the tree from WP pages
 * 0000010: Simple quotes are backslashed in french translation feedback messages
+* 0000009: Pages with 'auto-draft' status appear as empty rows when loading the tree from WP pages
+* 0000008: On the move layer, cancel button should be a link
+* 0000007: After creating the first page, Add New panel remains open
+* 0000006: When creating the first page, Page Selected label is displayed
+* 0000005: Add New layer doesn't cover the whole width of the page slot
+* 0000004: Ajax layer not covering the whole width of the tree
+* 0000002: No position selected in the Add New side panel when clicking (again) the Add New button
 * Cleans and secures (nonce) the options panel
 * Forces redirection of standard WP pages list to our cutomized pages tree (if it happens that someone gets there by any other way)
 * Removes obsolete config constants
@@ -171,7 +181,88 @@ By default, APM is in English and French. If you wish to, you can translate the 
 Beta 1 released
 
 == About ==
-Advanced Page Manager has been designed and developed by a group of Wordpress addicts doing professional Wordpress projects (among other things like living a normal life). The idea of Advanced Page Manager emerged as we were working on news sites with a lot of pro contents that were... not news but kind of knowledge base (eg. best practices, tutorials...). It was obvious that we could do those contents with standard posts but we had also to twist them in a way we felt as not as a good way to go. So we decided to give a boost to Wordpress pages to match a more CMS like management. But we also felt that we had to respect Wordpress (UI of course and also technically speaking). We are very happy to release it after 4 months of hard work and hope that you will enjoy it in your own projects.
+
+=Hooks=
+
+**Add custom columns**
+
+**apm_manage_pages_columns**
+* Type filter
+* Purpose : allows to add or modify columns to display on the APM pages tree and lists
+* Takes one argument / return value
+* **$apm_columns** : associative array where keys are the name of the columns, and values are the header texts for those columns
+* The usage is the same as [the native "manage_pages_columns" WordPress hook](http://codex.wordpress.org/Plugin_API/Filter_Reference/manage_pages_columns)
+
+**apm_manage_pages_custom_column**
+* Type : action
+* Purpose : displays the custom column information for each page row in the APM tree.
+* Takes 3 arguments
+* **$column_name** : column name (string)
+* **$post_id** : WordPress ID of the page row being displayed (int)
+* **$apm_node** : APM specific data about this page (object)
+* The usage is the same as [the native "manage_pages_custom_column" WordPress hook](http://codex.wordpress.org/Plugin_API/Action_Reference/manage_pages_custom_column)
+
+**Example :** create and populate a new column in the APM tree
+`add_filter('apm_manage_pages_columns', 'add_my_custom_column');
+function add_my_custom_column($apm_columns){
+      $apm_columns['my_new_column_name'] = "Header text (or HTML) for that column";
+      return $apm_columns;
+}
+add_action('apm_manage_pages_custom_column','apm_manage_pages_custom_column',10,3);
+function apm_manage_pages_custom_column($column_name,$post_id,$apm_node){
+      if( $column_name == 'my_new_column_name' ){
+             ?>
+             Display here the content of the column for the page with ID = $post_id
+             <?php
+      }
+}`
+
+** apm_load_wp_data**
+* Type : action
+* Purpose : allows to preload information about all pages at once that are going to be displayed in the APM tree. Useful when creating custom columns : you load the data required in the custom column in one single query before display, instead of making one query per page row
+* Takes one argument
+* **$found_pages** : associative array of the pages (WorPress pages objects) that are going to be displayed in the APM tree. The array is indexed on pages IDs
+
+**Example**
+`public static function apm_load_wp_data($found_pages){
+      //If a custom columns needs some WP pages data (like pages taxonomies for example) that
+      //is not loaded by APM by default for performance concern, we can preload 
+      //it here using update_post_caches() on $found_pages :
+      update_post_caches($found_pages,'page');
+
+      //Note : APM natively preloads pages meta (using update_postmeta_cache()), so there's
+      //no need to do it here.
+}`
+
+**Add custom action links**
+
+**apm_tree_row_actions**
+* Type : action
+* Purpose : allows to add actions links (in addition to the native *Rename*, *(Pre)view*, *(Un)publish*, *Edit*, *Template*, *Move*, *Delete*) in APM tree rows
+* Takes 2 arguments
+* $page_id : Wordpress page id of the row we add the action link to (int)
+* $apm_node : Contains APM specific page info used to display the row (object)
+
+**apm_list_row_actions**
+* Type : action
+* Purpose : allows to add actions links (in addition to the native *Rename*, *(Pre)view*, *(Un)publish*, *Edit*, *Template*, *Delete*) in APM lists rows
+* Takes 2 arguments
+* $page_id : Wordpress page id of the row we add the action link to (int)
+* $apm_node : Contains APM specific page info used to display the row (object)
+
+**Example**
+`add_action('apm_tree_row_actions','my_row_actions');
+add_action('apm_list_row_actions','my_row_actions');
+function my_row_actions($page_id,$apm_node){
+      //Echo new action link(s) here :
+      ?>
+      <span class="my_action"><a href="#" title="My Action">My action</a></span>
+      <?php
+}`
+
+=Who's behind this plugin ?=
+
+*January the 21st, 2013* - Advanced Page Manager has been designed and developed by a group of Wordpress addicts doing professional Wordpress projects (among other things like living a normal life). The idea of Advanced Page Manager emerged as we were working on news sites with a lot of pro contents that were... not news but kind of knowledge base (eg. best practices, tutorials...). It was obvious that we could do those contents with standard posts but we had also to twist them in a way we felt as not as a good way to go. So we decided to give a boost to Wordpress pages to match a more CMS like management. But we also felt that we had to respect Wordpress (UI of course and also technically speaking). We are very happy to release it after 4 months of hard work and hope that you will enjoy it in your own projects.
 
 We'd like to thank the [*Groupe Moniteur*](http://www.groupemoniteur.fr/), a french B2B news company, that allowed us to develop this project. More specificaly, we thank Caroline Tessier and Claire de Smedt, both wonderful project managers for their help (and patience).
 

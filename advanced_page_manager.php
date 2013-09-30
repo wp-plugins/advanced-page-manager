@@ -2,7 +2,7 @@
 /*
  * Plugin Name: Advanced Page Manager
  * Description: A plugin that redefines the way you create, move, edit and publish your pages.  
- * Version: 1.0
+ * Version: 1.1
  * Author: Uncategorized Creations
  * Plugin URI: http://www.uncategorized-creations.com/
  * Author URI: http://www.uncategorized-creations.com/
@@ -49,6 +49,8 @@ class advanced_page_manager{
 		register_deactivation_hook( __FILE__, array(__CLASS__, 'deactivate' ) );
 		register_uninstall_hook( __FILE__, array(__CLASS__, 'uninstall' ) );
 		
+		add_action('wp_ajax_apm_tree_actions', array(__CLASS__, 'ajax_tree_actions'));
+		
 		add_action('admin_menu', array(__CLASS__, 'admin_menu'));
 		
 		//For the settings panel : admin_menu with priority 99 so that it's allways the last one.
@@ -68,11 +70,10 @@ class advanced_page_manager{
 		
 		add_action('plugins_loaded', array(__CLASS__,'plugins_loaded'));
 		
-		add_filter('query_vars', array(__CLASS__,'query_vars'));
-		
-		add_action('template_redirect', array(__CLASS__,'ajax_redirect'));
-		
 		add_action('template_redirect', array(__CLASS__,'seo_permalinks_addon_parachute'), 1);
+		
+		//Deactivated for now because handling page insertion by other plugins has to be thoroughly tested :
+		//add_action('wp_insert_post',  array(__CLASS__,'wp_insert_post'),10,2);
 	}
 	
 	/**
@@ -225,16 +226,11 @@ class advanced_page_manager{
 	/**
 	 * Handles AJAX requests by redirecting them to the plugin AJAX processor
 	 */
-	public static function ajax_redirect() {
+	public static function ajax_tree_actions() {
 		$ajax_path = plugin_dir_path(__FILE__) .'ajax/';
-		switch( get_query_var('apm_sb_ajax_page') ) {
-			case 'ajax-processor':
-				include($ajax_path . 'ajax-processor.php');
-				exit;
-			default:
-				break;
-		}
-	} 
+		include($ajax_path . 'ajax-processor.php');
+		exit;
+	}
 	
 	/**
 	 * Plugin specific redirections
@@ -261,23 +257,23 @@ class advanced_page_manager{
 			}
 		}
 		
-	}
-	
-	/**
-	 * Defines AJAX query var
-	 * @param array $queries
-	 */
-	public static function query_vars($queries) {
-		array_push($queries, 'apm_sb_ajax_page');
-		return $queries;
+		//Bugfix "Headers already sent" on action in Pages > Settings > Plugin data management for some configs.
+		//TODO : see if we can identify more precisely what is causing this to find a more targeted fix. 
+		//(see ApmOptions::handle_actions())
+		if( !empty( $_GET['apm_options_action'] ) ){
+			ob_start();
+		}
+		
 	}
 	
 	/**
 	 * Defines the vars that are passed from PHP to javascript thru localize_script().
 	 */
 	private static function get_js_vars(){
+		
 		$js_vars = array(
-			'site_url' => get_bloginfo('url'),
+			'site_url' => get_bloginfo('wpurl'),
+			'ajax_url' => admin_url( '/admin-ajax.php' ),
 			'wp_nonce' => wp_create_nonce( 'apm_ajax_request' ),
 			'login_url' => wp_login_url(),
 			'login_url_redirect_to_browse_page' => wp_login_url(ApmBoContext::get_browse_url()),
@@ -375,6 +371,18 @@ class advanced_page_manager{
 			exit($redirect_url);
 		}
 		
+	}
+	
+	/**
+	 * To handle pages inserted from outside APM (by another plugin for example)
+	 * @param int $post_id
+	 * @param object $post
+	 */
+	public static function wp_insert_post($post_id,$post){
+		if( $post->post_type == 'page' ){
+			//Deactivated for now because handling page insertion by other plugins has to be thoroughly tested :
+			//ApmTreeData::insert_page_from_outside($post);
+		}
 	}
 	
 	/**

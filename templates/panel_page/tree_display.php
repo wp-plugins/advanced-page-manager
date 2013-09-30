@@ -128,6 +128,10 @@ $total_nodes = count( $nodes );
 									<span class="delete"><a href="#" title="<?php _e('Delete', ApmConfig::i18n_domain); ?>" class="action-delete-page"><?php _e('Delete', ApmConfig::i18n_domain); ?></a></span>
 								<?php endif; ?>
 
+				                <?php
+				                	//Hook to add custom actions links : see also "apm_list_row_actions" (list_display.php) to do the same on APM lists displays.
+				                	do_action('apm_tree_row_actions', $node->wp_id, $node);
+				                ?>
 
 							</div> <!-- End row-actions -->
                         </div> <!-- End apm-title-wrapper -->

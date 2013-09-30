@@ -9,4 +9,9 @@ class ApmConfig{
 	const i18n_domain = 'advanced-page-manager';
 	const apm_seo_permalinks_id_url_var = 'apm-';
 	
+	/**
+	 * Only pages with the following post status will be loaded in APM tree.
+	 * This can be modified via the "apm_allowed_post_status" hook
+	 */
+	public static $allowed_post_status = array('draft','publish','pending','trash','private');
 }

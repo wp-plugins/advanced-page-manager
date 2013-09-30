@@ -37,7 +37,11 @@ class ApmCustomColumns{
 				foreach(self::$custom_columns[$index] as $column_name => $value){
 					?>
 					<td class="column-<?php echo $column_name ?>-td">
-						<?php do_action('apm_manage_pages_custom_column',$column_name,$post_id,$node) ?>		
+						<?php do_action('apm_manage_pages_custom_column',$column_name,$post_id,$node) ?>
+						
+						<?php //TODO : activate native custom columns hook when a specific APM option is set : ?>		
+						<?php //do_action('manage_pages_custom_column',$column_name,$post_id) ?>
+						<?php //do_action('manage_page_posts_custom_column',$column_name,$post_id) ?>
 					</td>
 					<?php 
 				}
@@ -75,6 +79,10 @@ class ApmCustomColumns{
 									 	);
 									 
 			$filtered_columns = apply_filters('apm_manage_pages_columns',$default_apm_columns);
+			
+			//TODO : activate native custom columns hook when a specific APM option is set
+			//$filtered_columns = apply_filters('manage_pages_columns',$filtered_columns);
+			//$filtered_columns = apply_filters('manage_page_posts_columns',$filtered_columns);
 			
 			$default_keys = array_values(array_keys($default_apm_columns));
 			$filtered_keys = array_values(array_keys($filtered_columns));

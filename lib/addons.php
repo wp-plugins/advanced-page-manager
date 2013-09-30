@@ -174,7 +174,7 @@ class ApmAddons{
 				}
 
 				//Reload page in case the addon changes the BO menu :
-				wp_redirect(add_query_arg(array('apm_options_msg'=>urlencode(__('Addons activation parameters saved successfuly',ApmConfig::i18n_domain))),ApmOptions::get_base_url(true)));
+				wp_redirect( add_query_arg( array( 'apm_options_msg'=>1 ), ApmOptions::get_base_url( true ) ) );
 				exit();
 			}
 			
