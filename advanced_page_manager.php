@@ -2,7 +2,7 @@
 /*
  * Plugin Name: Advanced Page Manager
  * Description: A plugin that redefines the way you create, move, edit and publish your pages.  
- * Version: 1.1
+ * Version: 1.2
  * Author: Uncategorized Creations
  * Plugin URI: http://www.uncategorized-creations.com/
  * Author URI: http://www.uncategorized-creations.com/

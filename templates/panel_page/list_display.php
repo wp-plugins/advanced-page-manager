@@ -123,7 +123,7 @@ $cpt = 1;
 						<div class="picto-unpublish"></div>
 						<strong><?php echo $status[$node->status] ?></strong>
 					<?php endif; ?>
-					<p><?php echo preg_replace('|(\d{4}).(\d{2}).(\d{2}) (\d{2}).(\d{2}).(\d{2})|','$3/$2/$1',$node->publication_date) ?></p>
+					<p><?php echo mysql2date(__( 'Y/m/d' ), $node->publication_date, true);?></p>
 				</td>
 
 				<?php
@@ -132,7 +132,7 @@ $cpt = 1;
 			    ?>
 				    
 				<td>
-					<p><?php echo preg_replace('|(\d{4}).(\d{2}).(\d{2}) (\d{2}).(\d{2}).(\d{2})|','$3/$2/$1',$node->publication_date) ?></p>
+					<p><?php echo apm_get_page_date($node) ?></p>
 				</td>
 
 				<?php

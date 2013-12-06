@@ -214,6 +214,7 @@ class ApmTreeData{
 		
 		if( $went_ok ){
 			$this->synchronize_tree_with_wp_entities($synchronisation_data);
+			wp_update_post(array('ID'=>$node_choice)); //So that date_modified changes!
 		}
 		
 		return $went_ok;
@@ -1513,6 +1514,8 @@ class ApmListData{
 				$join = "LEFT JOIN $wpdb->postmeta AS pm ON pm.post_id = p.ID AND pm.meta_key = '_wp_page_template'";
 			}
 			
+			$join = apply_filters('apm_custom_sql_join',$join,$orders);
+			
 			foreach($orders as $orderby => $order){
 				//$orderby can be : 'title','marked','node_state','date','template'
 				switch($orderby){
@@ -1530,6 +1533,12 @@ class ApmListData{
 						$order_by .= (!empty($order_by) ? ', ' : '') . "pm.meta_value $order";
 						break;
 				}
+				
+				$custom_order_by = apply_filters('apm_custom_sql_orderby','',$orderby,$order);
+				if( !empty($custom_order_by) ){
+					$order_by .= (!empty($order_by) ? ', ' : '') . $custom_order_by;
+				}
+				
 			}
 			
 			if( !empty($order_by) ){

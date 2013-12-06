@@ -205,17 +205,20 @@ jQuery().ready(function(){
 				if(input_content.val().length > 0) {
 					input_content.parent().hide();
 
+					link.text( input_content.val() );
+					link.show();
+					
 					// Up to date of title page
 					$.apm_tree.set_node_property(
 						$.apm_common.get_node( input_content ),
 						'node_title',
 						input_content.val(),
 						0,
-						function(){}
+						function(ajax_answer){
+							$.apm_common.replace_updated_node(ajax_answer);
+						}
 					);
-
-					link.text( input_content.val() );
-					link.show();
+					
 				}
 				else {
 					alert(apm_messages.required_title);

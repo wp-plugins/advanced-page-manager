@@ -56,6 +56,41 @@ function get_template_pagination($position = 'top') {
 	return $output;
 }
 
+/**
+ * Retrieves page date the same way it is retrieved in native panel :
+ * see /wp-admin/includes/class-wp-posts-list-table.php
+ */
+function apm_get_page_date($node){
+	global $mode;
+
+	$post_date = $node->publication_date;
+	$post_date_gmt = $node->publication_date_gmt;
+	
+	//For legacy, because APM didn't set the gmt date at page creation before :
+	if ( $node->status == 2 && '0000-00-00 00:00:00' == $post_date_gmt ) {
+		$post_date_gmt = date('Y-m-d H:i:s',strtotime($post_date) - (get_option( 'gmt_offset' ) * 3600));
+	}
+	
+	if ( '0000-00-00 00:00:00' == $post_date ) {
+		$t_time = $h_time = __( 'Unpublished' );
+		$time_diff = 0;
+	} else {
+		$t_time = mysql2date(__( 'Y/m/d g:i:s A' ), $post_date, true);
+		$m_time = $post_date;
+		$time = mysql2date('G', $post_date_gmt, false);
+
+		$time_diff = time() - $time;
+		if ( $time_diff > 0 && $time_diff < DAY_IN_SECONDS )
+			$h_time = sprintf( __( '%s ago' ), human_time_diff( $time ) );
+		else
+			$h_time = mysql2date( __( 'Y/m/d' ), $m_time );
+	}
+
+	$page_date = '<abbr title="' . $t_time . '">' . apply_filters( 'apm_post_date_column_time', $h_time, $node, 'apm-date', $mode ) . '</abbr>';
+
+	return $page_date;
+}
+
 // Check right of current user for actions access
 function have_right() {
 	$current_user = wp_get_current_user();

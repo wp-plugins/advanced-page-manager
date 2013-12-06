@@ -1,9 +1,9 @@
 ﻿=== Advanced Page Manager ===
 Contributors: Uncategorized Creations
-Tags: pages, page, manage, management, page management, tree, rearrange, order, reorder, hierarchical, admin, cms, content management
+Tags: pages, page, manage, management, page management, tree, rearrange, order, reorder, hierarchical, admin, cms, content management, addon
 Requires at least: 3.4.2
-Tested up to: 3.6.1
-Stable tag: 1.1
+Tested up to: 3.7.1
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -18,6 +18,8 @@ Discover how in 3 minutes (better in HD or 480p).
 [youtube http://www.youtube.com/watch?v=Sj3046LGefg]
 
 = So, what should you expect from this plugin ? =
+
+**NEW** We have begun to release addons for Advanced Page Manager ! Well, there is only one :-) It allows to add a sortable Last modified column in panels.
 
 * **An easy understand tree.** All your pages are presented in an easy to understand tree with all necessary actions to take care of them.
 * **Browse, Show/hide subpages.** The plugin even remembers the state of each page so that you won't have to browse again and again the tree to find the same page.
@@ -41,13 +43,22 @@ Don't forget to keep up with APM at [http://www.uncategorized-creations.com/](ht
 
 == Installation ==
 
-Advanced Page Manager doesn't require specific action to be installed. Just follow the regular process :
+**Advanced Page Manager doesn't require specific action to be installed. Just follow the regular process :**
 
 1. Upload `advanced-page-manager` to the `/wp-content/plugins/` directory
 
 1. Activate the plugin through the *Plugins* menu in WordPress
 
 1. Click the standard *Pages* item in the admin menu to access the new management panel
+
+**If you like to activate addons :**
+
+1. Go to *Settings panel* (in the *Pages* admin menu)
+
+1. To activate an addon, choose *Activated* in the corresponding dropdown list
+
+1. Clic the "Save Changes" button (of the *Addons* box)
+
 
 == Frequently Asked Questions ==
 
@@ -56,6 +67,9 @@ Well nothing at all. The plugin creates a new management panel and still relies 
 
 = Does the plugin have hooks ? =
 Currently, APM has some hooks but not in a consistent way. We are going to develop a lot more hooks in the post 1.0 era. Currently, hooks are available to add custom columns and action links (see *Other Notes* tab)
+
+= What are addons ? =
+Addons are optional functionalities you can activate from the *Settings* menu (see *Installation* tab). Think them as plugins for... plugin. At the moment, there is only one addon which allows to add a *Last Modified* sortable column in panels.
 
 = Is the plugin compatible with the Wordpress menu builder ? =
 Yes. The plugin manages regular pages and the menu builder has still access to them.
@@ -76,7 +90,7 @@ Yes (and we thank you in advance if so). All patches will be validated by our le
 Yes and... no :-) Home for APM is here : [http://www.uncategorized-creations.com/](http://www.uncategorized-creations.com/). At the moment, it's a single page with a logo. You can leave your email address to get fresh news about APM. In far distant future, it might be a complete website. In the meantime, you can also follow us on Twitter : [@uncatcrea](https://twitter.com/UncatCrea).
 
 = Which version of Wordpress do you support ? =
-We support Wordpress 3.4.2, 3.5 up to the 3.6.1. We don't plan to support earlier versions.
+We support Wordpress 3.4.2, 3.5 up to the 3.7.1. We don't plan to support earlier versions.
 
 = Which version of browsers do you support ? =
 All developments have been done under the last version of Chrome, Firefox, Safari and Internet Explorer (Windows 7).
@@ -103,8 +117,15 @@ By default, APM is in English and French. If you wish to, you can translate the 
 
 == Changelog ==
 
+= 1.2 =
+* WordPress 3.7 support
+* Last Modified addon 1.0
+* 0000072 : New hooks for 1.2
+* 0000066 : Page field "post_date_gmt" is "0000:00:00 00:00:00" even after page publication
+* 0000063 : When no page template, Where is it ? button doesn't show up in Page Attributes box
+
 = 1.1 =
-* Wordpress 3.6 support
+* WordPress 3.6 support
 * 0000061: Support for get_default_post_to_edit() function
 * 0000060: Headers already sent in options page (thanks to Lionel Pointet)
 * 0000059: XSS In Options Panel (thanks to Lionel Pointet)
@@ -264,6 +285,43 @@ function my_row_actions($page_id,$apm_node){
       <span class="my_action"><a href="#" title="My Action">My action</a></span>
       <?php
 }`
+
+**Sorting Custom Columns**
+
+**apm_custom_sql_orderby’**
+
+* Type : filter
+* Purpose : Define the SQL "order by" for a custom column
+* Takes 3 argument
+* $order_by_sql : mysql order string to return (eg. “p.post_modified DESC”)
+* $orderby : curent column to sort on (eg. “apm-last-modified”)
+* $order : mysql order (ASC or DESC)
+
+**apm_custom_sql_join**
+
+* Type : filter
+* Purpose : Define the SQL "JOIN" statement needed for sorting a custom column
+* Takes 2 argument
+* $join : SQL join string (eg. LEFT JOIN $wpdb->postmeta AS my_pm ON my_pm.post_id = p.ID AND my_pm.meta_key = '_my_meta')
+* $orders : key => value array of sql orders for the current query
+
+**Last Modified addon**
+
+**apm_addon_last_modified_column_label**
+
+* Type : filter
+* Purpose : change the column label
+* Takes 1 argument
+* $column label : column label (string)
+
+**apm_addon_last_modified_date**
+
+* Type : filter
+* Purpose : change the format of the modified date
+* Takes 3 arguments
+* $page_modified_html : final modified date HTML
+* $page_modified_raw : modified date in the native WP format for pages lists
+* $page : WordPress page object
 
 = Who's behind this plugin ? =
 

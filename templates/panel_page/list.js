@@ -53,6 +53,8 @@ jQuery().ready(function(){
 			$('.column-etat a').unbind().bind('click', $.apm_list.sort_state);
 			$('.column-models a').unbind().bind('click', $.apm_list.sort_models);
 			$('.column-date a').unbind().bind('click', $.apm_list.sort_date);
+			
+			$('a.custom-sortable').unbind().bind('click', $.apm_list.sort_custom);
 
 			$.apm_common.init_reload(go_to_node);
 		},
@@ -92,6 +94,24 @@ jQuery().ready(function(){
 
 		sort_date: function() {
 			$.apm_list.sort('date', '.column-date');
+			return false;
+		},
+
+		sort_custom: function() {
+			var th = $(this).closest('th.manage-column');
+			var classes = th.attr('class');
+			
+			classes = classes.replace('manage-column','');
+			classes = classes.replace('desc','');
+			classes = classes.replace('asc','');
+			classes = classes.replace('sortable','');
+			classes = classes.replace('sorted','');
+			classes = classes.replace(/^\s+|\s+$/g, ''); //trim
+			
+			var column = classes.replace('column-','');
+			
+			$.apm_list.sort(column, '.'+ classes);
+			
 			return false;
 		},
 

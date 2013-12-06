@@ -166,6 +166,7 @@ class ApmNodeDataDisplay{
 	private $status;
 		
 	private $publication_date;
+	private $publication_date_gmt;
 	private $template;
 	private $author;
 	private $title;
@@ -301,6 +302,7 @@ class ApmNodeDataDisplay{
 		$this->url_front = get_permalink($post->ID);
 		$this->url_edit = get_edit_post_link($post->ID);
 		$this->publication_date = $post->post_date;
+		$this->publication_date_gmt = $post->post_date_gmt;
 		
 		//Post status:
 		/*$this->status = $post->status;
@@ -506,6 +508,7 @@ class ApmNodeDataDisplay{
 				case 'node_template':
 					$page_template = $value;
 					self::set_page_template($this->wp_id,$page_template);
+					wp_update_post(array('ID'=>$this->wp_id)); //So that date_modified changes!
 					$this->template = $page_template;
 					break;
 				case 'node_marked':
@@ -529,12 +532,10 @@ class ApmNodeDataDisplay{
 				switch( $status ){
 					case 0: 
 					case 1:
+					case 2:
 						wp_update_post(array('ID'=>$this->wp_id,
 					 				 		 'post_status'=>$post_status)
-			   				   );
-						break;
-					case 2:
-						wp_publish_post($this->wp_id);
+			   			);
 						break;
 				}
 				

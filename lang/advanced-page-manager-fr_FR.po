@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Page Manager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-17 17:52+0100\n"
-"PO-Revision-Date: 2013-01-17 17:53+0100\n"
+"POT-Creation-Date: 2013-12-05 09:55+0100\n"
+"PO-Revision-Date: 2013-12-05 09:56+0100\n"
 "Last-Translator: Dev Wp <devwp@devwp.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -14,24 +14,24 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "Plural-Forms: nplurals=2;plural=n>2;\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.5.7\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../advanced_page_manager.php:118
+#: ../advanced_page_manager.php:119
 msgid "All Pages"
 msgstr "Toutes les pages"
 
-#: ../advanced_page_manager.php:152
+#: ../advanced_page_manager.php:153
 msgid "Settings"
 msgstr "Paramètres"
 
-#: ../advanced_page_manager.php:177 ../advanced_page_manager.php:185
-#: ../advanced_page_manager.php:193 ../advanced_page_manager.php:221
-#: ../advanced_page_manager.php:308
+#: ../advanced_page_manager.php:178 ../advanced_page_manager.php:186
+#: ../advanced_page_manager.php:194 ../advanced_page_manager.php:222
+#: ../advanced_page_manager.php:304
 msgid "Resource not found"
 msgstr "Ressource introuvable"
 
-#: ../advanced_page_manager.php:284
+#: ../advanced_page_manager.php:280
 msgid ""
 "Your session has expired.\n"
 "You will be redirected to login page."
@@ -40,33 +40,29 @@ msgstr ""
 "Vous allez être redirigé(e) vers le formulaire de connexion de Wordpress "
 "afin de pouvoir vous reconnecter."
 
-#: ../advanced_page_manager.php:305
+#: ../advanced_page_manager.php:301
 msgid "An $apm_messages array should be defined in"
 msgstr "Un tableau $apm_messages devrait être défini dans"
 
-#: ../advanced_page_manager.php:324 ../ajax/actions_ajax.php:54
+#: ../advanced_page_manager.php:320 ../ajax/actions_ajax.php:56
 msgid "Template not found"
 msgstr "Modèle non trouvé"
 
-#: ../advanced_page_manager.php:350
+#: ../advanced_page_manager.php:346
 msgid "Page Attributes"
 msgstr "Attributs de la page"
 
-#: ../lib/addons.php:177
-msgid "Addons activation parameters saved successfuly"
-msgstr "Etats d'activation des extensions enregistrés"
-
-#: ../lib/custom_columns.php:71 ../templates/panel_page/browse.php:274
+#: ../lib/custom_columns.php:75 ../templates/panel_page/browse.php:274
 #: ../templates/panel_page/browse.php:342
 msgid "Status"
 msgstr "État"
 
-#: ../lib/custom_columns.php:72 ../templates/panel_page/browse.php:286
+#: ../lib/custom_columns.php:76 ../templates/panel_page/browse.php:286
 #: ../templates/panel_page/browse.php:354
 msgid "Date"
 msgstr "Date"
 
-#: ../lib/custom_columns.php:73
+#: ../lib/custom_columns.php:77
 #: ../templates/core/page_attributes_meta_box.php:35
 #: ../templates/panel_page/browse.php:50
 #: ../templates/panel_page/browse.php:298
@@ -76,7 +72,7 @@ msgstr "Date"
 msgid "Template"
 msgstr "Modèle"
 
-#: ../lib/nodes_data.php:243
+#: ../lib/nodes_data.php:248
 msgid ""
 "This page has been deleted from outside Advanced Page Manager. It should be "
 "deleted from this tree, after having put valid subpages in a safe place."
@@ -85,51 +81,63 @@ msgstr ""
 "supprimer de cette arborescence, après avoir mis ses éventuelles sous-pages "
 "en sécurité."
 
-#: ../lib/nodes_data.php:293
+#: ../lib/nodes_data.php:298
 msgid "(no title)"
 msgstr "(pas de titre)"
 
-#: ../lib/options.php:165
+#: ../lib/options.php:174
 msgid "Could not save plugin settings : security check failed."
 msgstr ""
 "Impossible d'enregistrer les modifications sur les paramètres du plugin : le "
 "test de sécurité a échoué."
 
-#: ../lib/options.php:177
-msgid "Plugin data (except options) have been deleted"
-msgstr "Les données du plugin (sauf les options) ont été effacées"
-
-#: ../lib/options.php:183
-msgid "Plugin options have been deleted "
-msgstr "Les options du plugin ont été effacées"
-
-#: ../lib/options.php:189
-msgid "Fold / Unfold data have been deleted"
-msgstr "Les informations de plié / déplié ont été effacées"
-
-#: ../lib/options.php:204
+#: ../lib/options.php:217
 #, php-format
 msgid "The page \"%s\" has been successful restored to the end of the tree"
 msgstr "La page \"%s\" a été restaurée en fin d'arborescence avec succès"
 
-#: ../lib/options.php:213
+#: ../lib/options.php:226
 #, php-format
 msgid "The page to restore (wp_id = %s) is not in lost pages."
 msgstr "La page à restaurer (wp_id = %s) ne fait pas partie des pages perdues."
 
-#: ../lib/options.php:222
+#: ../lib/options.php:260
+msgid "Admin options saved successfuly"
+msgstr "Options enregistrées"
+
+#: ../lib/options.php:287
+msgid "Addons activation parameters saved successfuly"
+msgstr "Etats d'activation des extensions enregistrés"
+
+#: ../lib/options.php:288
+msgid "Plugin data (except options) have been deleted"
+msgstr "Les données du plugin (sauf les options) ont été effacées"
+
+#: ../lib/options.php:289
+msgid "Plugin options have been deleted "
+msgstr "Les options du plugin ont été effacées"
+
+#: ../lib/options.php:290
+msgid "Fold / Unfold data have been deleted"
+msgstr "Les informations de plié / déplié ont été effacées"
+
+#: ../lib/options.php:291
 msgid "APM tree successfully restored from Wordpress pages"
 msgstr "L'arborescence APM restaurée avec succès depuis les pages Wordpress"
 
-#: ../lib/options.php:230
+#: ../lib/options.php:292
 msgid "Wordpress pages tree successfully restore from APM tree"
 msgstr ""
 "Les pages Wordpress ont été restaurées avec succès à partir de "
 "l'arborescence APM"
 
-#: ../lib/options.php:243
-msgid "Admin options saved successfuly"
-msgstr "Options enregistrées"
+#: ../lib/options.php:293
+msgid "Flags data has been successfully deleted"
+msgstr "Les informations de marquage ont été effacées"
+
+#: ../lib/options.php:294
+msgid "Page taxonomies settings saved successfuly"
+msgstr "Paramètres des taxonomies de pages enregistrées avec succès"
 
 #: ../lib/pointers.php:25
 msgid "Advanced Page Manager plugin activated !"
@@ -164,16 +172,16 @@ msgid "All"
 msgstr "Toutes"
 
 #: ../lib/addons/flagged_pages.php:90 ../templates/panel_page/functions.php:13
-#: ../templates/panel_page/functions.php:97
+#: ../templates/panel_page/functions.php:132
 #: ../templates/panel_page_sample/browse.php:40
 msgid "Online"
 msgstr "En ligne"
 
 #: ../lib/addons/flagged_pages.php:94 ../templates/panel_page/functions.php:17
-#: ../templates/panel_page/functions.php:94
-#: ../templates/panel_page/functions.php:95
-#: ../templates/panel_page/functions.php:96
-#: ../templates/panel_page/functions.php:99
+#: ../templates/panel_page/functions.php:129
+#: ../templates/panel_page/functions.php:130
+#: ../templates/panel_page/functions.php:131
+#: ../templates/panel_page/functions.php:134
 #: ../templates/panel_page_sample/browse.php:41
 msgid "Offline"
 msgstr "Hors ligne"
@@ -186,9 +194,33 @@ msgstr "Effacer les données de marquage"
 msgid "delete flags for all pages"
 msgstr "efface le marquage pour toutes les pages"
 
-#: ../lib/addons/flagged_pages.php:143
-msgid "Flags data has been successfully deleted"
-msgstr "Les informations de marquage ont été effacées"
+#: ../lib/addons/last_modified_column.php:16
+#, fuzzy
+msgid "Last Modified"
+msgstr "Modifiée"
+
+#: ../lib/addons/last_modified_column.php:69
+#: ../templates/panel_page/functions.php:75
+msgid "Unpublished"
+msgstr "Non publié(e)"
+
+#: ../lib/addons/last_modified_column.php:72
+#: ../templates/panel_page/functions.php:78
+msgid "Y/m/d g:i:s A"
+msgstr ""
+
+#: ../lib/addons/last_modified_column.php:79
+#: ../templates/panel_page/functions.php:84
+#, php-format
+msgid "%s ago"
+msgstr ""
+
+#: ../lib/addons/last_modified_column.php:81
+#: ../templates/panel_page/functions.php:86
+#: ../templates/panel_page/list_display.php:126
+#: ../templates/panel_page/tree_display.php:156
+msgid "Y/m/d"
+msgstr ""
 
 #: ../lib/addons/pages_taxonomies.php:29
 msgid "Pages Tags"
@@ -208,13 +240,9 @@ msgstr "Paramètres des taxonomies de pages"
 msgid "Save changes"
 msgstr "Enregistrer les modifications"
 
-#: ../lib/addons/pages_taxonomies.php:119
-msgid "Page taxonomies settings saved successfuly"
-msgstr "Paramètres des taxonomies de pages enregistrées avec succès"
-
 #: ../lib/addons/pages_taxonomies.php:150
 msgid "None"
-msgstr ""
+msgstr "Aucune"
 
 #: ../lib/addons/test_crea_transversal_taxos.php:14
 msgid "Tags transversaux"
@@ -308,11 +336,11 @@ msgstr "Effacer les données de plié / déplié"
 msgid "fold all pages."
 msgstr "replie toutes les pages."
 
-#: ../templates/core/page_attributes_meta_box.php:30
+#: ../templates/core/page_attributes_meta_box.php:25
 msgid "Page flagged : click here to unflag"
 msgstr "Page marquée : cliquer ici pour supprimer le marquage de cette page."
 
-#: ../templates/core/page_attributes_meta_box.php:31
+#: ../templates/core/page_attributes_meta_box.php:26
 msgid "Page not flagged : click here to flag"
 msgstr "Page non marquée : cliquer ici pour marquer la page"
 
@@ -323,7 +351,7 @@ msgstr "Modèle de la page"
 #: ../templates/core/page_attributes_meta_box.php:38
 #: ../templates/panel_page/browse.php:52
 #: ../templates/panel_page/browse.php:104
-#: ../templates/panel_page/functions.php:79
+#: ../templates/panel_page/functions.php:114
 #: ../templates/panel_page_sample/browse.php:93
 #: ../templates/panel_page_sample/browse.php:167
 #: ../templates/panel_page_sample/list_display.php:113
@@ -331,46 +359,42 @@ msgstr "Modèle de la page"
 msgid "Default Template"
 msgstr "Modèle par défaut"
 
-#: ../templates/core/page_attributes_meta_box.php:44
-#: ../templates/panel_page/list_display.php:147
+#: ../templates/core/page_attributes_meta_box.php:52
+#: ../templates/panel_page/list_display.php:153
 msgid "Where is it ?"
 msgstr "Où est-elle ?"
 
-#: ../templates/core/page_attributes_meta_box.php:51
+#: ../templates/core/page_attributes_meta_box.php:59
 msgid "Edit Parent"
 msgstr "Modifier parent"
 
-#: ../templates/core/page_attributes_meta_box.php:55
+#: ../templates/core/page_attributes_meta_box.php:63
 msgid "Edit Previous"
 msgstr "Modifier préc."
 
-#: ../templates/core/page_attributes_meta_box.php:57
+#: ../templates/core/page_attributes_meta_box.php:65
 msgid "Edit Next"
 msgstr "Modifier suiv."
 
-#: ../templates/core/page_attributes_meta_box.php:60
+#: ../templates/core/page_attributes_meta_box.php:68
 msgid "Subpage(s)"
 msgstr "Sous-page(s)"
 
-#: ../templates/core/page_attributes_meta_box.php:85
+#: ../templates/core/page_attributes_meta_box.php:93
 msgid "No Subpage"
 msgstr "Aucune sous-page"
 
-#: ../templates/core/page_attributes_meta_box.php:88
+#: ../templates/core/page_attributes_meta_box.php:96
 msgid "Edit Subpage"
 msgstr "Modifier sous-page"
 
-#: ../templates/core/page_attributes_meta_box.php:96
+#: ../templates/core/page_attributes_meta_box.php:104
 msgid "This page is not in the Advanced Page Manager tree."
 msgstr "Cette page n'est pas intégrée à l'arborescence du site."
 
-#: ../templates/core/page_attributes_meta_box.php:97
+#: ../templates/core/page_attributes_meta_box.php:110
 msgid "Insert this page as last page of the tree"
 msgstr "Repositionner cette page en fin d'arborescence."
-
-#: ../templates/core/page_attributes_meta_box.php:104
-msgid "No Page Template found in current theme directory!"
-msgstr "Aucun template de page trouvé dans le répertoire du thème!"
 
 #: ../templates/panel_page/browse.php:12
 #: ../templates/panel_page/browse.php:262
@@ -388,7 +412,7 @@ msgid "Marked Pages"
 msgstr "Pages marquées"
 
 #: ../templates/panel_page/browse.php:38
-#: ../templates/panel_page/tree_display.php:169
+#: ../templates/panel_page/tree_display.php:173
 msgid "Add New"
 msgstr "Ajouter"
 
@@ -549,7 +573,7 @@ msgstr "Récentes"
 msgid "on"
 msgstr "sur"
 
-#: ../templates/panel_page/functions.php:98
+#: ../templates/panel_page/functions.php:133
 msgid "Private"
 msgstr "Privée"
 
@@ -671,6 +695,9 @@ msgid "%s subpage"
 msgid_plural "%s subpages"
 msgstr[0] "%s sous-page"
 msgstr[1] "%s sous-pages"
+
+#~ msgid "No Page Template found in current theme directory!"
+#~ msgstr "Aucun template de page trouvé dans le répertoire du thème!"
 
 #, fuzzy
 #~ msgid "Last Published"
