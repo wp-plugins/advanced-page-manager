@@ -138,6 +138,7 @@ div.big_loader{text-align:center; width: auto}
 .panel-add-page, .panel-change-template{display: none}
 .panel-count-page-checked{color: red; font-weight:900}
 #add-page-model{width: 100%}
+#position-radio-button input[type=radio]{margin:3px}
 
 #left-panels-wrapper{position:relative}
 .column-panel{width:18%; height: 390px; float: left;}
@@ -150,6 +151,7 @@ span.add-page-end{float: right}
 span.cross-close{display: inline-block; background-image: url(img/close.png); width: 14px; height: 15px}
 .postbox{padding: 5px; margin-top: 0px; min-width:100px; width:225px; }
 .postbox .hndle{cursor: default;}
+.js .postbox .hndle{cursor: default;}
 .display-count-page-checked{background: #e4e4e4; padding: 5px; font-weight: 900}
 .label-template-list, .label-current-template{margin-bottom: 3px; font-weight: 900}
 .label-add-page-panel{margin-bottom: 3px; font-weight: 900}

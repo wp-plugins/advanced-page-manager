@@ -2,8 +2,8 @@
 Contributors: Uncategorized Creations
 Tags: pages, page, manage, management, page management, tree, rearrange, order, reorder, hierarchical, admin, cms, content management, addon
 Requires at least: 3.4.2
-Tested up to: 3.7.1
-Stable tag: 1.2
+Tested up to: 3.9
+Stable tag: 1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -18,8 +18,6 @@ Discover how in 3 minutes (better in HD or 480p).
 [youtube http://www.youtube.com/watch?v=Sj3046LGefg]
 
 = So, what should you expect from this plugin ? =
-
-**NEW** We have begun to release addons for Advanced Page Manager ! Well, there is only one :-) It allows to add a sortable Last modified column in panels.
 
 * **An easy understand tree.** All your pages are presented in an easy to understand tree with all necessary actions to take care of them.
 * **Browse, Show/hide subpages.** The plugin even remembers the state of each page so that you won't have to browse again and again the tree to find the same page.
@@ -90,7 +88,7 @@ Yes (and we thank you in advance if so). All patches will be validated by our le
 Yes and... no :-) Home for APM is here : [http://www.uncategorized-creations.com/](http://www.uncategorized-creations.com/). At the moment, it's a single page with a logo. You can leave your email address to get fresh news about APM. In far distant future, it might be a complete website. In the meantime, you can also follow us on Twitter : [@uncatcrea](https://twitter.com/UncatCrea).
 
 = Which version of Wordpress do you support ? =
-We support Wordpress 3.4.2, 3.5 up to the 3.7.1. We don't plan to support earlier versions.
+We support Wordpress 3.4.2 to the 3.9. We don't plan to support earlier versions.
 
 = Which version of browsers do you support ? =
 All developments have been done under the last version of Chrome, Firefox, Safari and Internet Explorer (Windows 7).
@@ -116,6 +114,13 @@ By default, APM is in English and French. If you wish to, you can translate the 
 10. When editing a page, the *Page Attributes* metabox allows to change template. You have a *Where is it?* button to switch back to the tree and you can edit next, previous, parent and subpages without returning to the tree.
 
 == Changelog ==
+
+= 1.3 =
+* WordPress 3.8 and 3.9 support
+* 0000075: Target radio buttons overlap in Add New side panel
+* 0000074: Since 3.8x, slide-out menu appears under page tree
+* 0000073: Add a new page, working.., manually refreshing page before I can access new page
+* 0000065: Creating a page when multisites enabled raises warnings
 
 = 1.2 =
 * WordPress 3.7 support

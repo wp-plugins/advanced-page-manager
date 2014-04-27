@@ -126,7 +126,7 @@ require_once( 'functions.php' );
 			</div>
 		</div>
 	</div>
-	<div style="float:left; width: 80%; z-index:100; position:relative;">
+	<div style="float:left; width: 80%; z-index:auto; position:relative;">
 	    
 		<!-- TODO : drop this code if bug confirmed solved -->
 	    <!--

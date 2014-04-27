@@ -2,7 +2,7 @@
 /*
  * Plugin Name: Advanced Page Manager
  * Description: A plugin that redefines the way you create, move, edit and publish your pages.  
- * Version: 1.2
+ * Version: 1.3
  * Author: Uncategorized Creations
  * Plugin URI: http://www.uncategorized-creations.com/
  * Author URI: http://www.uncategorized-creations.com/
@@ -237,6 +237,11 @@ class advanced_page_manager{
 	 */
 	public static function admin_redirect(){
 		global $pagenow, $typenow, $plugin_page;
+		
+		//Compatibility with Visual Composer
+		if( isset($_GET['vc_action']) ){
+			return;
+		}
 		
 		if( $pagenow == 'post-new.php' && $typenow == 'page' ){
 			//Redirect "New page" to our "All pages" panel :

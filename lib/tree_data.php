@@ -976,6 +976,12 @@ class ApmTreeData{
 		$post = get_default_post_to_edit($post_type);
 		remove_filter('default_title', $callback);
 		
+		//Fix very strange bug related to $post->post_category not being an array.
+		// > warning in wp-includes/post.php line 2755 :
+		if( isset($post->post_category) && !empty($post->post_category) && !is_array($post->post_category) ){
+			$post->post_category = array($post->post_category);
+		}
+		
 		$new_page_id = wp_insert_post((array)$post);
 		
 		add_action('wp_insert_post',  array('advanced_page_manager','wp_insert_post'),10,2);
