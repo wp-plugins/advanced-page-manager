@@ -2,7 +2,7 @@
 /*
  * Plugin Name: Advanced Page Manager
  * Description: A plugin that redefines the way you create, move, edit and publish your pages.  
- * Version: 1.3
+ * Version: 1.4
  * Author: Uncategorized Creations
  * Plugin URI: http://www.uncategorized-creations.com/
  * Author URI: http://www.uncategorized-creations.com/
@@ -116,7 +116,7 @@ class advanced_page_manager{
 	 */
 	public static function admin_menu(){
 		
-		$browse_pages_menu = add_submenu_page( 'edit.php?post_type=page', __('All Pages',ApmConfig::i18n_domain), __('All Pages',ApmConfig::i18n_domain), 'edit_published_posts','apm_browse_pages_menu', array(__CLASS__,'bo_panel_template'));
+		$browse_pages_menu = add_submenu_page( 'edit.php?post_type=page', __('All Pages',ApmConfig::i18n_domain), __('All Pages',ApmConfig::i18n_domain), 'edit_pages','apm_browse_pages_menu', array(__CLASS__,'bo_panel_template'));
 		add_action('admin_print_styles-'. $browse_pages_menu,  array(__CLASS__,'admin_print_styles_admin_page'));
 	
 		remove_submenu_page('edit.php?post_type=page','post-new.php?post_type=page');

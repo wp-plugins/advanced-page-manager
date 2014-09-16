@@ -327,6 +327,9 @@ class ApmNodeDataDisplay{
 			case 'trash':
 				$this->status = 4; //'Trash';
 				break;
+			case 'future':
+				$this->status = 5; //'Scheduled';
+				break;
 			default:
 				$this->status = 0; //'Offline';
 				break;

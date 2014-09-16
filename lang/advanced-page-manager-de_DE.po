@@ -1,0 +1,730 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Advanced Page Manager vbeta 1 (0.6)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-08-30 21:16+0100\n"
+"PO-Revision-Date: 2014-08-30 23:19+0100\n"
+"Last-Translator: Friedrich Seydel <fs@crushed-eyes.de>\n"
+"Language-Team: Friedrich Seydel <f.seydel@crushed-eyes.com>\n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
+"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
+"X-Poedit-Basepath: ../\n"
+"X-Textdomain-Support: yes\n"
+"X-Generator: Poedit 1.6.4\n"
+"X-Poedit-SearchPath-0: .\n"
+
+# @ advanced-page-manager
+#: advanced_page_manager.php:119
+msgid "All Pages"
+msgstr "Alle Seiten"
+
+# @ advanced-page-manager
+#: advanced_page_manager.php:153
+msgid "Settings"
+msgstr "Einstellungen"
+
+# @ advanced-page-manager
+#: advanced_page_manager.php:178 advanced_page_manager.php:186
+#: advanced_page_manager.php:194 advanced_page_manager.php:222
+#: advanced_page_manager.php:309
+msgid "Resource not found"
+msgstr "Ressource nicht gefunden."
+
+# @ advanced-page-manager
+#: advanced_page_manager.php:285
+msgid ""
+"Your session has expired.\n"
+"You will be redirected to login page."
+msgstr ""
+"Ihre Sitzung ist abgelaufen.\n"
+"\vSie werden zur Anmeldeseite weitergeleitet."
+
+# @ advanced-page-manager
+#: advanced_page_manager.php:306
+msgid "An $apm_messages array should be defined in"
+msgstr "Ein $apm_messages array sollte definiert sein in"
+
+# @ advanced-page-manager
+#: advanced_page_manager.php:325 ajax/actions_ajax.php:56
+msgid "Template not found"
+msgstr "Template nicht gefunden."
+
+# @ default
+#: advanced_page_manager.php:351
+msgid "Page Attributes"
+msgstr "Seitenattribute"
+
+#: lib/addons/last_modified_column.php:16
+msgid "Last Modified"
+msgstr "Zuletzt geändert"
+
+#: lib/addons/last_modified_column.php:69
+#: templates/panel_page/functions.php:75
+msgid "Unpublished"
+msgstr "Unveröffentlicht"
+
+#: lib/addons/last_modified_column.php:72
+#: templates/panel_page/functions.php:78
+msgid "Y/m/d g:i:s A"
+msgstr "d.m.Y H:i"
+
+#: lib/addons/last_modified_column.php:79
+#: templates/panel_page/functions.php:84
+#, php-format
+msgid "%s ago"
+msgstr "vor %s"
+
+#: lib/addons/last_modified_column.php:81
+#: templates/panel_page/functions.php:86
+#: templates/panel_page/list_display.php:126
+#: templates/panel_page/tree_display.php:156
+msgid "Y/m/d"
+msgstr "d.m.Y"
+
+# @ advanced-page-manager
+#: lib/custom_columns.php:75 templates/panel_page/browse.php:274
+#: templates/panel_page/browse.php:342
+msgid "Status"
+msgstr "Status"
+
+# @ advanced-page-manager
+#: lib/custom_columns.php:76 templates/panel_page/browse.php:286
+#: templates/panel_page/browse.php:354
+msgid "Date"
+msgstr "Datum"
+
+# @ default
+# @ advanced-page-manager
+#: lib/custom_columns.php:77 templates/core/page_attributes_meta_box.php:35
+#: templates/panel_page/browse.php:50 templates/panel_page/browse.php:298
+#: templates/panel_page/browse.php:366
+#: templates/panel_page/list_display.php:94
+#: templates/panel_page/tree_display.php:115
+msgid "Template"
+msgstr "Template"
+
+#: lib/nodes_data.php:248
+msgid ""
+"This page has been deleted from outside Advanced Page Manager. It should be "
+"deleted from this tree, after having put valid subpages in a safe place."
+msgstr ""
+"Diese Seite wurde von außerhalb des Advanced Page Managers gelöscht. Es "
+"sollte nur direkt hier aus dem Strukturbaum gelöscht werden, nachdem die "
+"relevanten Unterseiten an einen sicheren Ort verschoben wurden."
+
+#: lib/nodes_data.php:298
+msgid "(no title)"
+msgstr "(kein Titel)"
+
+#: lib/options.php:174
+msgid "Could not save plugin settings : security check failed."
+msgstr ""
+"Konnte Plugin-Einstellungen nicht speichern: Der Sicherheitscheck ist "
+"fehlgeschlagen."
+
+# @ advanced-page-manager
+#: lib/options.php:217
+#, php-format
+msgid "The page \"%s\" has been successful restored to the end of the tree"
+msgstr ""
+"Die Seite \"%s\" wurde erfolgreich am Ende des Baums wiederhergestellt."
+
+# @ advanced-page-manager
+#: lib/options.php:226
+#, php-format
+msgid "The page to restore (wp_id = %s) is not in lost pages."
+msgstr ""
+"Die Seite die wiederhergestellt werden soll (wp_id = %s) befindet sich nicht "
+"in den verlorenen Seiten."
+
+# @ advanced-page-manager
+#: lib/options.php:260
+msgid "Admin options saved successfuly"
+msgstr "Admin-Einstellungen wurden erfolgreich gespeichert"
+
+# @ advanced-page-manager
+#: lib/options.php:287
+msgid "Addons activation parameters saved successfuly"
+msgstr ""
+"Die Aktivierungsparameter der Erweiterungen wurden erfolgreich gespeichert"
+
+# @ advanced-page-manager
+#: lib/options.php:288
+msgid "Plugin data (except options) have been deleted"
+msgstr "Plugindaten (bis auf die Einstellungen) wurden gelöscht"
+
+# @ advanced-page-manager
+#: lib/options.php:289
+msgid "Plugin options have been deleted "
+msgstr "Plugin-Einstellungen wurden gelöscht"
+
+# @ advanced-page-manager
+#: lib/options.php:290
+msgid "Fold / Unfold data have been deleted"
+msgstr "Die Daten über den Faltzustand wurden gelöscht."
+
+# @ advanced-page-manager
+#: lib/options.php:291
+msgid "APM tree successfully restored from Wordpress pages"
+msgstr "APM Baum wurde erfolgreich aus Wordpress-Seiten wiederhergestellt"
+
+# @ advanced-page-manager
+#: lib/options.php:292
+msgid "Wordpress pages tree successfully restore from APM tree"
+msgstr ""
+"Wordpress Seitenbaum wurde erfolgreich aus dem APM Baum wiederhergestellt"
+
+#: lib/options.php:293
+msgid "Flags data has been successfully deleted"
+msgstr "Die Einstellungen der Flags wurden erfolgreich gelöscht."
+
+#: lib/options.php:294
+msgid "Page taxonomies settings saved successfuly"
+msgstr "Seiten-Taxonomie-Einstellungen wurden erfolgreich gespeichert"
+
+#: lib/pointers.php:25
+msgid "Advanced Page Manager plugin activated !"
+msgstr "Advanced Page Manager plugin aktiviert!"
+
+#: lib/pointers.php:25
+msgid "Click \"Pages\" item to discover the new Pages panel."
+msgstr ""
+"Das \"Seiten\"-Icon anklicken, um die neue Seiten-Benutzeroberfläche "
+"kennenzulernen."
+
+# @ advanced-page-manager
+#: templates/core/bo_options_panel.php:18
+msgid "Advanced Page Manager settings"
+msgstr "Advanced Page Manager Einstellungen"
+
+# @ advanced-page-manager
+#: templates/core/bo_options_panel.php:22
+msgid "Addons"
+msgstr "Erweiterungen"
+
+# @ advanced-page-manager
+#: templates/core/bo_options_panel.php:35
+#: templates/core/bo_options_panel.php:79
+#: templates/core/bo_options_panel.php:89
+msgid "Deactivated"
+msgstr "Deaktiviert"
+
+# @ advanced-page-manager
+#: templates/core/bo_options_panel.php:36
+#: templates/core/bo_options_panel.php:80
+#: templates/core/bo_options_panel.php:90
+msgid "Activated"
+msgstr "Aktiviert"
+
+# @ advanced-page-manager
+#: templates/core/bo_options_panel.php:44
+#: templates/core/bo_options_panel.php:97
+msgid "Save changes"
+msgstr "Änderungen speichern"
+
+# @ default
+#: templates/core/bo_options_panel.php:53
+msgid "Plugin options"
+msgstr "Plugin-Einstellungen"
+
+# @ advanced-page-manager
+#: templates/core/bo_options_panel.php:75
+msgid "Display Mysql queries in AJAX answers"
+msgstr "MySQL Anfragen mit AJAX Antworten darstellen"
+
+# @ advanced-page-manager
+#: templates/core/bo_options_panel.php:85
+msgid "Display lost pages in the \"All pages\" panel"
+msgstr "Verlorene Seiten im Bereich \"Alle Seiten\" anzeigen"
+
+# @ advanced-page-manager
+#: templates/core/bo_options_panel.php:106
+msgid "Lost pages"
+msgstr "Verlorene Seiten"
+
+# @ advanced-page-manager
+#: templates/core/bo_options_panel.php:113
+msgid "No lost pages found"
+msgstr "Keine verlorenen Seiten gefunden"
+
+# @ advanced-page-manager
+#: templates/core/bo_options_panel.php:120
+msgid "Restore at the end of the page tree"
+msgstr "Am Ende des Seitenbaums wiederherstellen"
+
+# @ advanced-page-manager
+#: templates/core/bo_options_panel.php:134
+msgid "Plugin data management"
+msgstr "Plugindaten verwalten"
+
+# @ advanced-page-manager
+#: templates/core/bo_options_panel.php:139
+msgid "Reinitialize the tree from Wordpress pages"
+msgstr "Den Baum aus den Wordpress-Seiten neu initialisieren"
+
+# @ advanced-page-manager
+#: templates/core/bo_options_panel.php:143
+msgid "Synchronize Wordpress pages tree with the plugin tree"
+msgstr "Wordpress-Seitenbaum mit dem Pluginbaum synchronisieren"
+
+# @ advanced-page-manager
+#: templates/core/bo_options_panel.php:147
+msgid "Delete plugin data except options"
+msgstr "Plugindaten außer Einstellungen löschen"
+
+# @ advanced-page-manager
+#: templates/core/bo_options_panel.php:147
+msgid ""
+"delete plugin tree and fold / unfold data. Doesnt delete plugin options."
+msgstr ""
+"Klappt alle Äste ein und löscht den Pluginbaum. Es werden keine Plugin-"
+"Einstellungen gelöscht."
+
+# @ advanced-page-manager
+#: templates/core/bo_options_panel.php:151
+msgid "Delete plugin options"
+msgstr "Löschen der Plugin-Einstellungen"
+
+# @ advanced-page-manager
+#: templates/core/bo_options_panel.php:151
+msgid "reinitialize plugin options."
+msgstr "Plugin-Einstellungen werden zurückgesetzt."
+
+# @ advanced-page-manager
+#: templates/core/bo_options_panel.php:155
+msgid "Delete fold / unfold data"
+msgstr "Alle Äste einklappen und zurücksetzen."
+
+# @ advanced-page-manager
+#: templates/core/bo_options_panel.php:155
+msgid "fold all pages."
+msgstr "Alle Seiten einklappen."
+
+# @ advanced-page-manager
+#: templates/core/page_attributes_meta_box.php:25
+msgid "Page flagged : click here to unflag"
+msgstr "Seite markiert : Hier klicken um die Markierung aufzuheben"
+
+# @ advanced-page-manager
+#: templates/core/page_attributes_meta_box.php:26
+msgid "Page not flagged : click here to flag"
+msgstr "Seite nicht markiert : Hier klicken um zu markieren"
+
+# @ default
+#: templates/core/page_attributes_meta_box.php:36
+msgid "Page Template"
+msgstr "Seiten-Template"
+
+# @ default
+# @ advanced-page-manager
+#: templates/core/page_attributes_meta_box.php:38
+#: templates/panel_page/browse.php:52 templates/panel_page/browse.php:104
+#: templates/panel_page/functions.php:114
+msgid "Default Template"
+msgstr "Standard-Template"
+
+# @ advanced-page-manager
+#: templates/core/page_attributes_meta_box.php:52
+#: templates/panel_page/list_display.php:153
+msgid "Where is it ?"
+msgstr "Position im Baum zeigen!"
+
+# @ advanced-page-manager
+#: templates/core/page_attributes_meta_box.php:59
+msgid "Edit Parent"
+msgstr "Zur Oberseite"
+
+# @ advanced-page-manager
+#: templates/core/page_attributes_meta_box.php:63
+msgid "Edit Previous"
+msgstr "Vorige Seite"
+
+# @ advanced-page-manager
+#: templates/core/page_attributes_meta_box.php:65
+msgid "Edit Next"
+msgstr "Nächste Seite"
+
+# @ advanced-page-manager
+#: templates/core/page_attributes_meta_box.php:68
+msgid "Subpage(s)"
+msgstr "Unterseite(n)"
+
+# @ advanced-page-manager
+#: templates/core/page_attributes_meta_box.php:93
+msgid "No Subpage"
+msgstr "Keine Unterseite"
+
+# @ advanced-page-manager
+#: templates/core/page_attributes_meta_box.php:96
+msgid "Edit Subpage"
+msgstr "Zur Unterseite"
+
+# @ advanced-page-manager
+#: templates/core/page_attributes_meta_box.php:104
+msgid "This page is not in the Advanced Page Manager tree."
+msgstr "Diese Seite ist nicht im Advanced Page Manager Baum erfasst."
+
+# @ advanced-page-manager
+#: templates/core/page_attributes_meta_box.php:110
+msgid "Insert this page as last page of the tree"
+msgstr "Diese Seite als letzte Seite in den Baums einfügen"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:12 templates/panel_page/browse.php:262
+#: templates/panel_page/browse.php:330
+msgid "Pages"
+msgstr "Seiten"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:12 templates/panel_page/browse.php:134
+msgid "Search results for"
+msgstr "Suchergebnisse für:"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:14
+msgid "Marked Pages"
+msgstr "Markierte Seiten"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:38
+#: templates/panel_page/tree_display.php:173
+msgid "Add New"
+msgstr "Einfügen"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:40
+msgid "Click After, Before or Subpage position button"
+msgstr ""
+"Klicken sie einen der Knöpfe um die Position zu wählen: Davor, Dahinter oder "
+"als Unterseite"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:41
+msgid "Your page needs a title"
+msgstr "Die Seite benötigt einen Titel"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:43 templates/panel_page/js_messages.php:28
+msgid "Selected page"
+msgstr "Ausgewählte Seite"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:45
+msgid "Title"
+msgstr "Titel"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:58
+msgid "Position"
+msgstr "Position"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:60 templates/panel_page/browse.php:248
+msgid "After"
+msgstr "Nach"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:61 templates/panel_page/browse.php:249
+msgid "Before"
+msgstr "Vor"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:62
+msgid "Subpage"
+msgstr "Unterseite"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:67
+msgid "Number"
+msgstr "Nummer"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:75
+msgid "Add"
+msgstr "Hinzufügen"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:76 templates/panel_page/browse.php:118
+msgid "Done"
+msgstr "Fertig"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:79 templates/panel_page/browse.php:121
+#: templates/panel_page/browse.php:230 templates/panel_page/browse.php:237
+#: templates/panel_page/browse.php:251
+#: templates/panel_page/list_display.php:61
+#: templates/panel_page/tree_display.php:82
+msgid "Cancel"
+msgstr "Abbrechen"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:88 templates/panel_page/browse.php:200
+msgid "Change Template"
+msgstr "Template wechseln"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:90 templates/panel_page/js_messages.php:30
+msgid "No page selected"
+msgstr "Keine Seite gewählt"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:93
+msgid "Current Template"
+msgstr "Aktuelles Template"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:95 templates/panel_page/js_messages.php:32
+msgid "Selected pages have different templates"
+msgstr "Die gewählten Seiten haben unterschiedliche Templates"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:99
+msgid "New Template"
+msgstr "Neues Template"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:117
+msgid "Change"
+msgstr "Wechseln"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:175 templates/panel_page/browse.php:177
+msgid "Search Pages"
+msgstr "Seiten durchsuchen"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:183
+msgid "Bulk Actions"
+msgstr "Aktion wählen"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:185
+msgid "Unselect All"
+msgstr "Alle abwählen"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:188
+msgid "Fold All"
+msgstr "Alle einklappen"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:190
+msgid "Unmark All"
+msgstr "Markierungen löschen"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:198
+#: templates/panel_page/list_display.php:86
+#: templates/panel_page/tree_display.php:107
+msgid "Publish"
+msgstr "Veröffentlichen"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:199
+#: templates/panel_page/list_display.php:82
+#: templates/panel_page/tree_display.php:103
+msgid "Unpublish"
+msgstr "Sperren"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:203
+#: templates/panel_page/list_display.php:98
+#: templates/panel_page/tree_display.php:128
+msgid "Delete"
+msgstr "Löschen"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:215 templates/panel_page/browse.php:391
+msgid "Selected Item(s)"
+msgstr "Ausgewählte Elemente"
+
+#: templates/panel_page/browse.php:224
+msgid "Working"
+msgstr "Arbeitet"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:229
+msgid "You have chosen to move this page (and its subpages) elsewhere"
+msgstr ""
+"Sie haben sich entschieden diese Seite (mit Unterseiten) weg zu verschieben"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:236
+msgid "You are adding pages relative to this one"
+msgstr "Sie fügen Seiten relativ zu dieser hinzu"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:247
+msgid "Move my page"
+msgstr "Bewege meine Seite"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:250
+msgid "As a subpage"
+msgstr "Als Unterseite"
+
+# @ advanced-page-manager
+#: templates/panel_page/functions.php:8
+msgid "All"
+msgstr "Alle"
+
+# @ advanced-page-manager
+#: templates/panel_page/functions.php:13
+#: templates/panel_page/functions.php:132
+msgid "Online"
+msgstr "Online"
+
+# @ advanced-page-manager
+#: templates/panel_page/functions.php:17
+#: templates/panel_page/functions.php:129
+#: templates/panel_page/functions.php:130
+#: templates/panel_page/functions.php:131
+#: templates/panel_page/functions.php:134
+msgid "Offline"
+msgstr "Offline"
+
+#: templates/panel_page/functions.php:21
+msgid "Recent Pages"
+msgstr "Neueste Seiten"
+
+# @ advanced-page-manager
+#: templates/panel_page/functions.php:46
+msgid "on"
+msgstr "an"
+
+#: templates/panel_page/functions.php:133
+msgid "Private"
+msgstr "Privat"
+
+# @ advanced-page-manager
+#: templates/panel_page/js_messages.php:5
+msgid "Error"
+msgstr "Fehlermeldung"
+
+# @ advanced-page-manager
+#: templates/panel_page/js_messages.php:6
+msgid "Couldn't load tree"
+msgstr "Konnte den Strukturbaum nicht laden"
+
+# @ advanced-page-manager
+#: templates/panel_page/js_messages.php:7
+msgid "No page ?"
+msgstr "Keine Seite?"
+
+#: templates/panel_page/js_messages.php:10
+msgid "Title required"
+msgstr "Titel erforderlich"
+
+# @ advanced-page-manager
+#: templates/panel_page/js_messages.php:14
+msgid "Create my first page !"
+msgstr "Erstelle die erste Seite!"
+
+# @ advanced-page-manager
+#: templates/panel_page/js_messages.php:15
+msgid "No page online"
+msgstr "Keine Seite online"
+
+# @ advanced-page-manager
+#: templates/panel_page/js_messages.php:16
+msgid "No page offline"
+msgstr "Keine Seite offline"
+
+# @ advanced-page-manager
+#: templates/panel_page/js_messages.php:17
+msgid "No marked page"
+msgstr "Keine markierte Seite"
+
+# @ advanced-page-manager
+#: templates/panel_page/js_messages.php:18
+msgid "No page found"
+msgstr "Keine Seite gefunden."
+
+# @ advanced-page-manager
+#: templates/panel_page/js_messages.php:20
+msgid "Do you really want to delete this page?"
+msgstr "Möchten Sie diese Seite wirklich löschen?"
+
+# @ advanced-page-manager
+#: templates/panel_page/js_messages.php:21
+msgid "Do you really want to delete those pages?"
+msgstr "Möchten Sie diese Seiten wirklich löschen?"
+
+# @ advanced-page-manager
+#: templates/panel_page/js_messages.php:22
+msgid ""
+"Deleting this page will also delete all its subpages. Do you really want to "
+"delete this page?"
+msgstr ""
+"Das löschen dieser Seite löscht auch alle Unterseiten. Möchten Sie diese "
+"Seite wirklich löschen?"
+
+# @ advanced-page-manager
+#: templates/panel_page/js_messages.php:25
+msgid "Please, select at least one page"
+msgstr "Bitte wählen Sie mindesten eine Seite aus"
+
+# @ advanced-page-manager
+#: templates/panel_page/js_messages.php:29
+msgid "Selected pages"
+msgstr "Ausgewählte Seiten"
+
+# @ advanced-page-manager
+#: templates/panel_page/js_messages.php:31
+msgid "No template"
+msgstr "Kein Template"
+
+#: templates/panel_page/list_display.php:50
+#: templates/panel_page/tree_display.php:70
+msgid "Trash"
+msgstr "Papierkorb"
+
+# @ advanced-page-manager
+#: templates/panel_page/list_display.php:66
+#: templates/panel_page/tree_display.php:87
+msgid "Rename"
+msgstr "Umbenennen"
+
+# @ advanced-page-manager
+#: templates/panel_page/list_display.php:71
+#: templates/panel_page/tree_display.php:92
+msgid "View"
+msgstr "Anschauen"
+
+# @ advanced-page-manager
+#: templates/panel_page/list_display.php:73
+#: templates/panel_page/tree_display.php:94
+msgid "Preview"
+msgstr "Vorschau"
+
+#: templates/panel_page/list_display.php:80
+#: templates/panel_page/tree_display.php:101
+msgid "Restore"
+msgstr "Wiederherstellen"
+
+# @ advanced-page-manager
+#: templates/panel_page/list_display.php:90
+#: templates/panel_page/tree_display.php:111
+msgid "Edit"
+msgstr "Bearbeiten"
+
+# @ advanced-page-manager
+#: templates/panel_page/tree_display.php:39
+msgid "Select Subpages"
+msgstr "Unterseiten Auswählen"
+
+# @ advanced-page-manager
+#: templates/panel_page/tree_display.php:40
+msgid "Unselect Subpages"
+msgstr "Unterseiten Abwählen"
+
+# @ advanced-page-manager
+#: templates/panel_page/tree_display.php:123
+msgid "Move"
+msgstr "Verschieben"

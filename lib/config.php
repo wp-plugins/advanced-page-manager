@@ -13,5 +13,5 @@ class ApmConfig{
 	 * Only pages with the following post status will be loaded in APM tree.
 	 * This can be modified via the "apm_allowed_post_status" hook
 	 */
-	public static $allowed_post_status = array('draft','publish','pending','trash','private');
+	public static $allowed_post_status = array('draft','publish','pending','trash','private','future');
 }

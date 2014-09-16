@@ -1,9 +1,9 @@
-﻿=== Advanced Page Manager ===
+=== Advanced Page Manager ===
 Contributors: Uncategorized Creations
 Tags: pages, page, manage, management, page management, tree, rearrange, order, reorder, hierarchical, admin, cms, content management, addon
 Requires at least: 3.4.2
-Tested up to: 3.9
-Stable tag: 1.3
+Tested up to: 4.0
+Stable tag: 1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -78,6 +78,9 @@ No. Regular page template tags and functions still work. Regular page template a
 = Does the plugin support extra columns in the page tree and lists ? =
 We've looked at the WP core itself and to several plugins making use of those extra columns (as Simply Exclude or Wordpress SEO for example). We found 2 things. First, using the WP hook is very difficult as it expects to be on the original panel. Second, plugins insert themselves in many ways into the Pages panel (eg. bringing new scripts testing the current URL). So unfortunatly, we came to the conclusion that we won't support extra columns as it will introduce to much specific and unstable code in our plugin. However, we perfectly understand the importance of this feature for the users and the developpers. So we've added following hooks to add extra columns : apm_manage_pages_columns, apm_manage_pages_custom_column and apm_load_wp_data (see *Other Notes* tab)
 
+= Is there known issues with other plugins? =
+Yes. Notably, we don't support Advanced Access Manager and WPML.
+
 = How do I report a bug ? =
 Please, use the *Support* tab. However, remember this is not a commercial support of any kind. We check regularly the coming requests and questions and try to keep up with answering them. But we also have regular jobs and... lifes. One more detail : at the moment, we're all located in France. So if you are in another timezone, remember that even french sleep (yes I know, weird).
 
@@ -88,13 +91,13 @@ Yes (and we thank you in advance if so). All patches will be validated by our le
 Yes and... no :-) Home for APM is here : [http://www.uncategorized-creations.com/](http://www.uncategorized-creations.com/). At the moment, it's a single page with a logo. You can leave your email address to get fresh news about APM. In far distant future, it might be a complete website. In the meantime, you can also follow us on Twitter : [@uncatcrea](https://twitter.com/UncatCrea).
 
 = Which version of Wordpress do you support ? =
-We support Wordpress 3.4.2 to the 3.9. We don't plan to support earlier versions.
+We support Wordpress 3.4.2 to the 4.0. We don't plan to support earlier versions.
 
 = Which version of browsers do you support ? =
 All developments have been done under the last version of Chrome, Firefox, Safari and Internet Explorer (Windows 7).
 
 = Which language do you support ? =
-By default, APM is in English and French. If you wish to, you can translate the interface in your own language [in the standard Wordpress way](http://codex.wordpress.org/Translating_WordPress).
+By default, APM is in English and French. If you wish to, you can translate the interface in your own language [in the standard Wordpress way](http://codex.wordpress.org/Translating_WordPress). You'll find all translation here: [http://uncategorized-creations.com/advanced-page-manager/translations/](http://uncategorized-creations.com/advanced-page-manager/translations/).
 
 = What is Uncategorized Creations ? =
 *Uncategorized Creations* is the name chosen by a bunch of (french) Wordpress addicts (technical or not). Advanced Page Manager is their first creation. Please see the *Other Notes* tab for more details.
@@ -114,6 +117,12 @@ By default, APM is in English and French. If you wish to, you can translate the 
 10. When editing a page, the *Page Attributes* metabox allows to change template. You have a *Where is it?* button to switch back to the tree and you can edit next, previous, parent and subpages without returning to the tree.
 
 == Changelog ==
+
+= 1.4 =
+* WordPress 4.0 support
+* New translations: Swedish (thanks to Marcus Forsberg), German (thanks to Friedrich Seydel), Romanian (thanks to Zeno Popovici), Italian (thanks to Daniele Raimondi)
+* 0000090: Scheduled pages don't show up in the tree
+* 0000089: Wrong Role Group
 
 = 1.3 =
 * WordPress 3.8 and 3.9 support

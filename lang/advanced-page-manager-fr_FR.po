@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Page Manager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-05 09:55+0100\n"
-"PO-Revision-Date: 2013-12-05 09:56+0100\n"
+"POT-Creation-Date: 2014-09-13 23:15+0100\n"
+"PO-Revision-Date: 2014-09-13 23:16+0100\n"
 "Last-Translator: Dev Wp <devwp@devwp.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "Plural-Forms: nplurals=2;plural=n>2;\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.6.9\n"
 "X-Poedit-SearchPath-0: ..\n"
 
 #: ../advanced_page_manager.php:119
@@ -27,11 +27,11 @@ msgstr "Paramètres"
 
 #: ../advanced_page_manager.php:178 ../advanced_page_manager.php:186
 #: ../advanced_page_manager.php:194 ../advanced_page_manager.php:222
-#: ../advanced_page_manager.php:304
+#: ../advanced_page_manager.php:309
 msgid "Resource not found"
 msgstr "Ressource introuvable"
 
-#: ../advanced_page_manager.php:280
+#: ../advanced_page_manager.php:285
 msgid ""
 "Your session has expired.\n"
 "You will be redirected to login page."
@@ -40,17 +40,124 @@ msgstr ""
 "Vous allez être redirigé(e) vers le formulaire de connexion de Wordpress "
 "afin de pouvoir vous reconnecter."
 
-#: ../advanced_page_manager.php:301
+#: ../advanced_page_manager.php:306
 msgid "An $apm_messages array should be defined in"
 msgstr "Un tableau $apm_messages devrait être défini dans"
 
-#: ../advanced_page_manager.php:320 ../ajax/actions_ajax.php:56
+#: ../advanced_page_manager.php:325 ../ajax/actions_ajax.php:56
 msgid "Template not found"
 msgstr "Modèle non trouvé"
 
-#: ../advanced_page_manager.php:346
+#: ../advanced_page_manager.php:351
 msgid "Page Attributes"
 msgstr "Attributs de la page"
+
+#: ../lib/addons/flagged_pages.php:28
+msgid "Flagged pages"
+msgstr "Pages marquées"
+
+#: ../lib/addons/flagged_pages.php:50
+msgid "Mark"
+msgstr "Marquer"
+
+#: ../lib/addons/flagged_pages.php:51 ../lib/addons/flagged_pages.php:55
+msgid "Unmark"
+msgstr "Démarquer"
+
+#: ../lib/addons/flagged_pages.php:73
+#: ../templates/panel_page_sample/browse.php:42
+msgid "Flagged"
+msgstr "Marquées"
+
+#: ../lib/addons/flagged_pages.php:85 ../templates/panel_page/functions.php:8
+#: ../templates/panel_page_sample/browse.php:39
+msgid "All"
+msgstr "Toutes"
+
+#: ../lib/addons/flagged_pages.php:90 ../templates/panel_page/functions.php:13
+#: ../templates/panel_page/functions.php:132
+#: ../templates/panel_page_sample/browse.php:40
+msgid "Online"
+msgstr "En ligne"
+
+#: ../lib/addons/flagged_pages.php:94 ../templates/panel_page/functions.php:17
+#: ../templates/panel_page/functions.php:129
+#: ../templates/panel_page/functions.php:130
+#: ../templates/panel_page/functions.php:131
+#: ../templates/panel_page/functions.php:134
+#: ../templates/panel_page_sample/browse.php:41
+msgid "Offline"
+msgstr "Hors ligne"
+
+#: ../lib/addons/flagged_pages.php:134
+msgid "Delete flags data"
+msgstr "Effacer les données de marquage"
+
+#: ../lib/addons/flagged_pages.php:134
+msgid "delete flags for all pages"
+msgstr "efface le marquage pour toutes les pages"
+
+#: ../lib/addons/last_modified_column.php:16
+#, fuzzy
+msgid "Last Modified"
+msgstr "Modifiée"
+
+#: ../lib/addons/last_modified_column.php:69
+#: ../templates/panel_page/functions.php:75
+msgid "Unpublished"
+msgstr "Non publié(e)"
+
+#: ../lib/addons/last_modified_column.php:72
+#: ../templates/panel_page/functions.php:78
+msgid "Y/m/d g:i:s A"
+msgstr ""
+
+#: ../lib/addons/last_modified_column.php:79
+#: ../templates/panel_page/functions.php:84
+#, php-format
+msgid "%s ago"
+msgstr ""
+
+#: ../lib/addons/last_modified_column.php:81
+#: ../templates/panel_page/functions.php:86
+#: ../templates/panel_page/list_display.php:128
+#: ../templates/panel_page/tree_display.php:157
+msgid "Y/m/d"
+msgstr ""
+
+#: ../lib/addons/pages_taxonomies.php:29
+msgid "Pages Tags"
+msgstr "Tags pour les pages"
+
+#: ../lib/addons/pages_taxonomies.php:33
+msgid "Pages Categories"
+msgstr "Catégories pour les pages"
+
+#: ../lib/addons/pages_taxonomies.php:71
+msgid "Page taxonomies settings"
+msgstr "Paramètres des taxonomies de pages"
+
+#: ../lib/addons/pages_taxonomies.php:92
+#: ../templates/core/bo_options_panel.php:44
+#: ../templates/core/bo_options_panel.php:97
+msgid "Save changes"
+msgstr "Enregistrer les modifications"
+
+#: ../lib/addons/pages_taxonomies.php:150
+msgid "None"
+msgstr "Aucune"
+
+#: ../lib/addons/reveal_ids_column.php:16
+msgid "ID"
+msgstr ""
+
+#: ../lib/addons/test_crea_transversal_taxos.php:14
+msgid "Tags transversaux"
+msgstr ""
+
+#: ../lib/addons/test_crea_transversal_taxos.php:18
+msgid "Categories transversales"
+msgstr ""
 
 #: ../lib/custom_columns.php:75 ../templates/panel_page/browse.php:274
 #: ../templates/panel_page/browse.php:342
@@ -67,8 +174,8 @@ msgstr "Date"
 #: ../templates/panel_page/browse.php:50
 #: ../templates/panel_page/browse.php:298
 #: ../templates/panel_page/browse.php:366
-#: ../templates/panel_page/list_display.php:94
-#: ../templates/panel_page/tree_display.php:115
+#: ../templates/panel_page/list_display.php:96
+#: ../templates/panel_page/tree_display.php:117
 msgid "Template"
 msgstr "Modèle"
 
@@ -148,109 +255,6 @@ msgid "Click \"Pages\" item to discover the new Pages panel."
 msgstr ""
 "Cliquez sur le menu \"Pages\" pour découvrir la nouvelle interface de "
 "gestion des pages."
-
-#: ../lib/addons/flagged_pages.php:28
-msgid "Flagged pages"
-msgstr "Pages marquées"
-
-#: ../lib/addons/flagged_pages.php:50
-msgid "Mark"
-msgstr "Marquer"
-
-#: ../lib/addons/flagged_pages.php:51 ../lib/addons/flagged_pages.php:55
-msgid "Unmark"
-msgstr "Démarquer"
-
-#: ../lib/addons/flagged_pages.php:73
-#: ../templates/panel_page_sample/browse.php:42
-msgid "Flagged"
-msgstr "Marquées"
-
-#: ../lib/addons/flagged_pages.php:85 ../templates/panel_page/functions.php:8
-#: ../templates/panel_page_sample/browse.php:39
-msgid "All"
-msgstr "Toutes"
-
-#: ../lib/addons/flagged_pages.php:90 ../templates/panel_page/functions.php:13
-#: ../templates/panel_page/functions.php:132
-#: ../templates/panel_page_sample/browse.php:40
-msgid "Online"
-msgstr "En ligne"
-
-#: ../lib/addons/flagged_pages.php:94 ../templates/panel_page/functions.php:17
-#: ../templates/panel_page/functions.php:129
-#: ../templates/panel_page/functions.php:130
-#: ../templates/panel_page/functions.php:131
-#: ../templates/panel_page/functions.php:134
-#: ../templates/panel_page_sample/browse.php:41
-msgid "Offline"
-msgstr "Hors ligne"
-
-#: ../lib/addons/flagged_pages.php:134
-msgid "Delete flags data"
-msgstr "Effacer les données de marquage"
-
-#: ../lib/addons/flagged_pages.php:134
-msgid "delete flags for all pages"
-msgstr "efface le marquage pour toutes les pages"
-
-#: ../lib/addons/last_modified_column.php:16
-#, fuzzy
-msgid "Last Modified"
-msgstr "Modifiée"
-
-#: ../lib/addons/last_modified_column.php:69
-#: ../templates/panel_page/functions.php:75
-msgid "Unpublished"
-msgstr "Non publié(e)"
-
-#: ../lib/addons/last_modified_column.php:72
-#: ../templates/panel_page/functions.php:78
-msgid "Y/m/d g:i:s A"
-msgstr ""
-
-#: ../lib/addons/last_modified_column.php:79
-#: ../templates/panel_page/functions.php:84
-#, php-format
-msgid "%s ago"
-msgstr ""
-
-#: ../lib/addons/last_modified_column.php:81
-#: ../templates/panel_page/functions.php:86
-#: ../templates/panel_page/list_display.php:126
-#: ../templates/panel_page/tree_display.php:156
-msgid "Y/m/d"
-msgstr ""
-
-#: ../lib/addons/pages_taxonomies.php:29
-msgid "Pages Tags"
-msgstr "Tags pour les pages"
-
-#: ../lib/addons/pages_taxonomies.php:33
-msgid "Pages Categories"
-msgstr "Catégories pour les pages"
-
-#: ../lib/addons/pages_taxonomies.php:71
-msgid "Page taxonomies settings"
-msgstr "Paramètres des taxonomies de pages"
-
-#: ../lib/addons/pages_taxonomies.php:92
-#: ../templates/core/bo_options_panel.php:44
-#: ../templates/core/bo_options_panel.php:97
-msgid "Save changes"
-msgstr "Enregistrer les modifications"
-
-#: ../lib/addons/pages_taxonomies.php:150
-msgid "None"
-msgstr "Aucune"
-
-#: ../lib/addons/test_crea_transversal_taxos.php:14
-msgid "Tags transversaux"
-msgstr ""
-
-#: ../lib/addons/test_crea_transversal_taxos.php:18
-msgid "Categories transversales"
-msgstr ""
 
 #: ../templates/core/bo_options_panel.php:18
 msgid "Advanced Page Manager settings"
@@ -360,7 +364,7 @@ msgid "Default Template"
 msgstr "Modèle par défaut"
 
 #: ../templates/core/page_attributes_meta_box.php:52
-#: ../templates/panel_page/list_display.php:153
+#: ../templates/panel_page/list_display.php:155
 msgid "Where is it ?"
 msgstr "Où est-elle ?"
 
@@ -412,7 +416,7 @@ msgid "Marked Pages"
 msgstr "Pages marquées"
 
 #: ../templates/panel_page/browse.php:38
-#: ../templates/panel_page/tree_display.php:173
+#: ../templates/panel_page/tree_display.php:174
 msgid "Add New"
 msgstr "Ajouter"
 
@@ -523,20 +527,20 @@ msgid "Unmark All"
 msgstr "Tout démarquer"
 
 #: ../templates/panel_page/browse.php:198
-#: ../templates/panel_page/list_display.php:86
-#: ../templates/panel_page/tree_display.php:107
+#: ../templates/panel_page/list_display.php:87
+#: ../templates/panel_page/tree_display.php:108
 msgid "Publish"
 msgstr "Publier"
 
 #: ../templates/panel_page/browse.php:199
-#: ../templates/panel_page/list_display.php:82
-#: ../templates/panel_page/tree_display.php:103
+#: ../templates/panel_page/list_display.php:83
+#: ../templates/panel_page/tree_display.php:104
 msgid "Unpublish"
 msgstr "Dépublier"
 
 #: ../templates/panel_page/browse.php:203
-#: ../templates/panel_page/list_display.php:98
-#: ../templates/panel_page/tree_display.php:128
+#: ../templates/panel_page/list_display.php:100
+#: ../templates/panel_page/tree_display.php:129
 msgid "Delete"
 msgstr "Supprimer"
 
@@ -576,6 +580,10 @@ msgstr "sur"
 #: ../templates/panel_page/functions.php:133
 msgid "Private"
 msgstr "Privée"
+
+#: ../templates/panel_page/functions.php:135
+msgid "Offline (scheduled)"
+msgstr "Hors-ligne (planifié)"
 
 #: ../templates/panel_page/js_messages.php:5
 #: ../templates/panel_page_sample/js_messages.php:3
@@ -663,13 +671,13 @@ msgstr "Afficher"
 msgid "Preview"
 msgstr "Aperçu"
 
-#: ../templates/panel_page/list_display.php:80
-#: ../templates/panel_page/tree_display.php:101
+#: ../templates/panel_page/list_display.php:81
+#: ../templates/panel_page/tree_display.php:102
 msgid "Restore"
 msgstr "Restaurer"
 
-#: ../templates/panel_page/list_display.php:90
-#: ../templates/panel_page/tree_display.php:111
+#: ../templates/panel_page/list_display.php:92
+#: ../templates/panel_page/tree_display.php:113
 msgid "Edit"
 msgstr "Modifier"
 
@@ -681,7 +689,7 @@ msgstr "Cocher les sous-pages"
 msgid "Unselect Subpages"
 msgstr "Décocher les sous-pages"
 
-#: ../templates/panel_page/tree_display.php:123
+#: ../templates/panel_page/tree_display.php:124
 msgid "Move"
 msgstr "Déplacer"
 

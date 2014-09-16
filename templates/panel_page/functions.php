@@ -132,5 +132,6 @@ $status = array(-1=>__('Offline',ApmConfig::i18n_domain),
 				2=>__('Online',ApmConfig::i18n_domain),
 				3=>__('Private'),
 				4=>__('Offline',ApmConfig::i18n_domain),
+				5=>__('Offline (scheduled)',ApmConfig::i18n_domain),
 				);
 				

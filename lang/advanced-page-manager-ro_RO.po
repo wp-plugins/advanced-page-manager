@@ -1,0 +1,641 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Advanced Page Manager vbeta 1 (0.6)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2014-04-25 20:16+0200\n"
+"Last-Translator: Zeno Popovici <zeno@graffino.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
+"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
+"X-Poedit-Basepath: ../\n"
+"X-Textdomain-Support: yes\n"
+"Language: ro\n"
+"X-Generator: Poedit 1.6.4\n"
+"X-Poedit-SearchPath-0: .\n"
+
+# @ advanced-page-manager
+#: advanced_page_manager.php:111
+msgid "All Pages"
+msgstr "Toate Paginile"
+
+# @ advanced-page-manager
+#: advanced_page_manager.php:125
+msgid "Settings"
+msgstr "Configurări"
+
+# @ advanced-page-manager
+#: advanced_page_manager.php:149 advanced_page_manager.php:157
+#: advanced_page_manager.php:165 advanced_page_manager.php:193
+#: advanced_page_manager.php:271
+msgid "Resource not found"
+msgstr "Resursa nu a fost găsită"
+
+# @ advanced-page-manager
+#: advanced_page_manager.php:247
+msgid ""
+"Your session has expired.\n"
+"You will be redirected to login page."
+msgstr ""
+"Sesiunea dvs. a expirat.\n"
+"Veti fi redirectat catre pagina de autentificare."
+
+# @ advanced-page-manager
+#: advanced_page_manager.php:268
+msgid "An $apm_messages array should be defined in"
+msgstr "Un $apm_messages array ar trebui sa fie definit in"
+
+# @ advanced-page-manager
+#: advanced_page_manager.php:286 ajax/actions_ajax.php:53
+msgid "Template not found"
+msgstr "Template-ul nu a fost găsit"
+
+# @ default
+#: advanced_page_manager.php:312
+msgid "Page Attributes"
+msgstr "Atribute pagină"
+
+# @ advanced-page-manager
+#: lib/addons.php:177
+msgid "Addons activation parameters saved successfuly"
+msgstr "Parametrii de activare ale addon-urilor au fost salvate cu succes."
+
+# @ advanced-page-manager
+#: lib/options.php:147
+msgid "Plugin data (except options) have been deleted"
+msgstr "Informațiile stocate de plugin au fost șterse"
+
+# @ advanced-page-manager
+#: lib/options.php:153
+msgid "Plugin options have been deleted "
+msgstr "Opțiunile stocate de plugin au fost șterse"
+
+# @ advanced-page-manager
+#: lib/options.php:159
+msgid "Fold / Unfold data have been deleted"
+msgstr "Informațiile de colapsare / expandare au fost șterse"
+
+# @ advanced-page-manager
+#: lib/options.php:173
+#, php-format
+msgid "The page \"%s\" has been successful restored to the end of the tree"
+msgstr "Pagina \"%s\" a fost restaurată cu succes în capătul structurii"
+
+# @ advanced-page-manager
+#: lib/options.php:182
+#, php-format
+msgid "The page to restore (wp_id = %s) is not in lost pages."
+msgstr "Pagina de restaurat (wp_id = %s) nu se află între paginile pierdute."
+
+# @ advanced-page-manager
+#: lib/options.php:191
+msgid "APM tree successfully restored from Wordpress pages"
+msgstr ""
+"Structura MAP a fost restaurată cu succes din informatiile despre pagini din "
+"Wordpress"
+
+# @ advanced-page-manager
+#: lib/options.php:199
+msgid "Wordpress pages tree successfully restore from APM tree"
+msgstr "Structura Wordpress a fost restaurată cu succes din structura MAP"
+
+# @ advanced-page-manager
+#: lib/options.php:213
+msgid "Admin options saved successfuly"
+msgstr "Opțiunile de administrare au fost salvate"
+
+# @ advanced-page-manager
+#: templates/core/bo_options_panel.php:15
+msgid "Advanced Page Manager settings"
+msgstr "Configurația Managerului Avansat de Pagini"
+
+# @ advanced-page-manager
+#: templates/core/bo_options_panel.php:19
+msgid "Addons"
+msgstr "Addon-uri"
+
+# @ advanced-page-manager
+#: templates/core/bo_options_panel.php:31
+#: templates/core/bo_options_panel.php:74
+#: templates/core/bo_options_panel.php:84
+msgid "Deactivated"
+msgstr "Deactivat"
+
+# @ advanced-page-manager
+#: templates/core/bo_options_panel.php:32
+#: templates/core/bo_options_panel.php:75
+#: templates/core/bo_options_panel.php:85
+msgid "Activated"
+msgstr "Activat"
+
+# @ advanced-page-manager
+#: templates/core/bo_options_panel.php:40
+#: templates/core/bo_options_panel.php:92
+msgid "Save changes"
+msgstr "Salvează schimbările"
+
+# @ default
+#: templates/core/bo_options_panel.php:49
+msgid "Plugin options"
+msgstr "Opțiuni modul"
+
+# @ advanced-page-manager
+#: templates/core/bo_options_panel.php:70
+msgid "Display Mysql queries in AJAX answers"
+msgstr "Afișează query-uri MYSQL în răspunsurile AJAX"
+
+# @ advanced-page-manager
+#: templates/core/bo_options_panel.php:80
+msgid "Display lost pages in the \"All pages\" panel"
+msgstr "Afișează paginile pierdute in secțiunea \"Toate paginile\""
+
+# @ advanced-page-manager
+#: templates/core/bo_options_panel.php:101
+msgid "Lost pages"
+msgstr "Pagini pierdute"
+
+# @ advanced-page-manager
+#: templates/core/bo_options_panel.php:109
+msgid "No lost pages found"
+msgstr "Nu au fost găsite pagini pierdute"
+
+# @ advanced-page-manager
+#: templates/core/bo_options_panel.php:116
+msgid "Restore at the end of the page tree"
+msgstr "Restaurează  capătul structurii"
+
+# @ advanced-page-manager
+#: templates/core/bo_options_panel.php:129
+msgid "Plugin data management"
+msgstr "Management al informațiilor modulului"
+
+# @ advanced-page-manager
+#: templates/core/bo_options_panel.php:135
+msgid "Reinitialize the tree from Wordpress pages"
+msgstr "Reinițializează structura din informatiile despre pagini din Wordpress"
+
+# @ advanced-page-manager
+#: templates/core/bo_options_panel.php:139
+msgid "Synchronize Wordpress pages tree with the plugin tree"
+msgstr "Sincroniează structura Wordpress cu structura modulului."
+
+# @ advanced-page-manager
+#: templates/core/bo_options_panel.php:143
+msgid "Delete plugin data except options"
+msgstr "Șterge informatiile modulului exceptând opțiunile"
+
+# @ advanced-page-manager
+#: templates/core/bo_options_panel.php:143
+msgid ""
+"delete plugin tree and fold / unfold data. Doesnt delete plugin options."
+msgstr ""
+"Sterge informațiile modulului despre structură și colapsare / expandare"
+
+# @ advanced-page-manager
+#: templates/core/bo_options_panel.php:147
+msgid "Delete plugin options"
+msgstr "Șterge optiunile modului"
+
+# @ advanced-page-manager
+#: templates/core/bo_options_panel.php:147
+msgid "reinitialize plugin options."
+msgstr "reinițializează opțiunile modulului."
+
+# @ advanced-page-manager
+#: templates/core/bo_options_panel.php:151
+msgid "Delete fold / unfold data"
+msgstr "Sterge informațiile despre colapsare / expandare"
+
+# @ advanced-page-manager
+#: templates/core/bo_options_panel.php:151
+msgid "fold all pages."
+msgstr "colapsează toate paginile."
+
+# @ advanced-page-manager
+#: templates/core/page_attributes_meta_box.php:30
+msgid "Page flagged : click here to unflag"
+msgstr "Pagina este marcată: apăsați aici pentru demarcare"
+
+# @ advanced-page-manager
+#: templates/core/page_attributes_meta_box.php:31
+msgid "Page not flagged : click here to flag"
+msgstr "Pagina nu este marcată: apăsați aici pentru marcare"
+
+# @ default
+# @ advanced-page-manager
+#: templates/core/page_attributes_meta_box.php:35
+#: templates/panel_page/browse.php:50 templates/panel_page/browse.php:269
+#: templates/panel_page/browse.php:313
+#: templates/panel_page/list_display.php:91
+#: templates/panel_page/tree_display.php:89
+msgid "Template"
+msgstr "Șablon"
+
+# @ default
+#: templates/core/page_attributes_meta_box.php:36
+msgid "Page Template"
+msgstr "Șablon de Pagină"
+
+# @ default
+# @ advanced-page-manager
+#: templates/core/page_attributes_meta_box.php:38
+#: templates/panel_page/browse.php:52 templates/panel_page/browse.php:100
+#: templates/panel_page/functions.php:82
+msgid "Default Template"
+msgstr "Șablon Implicit"
+
+# @ advanced-page-manager
+#: templates/core/page_attributes_meta_box.php:44
+#: templates/panel_page/list_display.php:124
+msgid "Where is it ?"
+msgstr "Unde se află?"
+
+# @ advanced-page-manager
+#: templates/core/page_attributes_meta_box.php:51
+msgid "Edit Parent"
+msgstr "Editează Părinte"
+
+# @ advanced-page-manager
+#: templates/core/page_attributes_meta_box.php:55
+msgid "Edit Previous"
+msgstr "Editează Anterior"
+
+# @ advanced-page-manager
+#: templates/core/page_attributes_meta_box.php:57
+msgid "Edit Next"
+msgstr "Editează Următor"
+
+# @ advanced-page-manager
+#: templates/core/page_attributes_meta_box.php:60
+msgid "Subpage(s)"
+msgstr "Subpagina(i)"
+
+# @ advanced-page-manager
+#: templates/core/page_attributes_meta_box.php:81
+msgid "No Subpage"
+msgstr "Nici o Subpagina"
+
+# @ advanced-page-manager
+#: templates/core/page_attributes_meta_box.php:84
+msgid "Edit Subpage"
+msgstr "Editează Subpagina"
+
+# @ advanced-page-manager
+#: templates/core/page_attributes_meta_box.php:92
+msgid "This page is not in the Advanced Page Manager tree."
+msgstr "Această pagină nu exista în structura Managerul-ui Avansat de Pagini."
+
+# @ advanced-page-manager
+#: templates/core/page_attributes_meta_box.php:93
+msgid "Insert this page as last page of the tree"
+msgstr "Inserează pagina ca și ultimă pagina în structura"
+
+# @ default
+#: templates/core/page_attributes_meta_box.php:100
+msgid "No Page Template found in current theme directory!"
+msgstr "Nu a fost găsit un șablon de pagină în directorul temei!"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:12 templates/panel_page/browse.php:245
+#: templates/panel_page/browse.php:289
+msgid "Pages"
+msgstr "Pagini"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:14
+msgid "Marked Pages"
+msgstr "Pagini Marcate"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:38
+#: templates/panel_page/tree_display.php:118
+msgid "Add New"
+msgstr "Adaugă Pagină Nouă"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:40
+msgid "Click After, Before or Subpage position button"
+msgstr "Dați click pe butonul Înainte, După sau Subpagina"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:41
+msgid "Your page needs a title"
+msgstr "Pagina necesită un titlu"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:43 templates/panel_page/js_messages.php:25
+msgid "Selected page"
+msgstr "Pagina selectată"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:45
+msgid "Title"
+msgstr "Titlu"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:58
+msgid "Position"
+msgstr "Poziție"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:60 templates/panel_page/browse.php:231
+msgid "After"
+msgstr "După"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:61 templates/panel_page/browse.php:232
+msgid "Before"
+msgstr "Înainte"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:62
+msgid "Subpage"
+msgstr "Subpagina"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:67
+msgid "Number"
+msgstr "Număr"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:75
+msgid "Add"
+msgstr "Adaugă"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:76 templates/panel_page/browse.php:114
+msgid "Done"
+msgstr "Succes"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:77 templates/panel_page/browse.php:115
+#: templates/panel_page/browse.php:217 templates/panel_page/browse.php:224
+#: templates/panel_page/browse.php:234
+#: templates/panel_page/list_display.php:72
+#: templates/panel_page/tree_display.php:70
+msgid "Cancel"
+msgstr "Anulează"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:84 templates/panel_page/browse.php:187
+msgid "Change Template"
+msgstr "Schimbă Șablon"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:86 templates/panel_page/js_messages.php:27
+msgid "No page selected"
+msgstr "Nici o pagină selectată"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:89
+msgid "Current Template"
+msgstr "Șablon Actual"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:91 templates/panel_page/js_messages.php:29
+msgid "Selected pages have different templates"
+msgstr "Paginile selectate au șabloane diferite"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:95
+msgid "New Template"
+msgstr "Șablon Nou"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:113
+msgid "Change"
+msgstr "Schimbă"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:123
+msgid "Search results for"
+msgstr "Rezultatele căutării pentru"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:162 templates/panel_page/browse.php:164
+msgid "Search Pages"
+msgstr "Pagini de Căutare"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:170
+msgid "Bulk Actions"
+msgstr "Acțiuni în Masă"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:172
+msgid "Unselect All"
+msgstr "Deselecteaza Toate"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:175
+msgid "Fold All"
+msgstr "Colapsează Toate"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:177
+msgid "Unmark All"
+msgstr "Demarchează Toate"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:185
+#: templates/panel_page/list_display.php:86
+#: templates/panel_page/tree_display.php:84
+msgid "Publish"
+msgstr "Publică"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:186
+#: templates/panel_page/list_display.php:84
+#: templates/panel_page/tree_display.php:82
+msgid "Unpublish"
+msgstr "Retrage"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:190
+#: templates/panel_page/list_display.php:94
+#: templates/panel_page/tree_display.php:93
+msgid "Delete"
+msgstr "Șterge"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:202 templates/panel_page/browse.php:327
+msgid "Selected Item(s)"
+msgstr "Elementul(ele) selectate"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:216
+msgid "You have chosen to move this page (and its subpages) elsewhere"
+msgstr "Ați ales să mutați această pagină (și subpaginile ei) în altă parte"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:223
+msgid "You are adding pages relative to this one"
+msgstr "Adăugați pagini relativ la aceasta"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:230
+msgid "Move my page"
+msgstr "Mută pagina"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:233
+msgid "As a subpage"
+msgstr "Ca și subpagină"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:257 templates/panel_page/browse.php:301
+msgid "Status"
+msgstr "Stare"
+
+# @ advanced-page-manager
+#: templates/panel_page/browse.php:263 templates/panel_page/browse.php:307
+msgid "Date"
+msgstr "Dată"
+
+# @ advanced-page-manager
+#: templates/panel_page/functions.php:8
+msgid "All"
+msgstr "Toate"
+
+# @ advanced-page-manager
+#: templates/panel_page/functions.php:13 templates/panel_page/functions.php:97
+msgid "Online"
+msgstr "Online"
+
+# @ advanced-page-manager
+#: templates/panel_page/functions.php:17 templates/panel_page/functions.php:97
+msgid "Offline"
+msgstr "Offline"
+
+# @ advanced-page-manager
+#: templates/panel_page/functions.php:49
+msgid "on"
+msgstr "pe"
+
+# @ advanced-page-manager
+#: templates/panel_page/js_messages.php:5
+msgid "Error"
+msgstr "Eroare"
+
+# @ advanced-page-manager
+#: templates/panel_page/js_messages.php:6
+msgid "Couldn't load tree"
+msgstr "Nu se poate încărca structura"
+
+# @ advanced-page-manager
+#: templates/panel_page/js_messages.php:7
+msgid "No page ?"
+msgstr "Nici o pagină?"
+
+# @ advanced-page-manager
+#: templates/panel_page/js_messages.php:11
+msgid "Create my first page !"
+msgstr "Creează-mi prima mea pagină!"
+
+# @ advanced-page-manager
+#: templates/panel_page/js_messages.php:12
+msgid "No page online"
+msgstr "Nu există nici o pagină online"
+
+# @ advanced-page-manager
+#: templates/panel_page/js_messages.php:13
+msgid "No page offline"
+msgstr "Nu exista nici o pagină offline"
+
+# @ advanced-page-manager
+#: templates/panel_page/js_messages.php:14
+msgid "No marked page"
+msgstr "Nu există nici o pagină marcată"
+
+# @ advanced-page-manager
+#: templates/panel_page/js_messages.php:15
+msgid "No page found"
+msgstr "Nu a fost găsită nici o pagină"
+
+# @ advanced-page-manager
+#: templates/panel_page/js_messages.php:17
+msgid "Do you really want to delete this page?"
+msgstr "Sunteți sigur că doriți ștergerea acestei pagini?"
+
+# @ advanced-page-manager
+#: templates/panel_page/js_messages.php:18
+msgid "Do you really want to delete those pages?"
+msgstr "Sunteți sigur că doriți ștergerea acestor pagini?"
+
+# @ advanced-page-manager
+#: templates/panel_page/js_messages.php:19
+msgid ""
+"Deleting this page will also delete all its subpages. Do you really want to "
+"delete this page?"
+msgstr ""
+"Ștergerea acestei pagini va cauza ștergerea tuturor subpaginilor ei. Sunteți "
+"sigur că doriți ștergerea acestei pagini?"
+
+# @ advanced-page-manager
+#: templates/panel_page/js_messages.php:22
+msgid "Please, select at least one page"
+msgstr "Te rugăm să selectați cel puțin o pagină"
+
+# @ advanced-page-manager
+#: templates/panel_page/js_messages.php:26
+msgid "Selected pages"
+msgstr "Paginile selectate"
+
+# @ advanced-page-manager
+#: templates/panel_page/js_messages.php:28
+msgid "No template"
+msgstr "Nu există șablon"
+
+# @ advanced-page-manager
+#: templates/panel_page/list_display.php:75
+#: templates/panel_page/tree_display.php:73
+msgid "Rename"
+msgstr "Redenumește"
+
+# @ advanced-page-manager
+#: templates/panel_page/list_display.php:78
+#: templates/panel_page/tree_display.php:76
+msgid "View"
+msgstr "Vizualizează"
+
+# @ advanced-page-manager
+#: templates/panel_page/list_display.php:80
+#: templates/panel_page/tree_display.php:78
+msgid "Preview"
+msgstr "Previzualizează"
+
+# @ advanced-page-manager
+#: templates/panel_page/list_display.php:89
+#: templates/panel_page/tree_display.php:87
+msgid "Edit"
+msgstr "Editează"
+
+# @ advanced-page-manager
+#: templates/panel_page/tree_display.php:34
+msgid "Select Subpages"
+msgstr "Selectează Subpaginile"
+
+# @ advanced-page-manager
+#: templates/panel_page/tree_display.php:35
+msgid "Unselect Subpages"
+msgstr "Deselecteaza Subpaginile"
+
+# @ advanced-page-manager
+#: templates/panel_page/tree_display.php:91
+msgid "Move"
+msgstr "Mută"
+
+# @ advanced-page-manager
+#: templates/panel_page/tree_display.php:91
+msgid "Recent Pages"
+msgstr "Pagini Recente"
+
+# @ advanced-page-manager
+#: templates/panel_page/tree_display.php:91
+msgid "Last modified column"
+msgstr "Coloana cu paginile recent modificate"
